@@ -1,6 +1,6 @@
 # RFCs
 
-Change proposals for `agent-iam-spec`.
+Change proposals for the Agent IAM Series.
 
 ## Process
 

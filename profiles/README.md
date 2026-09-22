@@ -1,6 +1,6 @@
 # Profiles
 
-本目录承载 `agent-iam-spec` 的规范性 Profile。Profile 只能收窄或细化主规范要求，不得放宽 `spec/` 中的强制条款。
+本目录承载 Agent IAM 系列的规范性 Profile。Profile 只能收窄或细化其所扩展部分的强制条款，不得放宽。
 
 ## 规划中的 Profile
 

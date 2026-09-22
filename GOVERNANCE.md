@@ -2,7 +2,7 @@
 
 ## 1. Scope
 
-This document defines how `agent-iam-spec` is versioned, changed, and published.
+This document defines how the Agent IAM Series is versioned, changed, and published.
 
 ## 2. Document status
 

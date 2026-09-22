@@ -31,16 +31,23 @@ The series composite profiles (`Identity`, `Authorization`, `Federated`) defined
 
 ## Planned coverage
 
-| Area | Positive | Negative |
-|---|---|---|
-| Agent ID uniqueness and non-reuse | required | required |
-| Authority Binding immutability | required | required |
-| Lifecycle epoch monotonicity | required | required |
-| Enrollment challenge single use | required | required |
-| Enrollment proof binding | required | required |
-| Token audience binding | required | required |
-| Request-level PoP | required | required |
-| Delegation non-amplification | required | required |
-| Revocation freshness classes | required | required |
-| Federation trust disable | required | required |
-| Security event redaction | required | required |
+| Area | Part | Positive | Negative |
+|---|---|---|---|
+| Agent ID uniqueness and non-reuse | 2 | required | required |
+| Authority Binding immutability | 2 | required | required |
+| Lifecycle epoch monotonicity | 2 | required | required |
+| Discovery document resolution and caching | 2 | required | required |
+| Discovery SSRF target rejection | 2 | required | required |
+| Enrollment challenge single use | 3 | required | required |
+| Enrollment proof binding | 3 | required | required |
+| Token audience binding | 3 | required | required |
+| Request-level PoP | 3 | required | required |
+| Credential generation and re-enrollment | 3 | required | required |
+| Decision and Grant binding | 4 | required | required |
+| Delegation non-amplification | 4 | required | required |
+| Prompt injection cannot expand a grant | 4 | required | required |
+| Revocation freshness classes | 1, 3, 4 | required | required |
+| Federation trust disable | 5 | required | required |
+| Cross-domain principal isolation | 5 | required | required |
+| Security event redaction | 6 | required | required |
+| Composite profile claim completeness | 7 | required | required |

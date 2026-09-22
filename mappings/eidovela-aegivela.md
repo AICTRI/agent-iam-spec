@@ -85,7 +85,31 @@
 | Execution Grant | 不适用 | execution grant |
 | Security Event Record | evidence event | security evidence envelope |
 
-## 6. 一致性声明模板
+## 6. 发现实现指引（EIDOVELA）
+
+第 2 部分第 8 节要求实现身份发现。EIDOVELA 目前没有 discovery document，建议按以下方式补齐（对应条款见括号）：
+
+1. **发布 discovery document**：在每个 Authority Namespace 的 HTTPS 主机下发布
+   `/.well-known/agent-iam`，至少包含
+   `discovery_version`、`namespace`、`issuer`、`registry_endpoint`、`jwks_uri`、
+   `supported_proof_profiles`、`supported_artifact_types`、`key_rotation`
+   （第 2 部分第 8.2 节）。
+2. **签名与密钥**：对文档签名，且签名密钥必须能独立于文档解析；轮换 overlap 至少覆盖
+   最大 artifact 寿命加时钟偏差（第 2 部分第 8.2 节、第 3 部分第 5.6 节）。
+3. **解析规则**：namespace 采用 canonical 形式并精确字符串比较；issuer 必须来自注册记录，
+   不得因自声明而信任；结果带最大年龄缓存，过期元数据对新签发失败关闭，且不得用于满足撤销
+   （第 2 部分第 8.3 节）。
+4. **获取安全**：仅 HTTPS；host/scheme allowlist、DNS/IP 再验证、redirect/大小/超时/内容类型限制；
+   拒绝 loopback、link-local、云 metadata 与未批准私网；对未知 `kid` 刷新限速
+   （第 2 部分第 8.4 节）。
+5. **绑定**：Registry 负责 namespace → issuer/registry 解析，STS 负责 `jwks_uri` 与轮换元数据，
+   Federation 负责 peer trust 元数据；`iss`/OIDC discovery issuer 必须与 namespace issuer 语义一致
+   （第 2 部分第 8.5 节、第 5 部分第 3 节）。
+
+验收要点：给定一个 Authority Namespace，能在无调用方提示的情况下解析到受信 issuer、注册表端点
+与验证密钥，并在元数据过期或被篡改时失败关闭。
+
+## 7. 一致性声明模板
 
 ```text
 实现名称：

@@ -2,16 +2,16 @@
 
 # Reference Implementations
 
-This page lists implementations of `agent-iam-spec`. Implementations are informative: they do not define the specification and their status does not modify any clause.
+This page lists implementations of the Agent IAM Series. Implementations are informative: they do not define the specification and their status does not modify any clause.
 
 No implementation listed here is endorsed as fully conformant. Refer to the conformance claim of each implementation and to [`mappings/`](mappings/) for the current gaps.
 
 ## Components
 
-| Component | Role in the specification | Repositories |
-|---|---|---|
-| EIDOVELA | Agent Identity Provider: Agent registration, Authority Binding, workload enrollment, lifecycle and epoch, proof-of-possession credentials, identity tokens, authoritative introspection, federation | Core (private): <https://github.com/axisrobo/eidovela> · Open contracts and SDKs: <https://github.com/axisrobo/eidovela-open> |
-| AEGIVELA | Agent Authorization plane: Principal resolution, authorization modes, policy decisions, execution grants, delegation, approval, revocation | Core (private): <https://github.com/axisrobo/aegivela> · Open contracts and SDK: <https://github.com/axisrobo/aegivela-open> |
+| Component | Series parts | Role in the specification | Repositories |
+|---|---|---|---|
+| EIDOVELA | 2, 3, 5 | Agent Identity Provider: Agent registration, Authority Binding, workload enrollment, lifecycle and epoch, proof-of-possession credentials, identity tokens, authoritative introspection, federation | Core (private): <https://github.com/axisrobo/eidovela> · Open contracts and SDKs: <https://github.com/axisrobo/eidovela-open> |
+| AEGIVELA | 4, 6 | Agent Authorization plane: Principal resolution, authorization modes, policy decisions, execution grants, delegation, approval, revocation | Core (private): <https://github.com/axisrobo/aegivela> · Open contracts and SDK: <https://github.com/axisrobo/aegivela-open> |
 
 The `-open` repositories host public contracts, SDKs, examples, and conformance fixtures under Apache-2.0. The core repositories host the implementation and are private; access is required.
 
@@ -56,10 +56,12 @@ An implementation publishing a conformance claim should state:
 ```text
 Implementation name:
 Version / commit:
-Declared level: 1 | 2 | 3
+Supported parts and levels: Part 2 | 3 | 4 | 5 (list each)
+Declared composite profile: Identity | Authorization | Federated
 Supported proof profiles:
 Supported token / artifact versions:
 Revocation SLO:
+Discovery mechanism and caching bounds:
 Known extensions:
 Unmet clauses:
 ```
@@ -68,7 +70,7 @@ Unmet clauses:
 
 Submit a pull request that adds a row to the Components table and, when available, a mapping document under [`mappings/`](mappings/). Include:
 
-- the component name and the specification role it implements;
+- the component name and the specification part(s) and role it implements;
 - repository links, and a note if access is restricted;
-- the declared conformance level and any unmet clauses;
-- a mapping document that cites the specification clauses.
+- the declared parts, levels, composite profile, and any unmet clauses;
+- a mapping document that cites the specification parts and clauses.

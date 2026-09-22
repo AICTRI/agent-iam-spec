@@ -2,16 +2,16 @@
 
 # 参考实现
 
-本页面列出 `agent-iam-spec` 的实现。实现属于参考性内容：它不定义规范，其状态也不修改任何条款。
+本页面列出 Agent IAM 系列的实现。实现属于参考性内容：它不定义规范，其状态也不修改任何条款。
 
 本页列出的实现均不被认定为完全符合规范。请查阅各实现的一致性声明，以及 [`mappings/`](mappings/) 中记录的当前差距。
 
 ## 组件
 
-| 组件 | 在规范中的角色 | 仓库 |
-|---|---|---|
-| EIDOVELA | Agent 身份提供商：Agent 注册、Authority Binding、工作负载登记、生命周期与 epoch、持钥证明凭据、身份 Token、权威 introspection、联邦 | 核心（私有）：<https://github.com/axisrobo/eidovela> · 公开契约与 SDK：<https://github.com/axisrobo/eidovela-open> |
-| AEGIVELA | Agent 授权平面：Principal 解析、授权模式、策略决策、Execution Grant、委托、审批、撤销 | 核心（私有）：<https://github.com/axisrobo/aegivela> · 公开契约与 SDK：<https://github.com/axisrobo/aegivela-open> |
+| 组件 | 系列部分 | 在规范中的角色 | 仓库 |
+|---|---|---|---|
+| EIDOVELA | 2、3、5 | Agent 身份提供商：Agent 注册、Authority Binding、工作负载登记、生命周期与 epoch、持钥证明凭据、身份 Token、权威 introspection、联邦 | 核心（私有）：<https://github.com/axisrobo/eidovela> · 公开契约与 SDK：<https://github.com/axisrobo/eidovela-open> |
+| AEGIVELA | 4、6 | Agent 授权平面：Principal 解析、授权模式、策略决策、Execution Grant、委托、审批、撤销 | 核心（私有）：<https://github.com/axisrobo/aegivela> · 公开契约与 SDK：<https://github.com/axisrobo/aegivela-open> |
 
 `-open` 仓库以 Apache-2.0 提供公开契约、SDK、示例与一致性 fixture。核心仓库承载实现，当前为私有，需要授权访问。
 
@@ -56,10 +56,12 @@ PEP       API 网关、工具网关、模型入口、业务服务、执行器
 ```text
 实现名称：
 版本 / commit：
-声明 Level：1 | 2 | 3
+支持的部分与等级：Part 2 | 3 | 4 | 5（分别列出）
+声明的组合 profile：Identity | Authorization | Federated
 支持的 proof Profile：
 支持的 Token / artifact 版本：
 撤销 SLO：
+发现机制与缓存上限：
 已知扩展：
 未满足的条款：
 ```
@@ -68,7 +70,7 @@ PEP       API 网关、工具网关、模型入口、业务服务、执行器
 
 提交 Pull Request，在组件表中增加一行，并在可用时于 [`mappings/`](mappings/) 下提供映射文档。请包含：
 
-- 组件名称及其实现的规范角色；
+- 组件名称及其实现的规范部分与角色；
 - 仓库链接，以及访问受限时的说明；
-- 声明的 Level 和未满足的条款；
-- 引用规范条款的映射文档。
+- 声明的部分、等级、组合 profile 和未满足的条款；
+- 引用规范部分与条款的映射文档。
