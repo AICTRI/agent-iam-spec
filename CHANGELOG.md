@@ -4,6 +4,17 @@ All notable changes to this specification are recorded here.
 
 The format is based on Keep a Changelog. Versions follow the scheme documented in `GOVERNANCE.md`.
 
+## [Unreleased]
+
+### Changed
+
+- Removed `tenant_id` from the specification and replaced it with the hierarchical `Authority Namespace` (RFC-0001, Draft).
+- Added terms `Namespace`, `Authority Namespace`, and `Organization Unit` to Section 4; removed the `Tenant` term.
+- Added the Namespace Hierarchy in Section 6.6; changed Agent ID uniqueness in Sections 6.2 and 7.1 to `namespace + agent_id`.
+- Replaced `namespace` for `tenant_id` in the Agent Identity Record, Workload Registration, Agent Instance, trusted data sources, identity Token claims, challenge scoping, JTI replay scope, Decisions, Grants, revocation selectors, Federation Trust, and security events.
+- Clarified in Section 16.2 that federated/brokered principals preserve their source Authority Namespace and do not flatten a peer Namespace into another Namespace.
+- Updated `SECURITY.md` and the SPIFFE / EIDOVELA-AEGIVELA mappings accordingly.
+
 ## [0.1.0-draft] - 2026-09-22
 
 ### Added

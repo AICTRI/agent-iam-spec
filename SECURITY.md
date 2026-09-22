@@ -32,7 +32,7 @@ Because this repository publishes a specification, security defects include:
 - confused deputy through missing audience, action, resource, or task binding;
 - privilege escalation through delegation or pre-authorization;
 - missing or delayed revocation;
-- prompt injection that influences tenant, authority root, epoch, or policy;
+- prompt injection that influences namespace, authority root, epoch, or policy;
 - SSRF and key-cache abuse in federation;
 - evidence leakage of secrets, tokens, prompts, or unrestricted arguments;
 - management-plane exposure.

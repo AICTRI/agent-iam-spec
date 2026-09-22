@@ -28,25 +28,26 @@
 ## 2. EIDOVELA 阻塞项
 
 - 管理 API 需要强认证和授权；
-- 所有存储实现需要一致执行 tenant/trust-domain 校验；
+- 所有存储实现需要一致执行 namespace/trust-domain 校验；
+- `tenant_id` 必须迁移为 `namespace`（RFC-0001），并保证 `namespace + agent_id` 唯一；
 - Blueprint 必须按请求版本精确校验和绑定；
 - Agent 注册与 Binding/evidence 需要事务一致性；
 - SPIFFE、Kubernetes 和 mTLS 证据需要接入实际链/签名验证器；
 - 符合模式必须禁用调用方自报 workload attributes 的回退，并持久化可解析到验证结果的 `attestation_ref`；
 - Credential re-enrollment、轮换和撤销语义需要完成；
 - Instance terminate 必须使既有 Token 在下一次权威在线验证时失效；
-- Token 请求 proof 必须绑定目标 Token audience，并由 tenant-scoped audience registry 校验；
+- Token 请求 proof 必须绑定目标 Token audience，并由 namespace-scoped audience registry 校验；
 - 资源请求必须验证请求级 PoP；仅提交 public JWK/thumbprint 不得视为持钥证明；
 - Brokered Token 在线验证必须重新检查 Federation Trust 状态；
 - 安全 JSON/JWT/JWK 解析必须拒绝重复 member，并提供跨实现测试向量；
 - PostgreSQL evidence 需要持久保存 outcome，并覆盖安全拒绝事件；
-- OIDC discovery issuer 必须与 tenant issuer 语义一致；
+- OIDC discovery issuer 必须与 namespace issuer 语义一致；
 - 签名 key overlap 必须覆盖最大 Token TTL 和 clock skew。
 
 ## 3. AEGIVELA 阻塞项
 
 - Enterprise bearer exchange 必须先调用 PDP，并仅接受绑定相同 principal、action、resource、scope 和 audience 的已验证 `allow` Decision；不得在 exchange service 内合成 allow；
-- Revocation check endpoint、公开 contract 和 PEP SDK 必须一致，并携带 tenant 和 freshness class；
+- Revocation check endpoint、公开 contract 和 PEP SDK 必须一致，并携带 namespace 和 freshness class；
 - Agent lifecycle schema/OpenAPI 与 runtime 状态、路由和 DTO 必须统一；
 - Agent activation 必须按 Profile 强制 enrollment/attestation；
 - Identity resolve 和 Evidence schema 必须与 runtime envelope 一致；
@@ -61,6 +62,7 @@
 | Agent Identity | `agent` | Agent Identity Authority record |
 | Agent Instance | `instance` | workload binding / instance context |
 | Authority Root | Authority Binding (`human_master` / `organization_root`) | authority root |
+| Authority Namespace | `tenant` / trust domain（需迁移为 namespace） | tenant context（需迁移为 namespace） |
 | Lifecycle Epoch | `lifecycle_epoch` | `lifecycle_epoch` |
 | Principal | verified principal | trusted principal |
 | Policy Decision | 不适用 | signed policy decision |

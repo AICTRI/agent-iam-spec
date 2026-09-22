@@ -102,6 +102,18 @@ Agent Identity 与 Authority Root 之间的一对一、不可变绑定。
 - PDP：Policy Decision Point，策略决策点；
 - PEP：Policy Enforcement Point，在效果发生前验证并执行决策和约束。
 
+### 4.14 Namespace
+
+由某一主体控制、可委托、全局可寻址的标识作用域，用于在组织生态中对主体和 Agent 命名。Namespace 必须有稳定、可精确比较的 canonical 表示，通常是部署方控制的 HTTPS URI。
+
+### 4.15 Authority Namespace
+
+组织、客户、合作伙伴或供应商主体控制的根 Namespace。它可以包含零到多层组织内划分（子 Namespace），并由该主体委托管理。Authority Namespace 是跨域身份的全局命名锚点。
+
+### 4.16 Organization Unit
+
+Authority Namespace 内的一层划分，例如部门、事业部、项目或环境。Organization Unit 通过命名空间层级表达，不需要独立的扁平标识。
+
 ## 5. 体系结构
 
 ### 5.1 分层
@@ -129,7 +141,7 @@ PEP:      API Gateway、Tool Gateway、模型入口、业务服务、执行器
 
 下列值必须由可信来源解析，不得接受调用方覆盖：
 
-- `tenant_id`；
+- `namespace`（Authority Namespace）及其 canonical 表示；
 - Authority Root；
 - Agent class；
 - lifecycle state 和 epoch；
@@ -147,11 +159,12 @@ PEP:      API Gateway、Tool Gateway、模型入口、业务服务、执行器
 
 ### 6.1 标识层次
 
-本文件区分三种标识：
+本文件区分四种标识：
 
 | 标识 | 作用域 | 示例 | 用途 |
 |---|---|---|---|
-| 本地 Agent ID | tenant 内 | `agt_01J...` | 数据库主标识、API 路径 |
+| Authority Namespace | 全局、可委托 | `https://id.example.com/org/acme` | 组织/合作方及组织内划分的命名与寻址 |
+| 本地 Agent ID | Authority Namespace 内 | `agt_01J...` | 数据库主标识、API 路径 |
 | 跨域 Agent Principal Key | issuer 范围 | `(iss, sub)` | Token、联邦、审计 |
 | Workload ID | trust domain 内 | `spiffe://example.org/ns/a/sa/b` | 运行实例证明 |
 
@@ -160,7 +173,7 @@ PEP:      API Gateway、Tool Gateway、模型入口、业务服务、执行器
 本地 Agent ID：
 
 - 必须由身份权威生成；
-- 必须在 tenant 内唯一；
+- 必须在其 Authority Namespace 内唯一；
 - 必须是不透明值，消费者不得解析其中的业务含义；
 - 创建后不得修改；
 - Agent 被撤销后不得重用；
@@ -171,7 +184,7 @@ PEP:      API Gateway、Tool Gateway、模型入口、业务服务、执行器
 
 ### 6.3 全局唯一性
 
-跨 tenant 或跨组织时，裸 `agent_id` 不具有全局唯一性。跨域主体键必须以 `(issuer, subject)` 二元组确定。issuer 注册时必须形成稳定的 canonical value；Token 验证时必须与该注册值执行精确字符串比较，不得在验证阶段通过 URI 规范化折叠不同 issuer。subject 必须在该 issuer 下唯一且永不重分配。RFC 9493 的 `iss_sub` 可以作为该二元组的结构化表示：
+跨 Namespace 或跨组织时，裸 `agent_id` 不具有全局唯一性。跨域主体键必须以 `(issuer, subject)` 二元组确定。issuer 必须解析到一个 Authority Namespace，因此 `(issuer, subject)` 等价于 `(Authority Namespace, Agent Subject)`；Namespace 可以包含组织内划分层，但各层必须共同形成同一个稳定 canonical value。issuer 注册时必须形成稳定的 canonical value；Token 验证时必须与该注册值执行精确字符串比较，不得在验证阶段通过 URI 规范化折叠不同 issuer。subject 必须在该 issuer 下唯一且永不重分配。RFC 9493 的 `iss_sub` 可以作为该二元组的结构化表示：
 
 ```json
 {
@@ -213,6 +226,23 @@ Agent Identity 1 --- n Agent Instance 1 --- 1 current Workload Identity
 
 外部标识建立、变更和解除关联必须产生审计事件，并经过签发方真实性验证。
 
+### 6.6 命名空间层次
+
+为支持企业与客户、合作伙伴和供应商 Agent 的交互，标识应按以下层次组织：
+
+```text
+Authority Namespace（主体控制的根，全局唯一、可委托）
+  └─ 组织内划分（0..n 层子 Namespace）
+       └─ 逻辑 Agent ID（在该 Namespace 内唯一）
+            └─ Agent Instance（逻辑实例）
+```
+
+- Authority Namespace 必须全局唯一、可委托，且不得重分配；
+- 组织内划分必须表达为子 Namespace，并沿用一个 canonical 规则；
+- 本地 Agent ID 必须在其 Authority Namespace 内唯一，不得跨 Namespace 假定唯一；
+- 接入同一部署的多个组织必须各自拥有 Authority Namespace，不得共享或相互覆盖；
+- 联邦交互必须保留双方 Authority Namespace，并按第 16.2 节维持主体隔离。
+
 ## 7. 身份对象模型
 
 ### 7.1 Agent Identity Record
@@ -220,7 +250,7 @@ Agent Identity 1 --- n Agent Instance 1 --- 1 current Workload Identity
 最小记录应包含：
 
 ```text
-tenant_id
+namespace
 agent_id
 agent_class
 blueprint_id and blueprint_version, if used
@@ -232,7 +262,7 @@ created_at
 updated_at
 ```
 
-`tenant_id + agent_id` 必须唯一。注册 Agent、创建 Authority Binding 和记录注册 evidence 应在同一事务提交。
+`namespace + agent_id` 必须唯一，它是唯一性依据。注册 Agent、创建 Authority Binding 和记录注册 evidence 应在同一事务提交。
 
 ### 7.2 Agent Class
 
@@ -259,7 +289,7 @@ updated_at
 Workload Registration 必须至少包含：
 
 ```text
-tenant_id
+namespace
 workload_registration_id
 platform
 selector
@@ -268,14 +298,14 @@ allowed_proof_methods
 status
 ```
 
-信任域必须预先关联到同一 tenant。所有存储实现，包括测试或内存实现，都应执行相同的 tenant/trust-domain 约束。
+信任域必须预先关联到同一 Authority Namespace。所有存储实现，包括测试或内存实现，都应执行相同的 namespace/trust-domain 约束。
 
 ### 7.6 Agent Instance
 
 Agent Instance 必须至少包含：
 
 ```text
-tenant_id
+namespace
 instance_id
 agent_id
 workload_registration_id
@@ -340,7 +370,7 @@ revoked   -> no transition
 
 Enrollment challenge 必须：
 
-- tenant-scoped；
+- namespace-scoped；
 - 具有不可预测 nonce；
 - 具有最长有效期，推荐不超过 5 分钟；
 - 单次使用并原子消费；
@@ -387,7 +417,7 @@ Verifier 必须固定允许的算法，拒绝未知 `kid`、重复 claim、超�
 
 ```text
 iss, sub, aud, iat, exp, jti
-tenant_id or a canonical tenant-scoped iss
+namespace (canonical) and/or a namespace-scoped iss
 agent_class
 instance_id
 workload_id
@@ -396,7 +426,7 @@ lifecycle_epoch
 cnf.jkt or equivalent confirmation
 ```
 
-若 tenant 从 `iss` 派生，映射必须唯一且规范化；Token 中同时存在 `tenant_id` 时两者必须一致。Federated/Brokered Token 必须使用独立的 `typ`，并携带不可歧义的 external issuer、external subject 和 federation trust/version reference；它不得伪造本地 `agent_class`、`instance_id`、`workload_id`、`authority_root_ref` 或 lifecycle epoch。
+若 namespace 从 `iss` 派生，映射必须唯一且规范化。Federated/Brokered Token 必须使用独立的 `typ`，并携带不可歧义的 external issuer、external subject 和 federation trust/version reference；它不得伪造本地 `agent_class`、`instance_id`、`workload_id`、`authority_root_ref` 或 lifecycle epoch。
 
 身份 Token、Enrollment proof、Token 请求 proof、Policy Decision 和 Execution Grant 必须使用不同且固定的 `typ` 或等价 artifact type。Verifier 必须按 endpoint 固定允许的类型，防止 Token substitution。
 
@@ -404,14 +434,14 @@ cnf.jkt or equivalent confirmation
 
 ### 10.2 Token 请求证明
 
-Token 请求 proof 必须绑定 Agent、Instance、Token endpoint audience、请求的目标 Token audience、时间和单次使用 JTI。也可以绑定包含目标 audience 的规范化 Token 请求摘要。JTI 必须在 tenant 内原子消费。实现必须规定 proof 最大寿命，不得只检查 `exp > now`。
+Token 请求 proof 必须绑定 Agent、Instance、Token endpoint audience、请求的目标 Token audience、时间和单次使用 JTI。也可以绑定包含目标 audience 的规范化 Token 请求摘要。JTI 必须在 namespace 内原子消费。实现必须规定 proof 最大寿命，不得只检查 `exp > now`。
 
 ### 10.3 签发条件
 
 签发方必须检查：
 
 - Agent 为 `active`；
-- Instance 属于相同 tenant 和 Agent；
+- Instance 属于相同 namespace 和 Agent；
 - Instance 状态允许签发且 lease 未到期；
 - proof key 对应 active credential；
 - audience 已注册并精确匹配；
@@ -428,7 +458,7 @@ Token 请求 proof 必须绑定 Agent、Instance、Token endpoint audience、请
 - Agent 当前状态和 epoch；
 - Instance 状态和 lease；
 - credential 状态；
-- tenant-scoped revocation selectors。
+- namespace-scoped revocation selectors。
 
 Introspection 对外应以统一的 inactive 结果隐藏具体失败原因，同时在受控 evidence 中记录分类原因。
 
@@ -514,7 +544,7 @@ SHA-256("agent-iam:<object-type>:<profile-version>\x00" || canonical_bytes)
 
 Decision 至少必须绑定：
 
-- tenant 和 authorization mode；
+- namespace 和 authorization mode；
 - subject、actor、client、workload 和 authority root 中适用的字段；
 - action 和不可变 resource identity/digest；
 - normalized scope；
@@ -545,7 +575,7 @@ child.action      equal-to-or-narrower-than parent.action
 child.resource    equal-to-or-narrower-than parent.resource
 ```
 
-tenant、Authority Root 和不可变主体绑定不得在委托中改变。
+namespace、Authority Root 和不可变主体绑定不得在委托中改变。
 
 衰减关系必须可判定且版本化：audience 必须规范化为精确字符串集合并执行集合子集；action 默认必须相等，除非 Profile 定义显式偏序；resource 必须使用类型化 canonical descriptor 和该类型的 containment function；task 必须使用不透明 `task_id` 或结构化约束，不得根据自然语言判断“更窄”。Decision 和 Grant 必须标识使用的 attenuation Profile 版本。
 
@@ -562,7 +592,7 @@ tenant、Authority Root 和不可变主体绑定不得在委托中改变。
 
 ### 13.3 Approval 与 Pre-Authorization
 
-Approval 必须绑定 tenant、approver、agent/actor、action、resource、scope、audience、reason digest、expiry 和 policy version。
+Approval 必须绑定 namespace、approver、agent/actor、action、resource、scope、audience、reason digest、expiry 和 policy version。
 
 Pre-Authorization 只能为已有权限提供限时、限额的使用窗口，不得提升权限。`max_grants`、`used_grants` 等配额更新必须原子且单调。
 
@@ -571,7 +601,7 @@ Pre-Authorization 只能为已有权限提供限时、限额的使用窗口，�
 PEP 必须：
 
 - 只接受适用于 endpoint 的 authorization mode 和 artifact type；
-- 验证 signature、issuer、audience、expiry、tenant、PoP、resource digest、epoch 和 revocation；
+- 验证 signature、issuer、audience、expiry、namespace、PoP、resource digest、epoch 和 revocation；
 - 执行全部 obligations 后才允许效果；
 - 在长任务的 continuation boundary 重新检查授权和撤销；
 - 对动作、目标主机、路径、工具 ID、skill hash 和实现摘要执行精确匹配；
@@ -583,7 +613,7 @@ PEP 必须：
 
 ### 15.1 Selector
 
-撤销可以按 tenant-scoped selector 执行，包括：
+撤销可以按 namespace-scoped selector 执行，包括：
 
 - Agent、Instance、credential 或 lifecycle epoch；
 - subject、session 或 authority root；
@@ -608,7 +638,7 @@ PEP 必须：
 
 ### 16.1 Federation Trust
 
-Federation Trust 必须 tenant-scoped，并至少规定：
+Federation Trust 必须 namespace-scoped，并至少规定：
 
 - peer issuer；
 - JWKS URI 或 trust bundle；
@@ -618,13 +648,13 @@ Federation Trust 必须 tenant-scoped，并至少规定：
 - trust status；
 - key refresh 和失败关闭策略。
 
-Peer claim 不得指定或覆盖本地 tenant。
+Peer claim 不得指定或覆盖本地 namespace。
 
 联邦 metadata/JWKS 获取必须限制为 HTTPS（明确的本地开发例外除外），并执行 host/scheme allowlist、DNS/IP 再验证、redirect 限制、响应大小限制、连接和读取超时、内容类型检查以及未知 `kid` 刷新限速。必须拒绝 loopback、link-local、云 metadata 地址和未经批准的私网目标，以防 SSRF；stale key 的最长可用时间必须有上限。
 
 ### 16.2 主体隔离
 
-Federated Principal 不得自动合并为本地 Agent Identity。Brokered Principal 必须使用不会与本地 Agent ID 冲突的命名空间，并明确其没有本地 Agent epoch 时的撤销语义。
+Federated Principal 不得自动合并为本地 Agent Identity。Brokered Principal 必须使用不会与本地 Agent ID 冲突的命名空间，必须保留其来源 Authority Namespace，不得把 peer Namespace 压平为另一个 Namespace，并明确其没有本地 Agent epoch 时的撤销语义。
 
 ### 16.3 联邦验证
 
@@ -653,7 +683,7 @@ Federated Principal 不得自动合并为本地 Agent Identity。Brokered Princi
 
 ```text
 event_id, event_type, timestamp
-tenant_id
+namespace
 agent_id and instance_id, when applicable
 subject/actor/client/workload references, when applicable
 lifecycle_epoch, when applicable
@@ -694,7 +724,7 @@ Challenge、Token proof 和高价值请求必须使用短时 nonce/JTI，并在�
 
 自然语言、模型输出和工具返回值均为不可信输入。它们不得：
 
-- 选择 tenant 或 Authority Root；
+- 选择 namespace 或 Authority Root；
 - 修改 Agent class、epoch 或 policy version；
 - 读取主身份密钥或服务凭证；
 - 绕过 PEP；
@@ -723,7 +753,7 @@ Agent、Blueprint、Workload Registration、Trust Domain、Federation Trust、�
 
 必须实现：
 
-- tenant-scoped Agent ID；
+- Authority Namespace 内唯一的 Agent ID；
 - immutable Authority Binding；
 - Agent/Instance 分离；
 - 生命周期和单调 epoch；
@@ -740,14 +770,14 @@ Agent、Blueprint、Workload Registration、Trust Domain、Federation Trust、�
 - authorization modes；
 - versioned PDP Decision；
 - audience/resource/task-bound Execution Grant；
-- PEP 和 tenant-scoped revocation；
+- PEP 和 namespace-scoped revocation；
 - 权限不可放大。
 
 ### 20.3 Level 3：Federated Agent IAM
 
 在 Level 2 基础上必须实现：
 
-- tenant-scoped Federation Trust；
+- namespace-scoped Federation Trust；
 - PoP federated verification；
 - local/federated principal 隔离；
 - trust disable 的在线撤销；
@@ -838,4 +868,5 @@ Agent、Blueprint、Workload Registration、Trust Domain、Federation Trust、�
 4. 默认 Token、Decision、Grant 和 Attestation 最大 TTL；
 5. 跨组织委托链的最大深度、循环检测和隐私披露规则；
 6. 安全事件 envelope 是否采用 SET、OTel semantic conventions 或独立 JSON Schema；
-7. 一致性测试向量和互操作测试事件的发布位置。
+7. 一致性测试向量和互操作测试事件的发布位置；
+8. Authority Namespace 的 canonical 化方式、命名空间层次深度上限，以及其与 `GB/Z 185.2-2026` 身份码层级的映射。

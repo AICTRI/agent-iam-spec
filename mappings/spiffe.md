@@ -36,5 +36,5 @@ Agent Identity 1 --- n Agent Instance 1 --- 1 current Workload Identity
 
 - 校验 X.509-SVID 时必须验证证书链、有效期、trust domain 和唯一 SPIFFE URI SAN；
 - 仅从**已验证**证书派生 selector 属性；
-- trust domain 必须预先关联到 tenant；
+- trust domain 必须预先关联到 Authority Namespace；
 - SPIFFE Federation 用于跨 trust domain bundle 交换，不与本规范的 Agent Federation 混同。

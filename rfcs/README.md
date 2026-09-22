@@ -14,4 +14,4 @@ Change proposals for `agent-iam-spec`.
 
 | RFC | Title | Type | Status |
 |---|---|---|---|
-| — | No RFCs submitted yet | — | — |
+| [0001](0001-hierarchical-agent-namespace.md) | Removal of `tenant_id` in Favor of Authority Namespace | Normative | Draft |
