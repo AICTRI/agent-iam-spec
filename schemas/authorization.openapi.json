@@ -1,0 +1,162 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agent IAM Series — Authorization API",
+    "version": "0.1.0-draft",
+    "description": "Draft decision, grant, exchange, approval, and revocation API for Part 4 (agent-iam-4-authorization). Requirements are in spec/part-04-authorization/.",
+    "x-agent-iam-series-version": "0.1.0-draft",
+    "x-agent-iam-part": "agent-iam-4-authorization"
+  },
+  "servers": [
+    { "url": "https://authz.example.com/v1", "description": "Authorization plane (example)" }
+  ],
+  "paths": {
+    "/decisions": {
+      "post": {
+        "operationId": "createDecision",
+        "summary": "Create a versioned policy decision from a verified principal",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["namespace", "authorization_mode", "action", "resource", "scope", "audience"],
+                "properties": {
+                  "namespace": { "type": "string", "format": "uri" },
+                  "authorization_mode": { "enum": ["human_web", "system_api", "delegated_api", "service_agent_api", "twin_agent_api"] },
+                  "action": { "type": "string" },
+                  "resource": { "type": "object" },
+                  "scope": { "type": "array", "items": { "type": "string" } },
+                  "audience": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Decision",
+            "content": { "application/json": { "schema": { "$ref": "./policy-decision.schema.json" } } }
+          }
+        }
+      }
+    },
+    "/grants": {
+      "post": {
+        "operationId": "createExecutionGrant",
+        "summary": "Mint an Execution Grant from a verified allow decision",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["decision_id"],
+                "properties": { "decision_id": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Execution Grant. Only a verified allow decision may derive a grant.",
+            "content": { "application/json": { "schema": { "$ref": "./execution-grant.schema.json" } } }
+          },
+          "403": { "description": "Decision is not a verified allow" }
+        }
+      }
+    },
+    "/exchange": {
+      "post": {
+        "operationId": "exchangeToken",
+        "summary": "OAuth token exchange (RFC 8693) producing an attenuated grant",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["subject_token", "requested_scope", "audience"],
+                "properties": {
+                  "subject_token": { "type": "string" },
+                  "requested_scope": { "type": "array", "items": { "type": "string" } },
+                  "audience": { "type": "string" },
+                  "task": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Attenuated grant. Child scope/audience/task/action/resource MUST NOT exceed the parent.",
+            "content": { "application/json": { "schema": { "$ref": "./execution-grant.schema.json" } } }
+          },
+          "400": { "description": "Amplification attempted" }
+        }
+      }
+    },
+    "/approvals": {
+      "post": {
+        "operationId": "createApproval",
+        "summary": "Create an approval bound to namespace, approver, actor, action, resource, scope, audience, reason digests, expiry, and policy version",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object" } } }
+        },
+        "responses": { "201": { "description": "Approval created" } }
+      }
+    },
+    "/revocations": {
+      "post": {
+        "operationId": "createRevocation",
+        "summary": "Revoke by namespace-scoped selector (Agent, Instance, credential, epoch, Decision/Grant/Approval JTI, policy version, resource digest)",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["namespace", "selector_type", "selector_value", "freshness_class"],
+                "properties": {
+                  "namespace": { "type": "string", "format": "uri" },
+                  "selector_type": { "type": "string" },
+                  "selector_value": { "type": "string" },
+                  "freshness_class": { "enum": ["pre_dispatch", "continuation", "connection"] }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Revocation recorded" } }
+      },
+      "get": {
+        "operationId": "checkRevocation",
+        "summary": "Check revocation state for a selector with a freshness class",
+        "security": [{ "mutualTLS": [] }],
+        "parameters": [
+          { "name": "namespace", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "selector_type", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "selector_value", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "freshness_class", "in": "query", "required": true, "schema": { "enum": ["pre_dispatch", "continuation", "connection"] } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Revocation state; when the dependency is unavailable the call MUST fail closed"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "mutualTLS": { "type": "mutualTLS" }
+    }
+  }
+}

@@ -43,11 +43,22 @@ Every vector is a JSON document conforming to `vector.schema.json`:
 
 | Vector | Part | Clause | Kind |
 |---|---|---|---|
+| `part-02-registration-discovery/agent-id-uniqueness.positive.json` | 2 | 5.1 | positive |
 | `part-02-registration-discovery/agent-id-uniqueness.negative.json` | 2 | 5.1 | negative |
+| `part-02-registration-discovery/lifecycle-epoch-monotonicity.negative.json` | 2 | 6.2 | negative |
 | `part-02-registration-discovery/discovery-ssrf.negative.json` | 2 | 8.4 | negative |
+| `part-03-authentication/enrollment-success.positive.json` | 3 | 4 | positive |
+| `part-03-authentication/enrollment-challenge-single-use.negative.json` | 3 | 4.2 | negative |
+| `part-03-authentication/token-issuance-success.positive.json` | 3 | 5.3 | positive |
 | `part-03-authentication/token-audience-binding.negative.json` | 3 | 5.1 | negative |
+| `part-03-authentication/request-level-pop.negative.json` | 3 | 5.4 | negative |
+| `part-04-authorization/decision-allow-derives-grant.positive.json` | 4 | 4.3 | positive |
+| `part-04-authorization/delegation-non-amplification.positive.json` | 4 | 5.1 | positive |
 | `part-04-authorization/delegation-non-amplification.negative.json` | 4 | 5.1 | negative |
+| `part-04-authorization/revocation-freshness-pre-dispatch.negative.json` | 4 | 7 | negative |
+| `part-04-authorization/prompt-injection-cannot-expand.negative.json` | 4 | 8.2 | negative |
 | `part-05-federation/trust-disable.negative.json` | 5 | 6 | negative |
+| `part-05-federation/principal-isolation.negative.json` | 5 | 4 | negative |
 
 ## Requirements
 

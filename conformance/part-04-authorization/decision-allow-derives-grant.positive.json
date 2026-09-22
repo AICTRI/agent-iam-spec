@@ -1,0 +1,22 @@
+{
+  "id": "p4-decision-allow-001",
+  "part": "agent-iam-4-authorization",
+  "clause": "4.3",
+  "kind": "positive",
+  "description": "A verified allow decision may derive an Execution Grant.",
+  "input": {
+    "operation": "derive-grant",
+    "decision": {
+      "outcome": "allow",
+      "verified": true,
+      "namespace": "https://id.example.com/org/acme",
+      "action": "orders.read",
+      "resource": { "type": "order", "id": "ord_1" },
+      "scope": ["read:orders"],
+      "audience": "https://api.example.com",
+      "policy_version": "3",
+      "lifecycle_epoch": 7
+    }
+  },
+  "expected": { "outcome": "accept" }
+}

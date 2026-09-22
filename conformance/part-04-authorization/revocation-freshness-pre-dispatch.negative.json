@@ -1,0 +1,15 @@
+{
+  "id": "p4-revocation-freshness-001",
+  "part": "agent-iam-4-authorization",
+  "clause": "7",
+  "kind": "negative",
+  "description": "Using a negative cache in a pre_dispatch revocation check must be rejected.",
+  "input": {
+    "operation": "check-revocation",
+    "freshness_class": "pre_dispatch",
+    "used_negative_cache": true,
+    "selector_type": "grant_jti",
+    "selector_value": "grt_123"
+  },
+  "expected": { "outcome": "reject", "reason_code": "negative-cache-not-allowed" }
+}

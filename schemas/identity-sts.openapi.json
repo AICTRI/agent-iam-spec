@@ -1,0 +1,163 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agent IAM Series — Identity and Authentication API",
+    "version": "0.1.0-draft",
+    "description": "Draft enrollment, token, and introspection API for Part 3 (agent-iam-3-authentication). Requirements are in spec/part-03-authentication/.",
+    "x-agent-iam-series-version": "0.1.0-draft",
+    "x-agent-iam-part": "agent-iam-3-authentication"
+  },
+  "servers": [
+    { "url": "https://id.example.com/org/acme/sts", "description": "Identity/STS endpoint (example)" }
+  ],
+  "paths": {
+    "/challenge": {
+      "post": {
+        "operationId": "issueEnrollmentChallenge",
+        "summary": "Issue a short-lived, single-use enrollment challenge",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["agent_id", "workload_registration_id"],
+                "properties": {
+                  "agent_id": { "type": "string" },
+                  "workload_registration_id": { "type": "string" },
+                  "audience": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Challenge (namespace-scoped, unpredictable nonce, single use)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["challenge_id", "nonce", "expires_at"],
+                  "properties": {
+                    "challenge_id": { "type": "string" },
+                    "nonce": { "type": "string" },
+                    "expires_at": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/enroll": {
+      "post": {
+        "operationId": "enrollInstance",
+        "summary": "Enroll an Agent Instance with workload attestation and proof of possession",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["agent_id", "workload_registration_id", "workload_evidence", "proof"],
+                "properties": {
+                  "agent_id": { "type": "string" },
+                  "workload_registration_id": { "type": "string" },
+                  "workload_evidence": { "type": "object", "description": "Verified per the three-phase attestation model." },
+                  "proof": { "$ref": "./enrollment-proof.schema.json" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Instance and credential created; state transition and evidence committed atomically",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "./agent-instance.schema.json" }
+              }
+            }
+          },
+          "401": { "description": "Attestation or proof verification failed" }
+        }
+      }
+    },
+    "/token": {
+      "post": {
+        "operationId": "requestIdentityToken",
+        "summary": "Request a short-lived, sender-constrained identity token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["instance_id", "audience", "proof"],
+                "properties": {
+                  "instance_id": { "type": "string" },
+                  "audience": { "type": "string" },
+                  "proof": {
+                    "type": "object",
+                    "description": "Binds Agent, Instance, token endpoint audience, target audience, time, and single-use JTI (Part 3 Section 5.2)."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Identity token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "./identity-token.schema.json" }
+              }
+            }
+          },
+          "400": { "description": "Issuance condition not met" }
+        }
+      }
+    },
+    "/introspect": {
+      "post": {
+        "operationId": "introspectToken",
+        "summary": "Introspect a token (RFC 7662 mode); returns cnf and a uniform inactive result",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": { "type": "object", "required": ["token"], "properties": { "token": { "type": "string" } } }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Introspection result; failure reasons are hidden behind a uniform inactive result",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": { "active": { "type": "boolean" }, "cnf": { "type": "object" } } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jwks": {
+      "get": {
+        "operationId": "getJwks",
+        "summary": "Verification keys referenced by the discovery document",
+        "security": [],
+        "responses": { "200": { "description": "JSON Web Key Set" } }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "mutualTLS": { "type": "mutualTLS" }
+    }
+  }
+}

@@ -13,9 +13,9 @@ Initial examples are published. More are planned.
 | Example | Parts | Flow | Status |
 |---|---|---|---|
 | `twin-agent-onboarding.md` | 2, 3, 4 | Register, discover, enroll, issue token, verify | published |
+| `service-agent-high-risk-action.md` | 4 | Decision, approval, grant, PEP enforcement | published |
+| `delegated-cross-domain.md` | 4, 5 | Token exchange, attenuation, cross-domain access | published |
 | `federation-trust-lifecycle.md` | 5, 6 | Trust creation, brokered verification, trust disable | published |
-| `service-agent-high-risk-action.md` | 4 | Decision, approval, grant, PEP enforcement | planned |
-| `delegated-cross-domain.md` | 4, 5 | Token exchange, attenuation, cross-domain access | planned |
-| `revocation-propagation.md` | 1, 3, 4 | Suspend, revoke, and freshness classes | planned |
+| `revocation-propagation.md` | 1, 3, 4 | Suspend, revoke, and freshness classes | published |
 
 Examples are informative only. When an example conflicts with `../spec/part-*/`, the specification governs.
