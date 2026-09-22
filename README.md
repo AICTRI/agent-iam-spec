@@ -21,7 +21,6 @@ English is the primary normative language. The Chinese text is an equivalent tra
 | Series index (translation) | 简体中文 | [`spec/README.zh-CN.md`](spec/README.zh-CN.md) |
 | Part 1–7 (primary, normative) | English | `spec/part-0N-*/en/` |
 | Part 1–7 (translation) | 简体中文 | `spec/part-0N-*/zh-CN/` |
-| Former single document (superseded) | English / 简体中文 | `spec/{en,zh-CN}/agent-iam-spec.md` |
 
 ## Repository layout
 
@@ -45,8 +44,7 @@ agent-iam-spec/
 │   ├── part-04-authorization/{en,zh-CN}/
 │   ├── part-05-federation/{en,zh-CN}/
 │   ├── part-06-audit/{en,zh-CN}/
-│   ├── part-07-conformance/{en,zh-CN}/
-│   └── {en,zh-CN}/      # former single document (superseded)
+│   └── part-07-conformance/{en,zh-CN}/
 ├── profiles/            # Normative profiles (narrow the base spec)
 ├── schemas/             # JSON Schema, OpenAPI, protocol schemas
 ├── conformance/         # Conformance test vectors and fixtures

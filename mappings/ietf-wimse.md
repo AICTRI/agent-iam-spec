@@ -22,16 +22,16 @@ IETF WIMSE 工作组文件均为 Internet-Draft，不是 RFC。它们**不得**�
 
 入口：<https://datatracker.ietf.org/wg/wimse/documents/>
 
-## 3. 与 agent-iam-spec 的关系
+## 3. 与 Agent IAM 系列的关系
 
-| WIMSE 概念 | agent-iam-spec 对应 | 说明 |
+| WIMSE 概念 | Agent IAM 系列对应 | 说明 |
 |---|---|---|
 | Agent as workload | Agent Identity + Agent Instance | 规范将长期身份与运行实例显式分离 |
-| Workload Identifier | Workload ID（第 6.1 节） | 规范不将 Workload ID 等同于逻辑 Agent ID |
-| WIT / WIC | Identity Credential（第 10 节） | 规范要求 PoP，未强制具体凭据格式 |
-| WPT | Token 请求 proof / PoP Profile（第 10.2 节） | 规范要求请求级 PoP |
-| Agent Authorization | Principal、Decision、Grant（第 11-13 节） | 规范要求 canonical allow lineage |
-| Agent audit record | 安全事件记录（第 17 节） | 规范强调脱敏和事务一致性 |
+| Workload Identifier | Workload ID（第 2 部分第 4.1 节） | 规范不将 Workload ID 等同于逻辑 Agent ID |
+| WIT / WIC | Identity Credential（第 3 部分） | 规范要求 PoP，未强制具体凭据格式 |
+| WPT | Token 请求 proof / PoP Profile（第 3 部分第 5.2 节） | 规范要求请求级 PoP |
+| Agent Authorization | Principal、Decision、Grant（第 4 部分） | 规范要求 canonical allow lineage |
+| Agent audit record | 安全事件记录（第 6 部分） | 规范强调脱敏和事务一致性 |
 
 ## 4. 采用建议
 

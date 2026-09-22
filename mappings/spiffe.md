@@ -17,7 +17,7 @@ SPIFFE ID 形式为：
 spiffe://<trust-domain>/<path>
 ```
 
-`agent-iam-spec` 规定：SPIFFE ID 是 Workload Identity 的一种，**不得**默认等同于逻辑 Agent ID。逻辑 Agent 与 SPIFFE ID 可以是一对多或多代绑定。
+Agent IAM 系列规定（第 2 部分第 4.5 节）：SPIFFE ID 是 Workload Identity 的一种，**不得**默认等同于逻辑 Agent ID。逻辑 Agent 与 SPIFFE ID 可以是一对多或多代绑定。
 
 ```text
 Agent Identity 1 --- n Agent Instance 1 --- 1 current Workload Identity
@@ -25,7 +25,7 @@ Agent Identity 1 --- n Agent Instance 1 --- 1 current Workload Identity
 
 ## 3. 凭据映射
 
-| SPIFFE 凭据 | agent-iam-spec 用途 |
+| SPIFFE 凭据 | Agent IAM 系列用途 |
 |---|---|
 | X.509-SVID | mTLS Workload proof；实例级身份 |
 | JWT-SVID | 应用层 Workload proof |

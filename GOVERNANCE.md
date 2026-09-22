@@ -16,7 +16,7 @@ Only the following are normative:
 - every `spec/part-*/zh-CN/` document (equivalent translation)
 - documents published under `profiles/`
 
-The former single-document edition (`spec/en/agent-iam-spec.md`, `spec/zh-CN/agent-iam-spec.md`) is superseded by the multi-part series and is retained only during the migration window described in `rfcs/0002-series-structure.md`.
+The former single-document edition has been removed; its content is carried by the parts listed above. The restructuring is recorded in `rfcs/0002-series-structure.md` and `CHANGELOG.md`.
 
 Everything else, including `mappings/`, `examples/`, `README.md`, and this file, is informative.
 

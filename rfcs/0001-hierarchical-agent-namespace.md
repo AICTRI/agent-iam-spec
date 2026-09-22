@@ -4,6 +4,7 @@
 - Authors: _（待填写）_
 - Date: 2026-09-22
 - Affected documents and clauses: `spec/en/agent-iam-spec.md` 与 `spec/zh-CN/agent-iam-spec.md` 第 4.14–4.16、5.2、6.1、6.2、6.3、6.6、7.1、7.5、7.6、9.2、10.1、10.2、10.3、10.4、12.2、13.1、13.3、14、15.1、16.1、16.2、17.2、18.3、20、24 节；`SECURITY.md`；`mappings/eidovela-aegivela.md`、`mappings/spiffe.md`
+  - 注：这些条款随后由 RFC-0002 重组进 Agent IAM 系列的七个部分；单文档版本已删除。对应关系为 Part 1（4.14–4.16、5.2、24）、Part 2（6.1–6.3、6.6、7.1、7.5、7.6）、Part 3（9.2、10.1–10.4）、Part 4（12.2、13.1、13.3、14、18.3）、Part 5（15.1 的信任部分、16.1、16.2）、Part 6（17.2）、Part 7（20）；15.1 的凭据/实例选择器归入 Part 3，Decision/Grant/Approval 选择器归入 Part 4。
 - Type: Normative
 
 ## Summary

@@ -17,13 +17,13 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 ### Changed
 
 - Removed `tenant_id` from the specification and replaced it with the hierarchical `Authority Namespace` (RFC-0001, Draft).
-- Superseded the single-document edition (`spec/en/agent-iam-spec.md`, `spec/zh-CN/agent-iam-spec.md`) with the series; retained only during the migration window.
+- Split the single-document edition into the series and removed `spec/en/agent-iam-spec.md` and `spec/zh-CN/agent-iam-spec.md`; their content is carried by the seven parts.
 - `GOVERNANCE.md` normative-text list, versioning, and profile rules updated for the series.
 - Root `README.md` / `README.zh-CN.md` reorganized around the series and its seven parts.
-- Added terms `Namespace`, `Authority Namespace`, and `Organization Unit` to Section 4; removed the `Tenant` term.
-- Added the Namespace Hierarchy in Section 6.6; changed Agent ID uniqueness in Sections 6.2 and 7.1 to `namespace + agent_id`.
+- Added terms `Namespace`, `Authority Namespace`, and `Organization Unit` to Part 1 Section 4; removed the `Tenant` term.
+- Added the Namespace Hierarchy in Part 2 Section 4.4; changed Agent ID uniqueness in Part 2 Sections 4.2 and 5.1 to `namespace + agent_id`.
 - Replaced `namespace` for `tenant_id` in the Agent Identity Record, Workload Registration, Agent Instance, trusted data sources, identity Token claims, challenge scoping, JTI replay scope, Decisions, Grants, revocation selectors, Federation Trust, and security events.
-- Clarified in Section 16.2 that federated/brokered principals preserve their source Authority Namespace and do not flatten a peer Namespace into another Namespace.
+- Clarified in Part 5 Section 4 that federated/brokered principals preserve their source Authority Namespace and do not flatten a peer Namespace into another Namespace.
 - Updated `SECURITY.md` and the SPIFFE / EIDOVELA-AEGIVELA mappings accordingly.
 
 ## [0.1.0-draft] - 2026-09-22

@@ -21,7 +21,6 @@
 | 系列索引（翻译） | 简体中文 | [`spec/README.zh-CN.md`](spec/README.zh-CN.md) |
 | 第 1–7 部分（主文本，规范性） | English | `spec/part-0N-*/en/` |
 | 第 1–7 部分（翻译） | 简体中文 | `spec/part-0N-*/zh-CN/` |
-| 原单文档（已被取代） | English / 简体中文 | `spec/{en,zh-CN}/agent-iam-spec.md` |
 
 ## 仓库结构
 
@@ -45,8 +44,7 @@ agent-iam-spec/
 │   ├── part-04-authorization/{en,zh-CN}/
 │   ├── part-05-federation/{en,zh-CN}/
 │   ├── part-06-audit/{en,zh-CN}/
-│   ├── part-07-conformance/{en,zh-CN}/
-│   └── {en,zh-CN}/      # 原单文档（已被取代）
+│   └── part-07-conformance/{en,zh-CN}/
 ├── profiles/            # 规范性 Profile（收窄主规范）
 ├── schemas/             # JSON Schema、OpenAPI 与协议 Schema
 ├── conformance/         # 一致性测试向量与 fixture

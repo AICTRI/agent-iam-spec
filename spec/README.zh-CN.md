@@ -9,9 +9,8 @@
 - 状态：**项目标准草案**，非国际标准、国家标准或行业标准
 - 仓库：<https://github.com/AICTRI/agent-iam-spec>
 
-> 迁移说明：此前的单文档版本（`spec/en/agent-iam-spec.md`、`spec/zh-CN/agent-iam-spec.md`）
-> 正在拆分为下列各部分。迁移期间两个版本并存；各部分为目标规范性结构。
-> 详见 `rfcs/0002-series-structure.md`。
+> 此前的单文档版本已拆分为下列各部分并已删除。重构过程记录在
+> `rfcs/0002-series-structure.md` 与 `CHANGELOG.md`。
 
 ## 各部分
 
@@ -25,7 +24,7 @@
 | 6 | `agent-iam-6-audit` | 审计与安全事件 | 1 | 草案（已编写） |
 | 7 | `agent-iam-7-conformance` | 一致性与测试 | 全部 | 草案（已编写） |
 
-七个部分均承载规范性正文。原单文档版本仅为追溯保留，待各部分评审后删除。
+七个部分均承载规范性正文。原单文档版本已删除。
 
 ## 语言
 

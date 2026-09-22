@@ -9,10 +9,9 @@ An open interoperability series for AI Agent identity, registration, discovery, 
 - Status: **Project draft**, not an international, national, or industry standard
 - Repository: <https://github.com/AICTRI/agent-iam-spec>
 
-> Migration note: the previous single-document edition (`spec/en/agent-iam-spec.md`,
-> `spec/zh-CN/agent-iam-spec.md`) is being split into the parts below. During the
-> migration both editions coexist; the parts are the target normative structure.
-> See `rfcs/0002-series-structure.md`.
+> The former single-document edition has been split into the parts below and
+> removed. The restructuring is recorded in `rfcs/0002-series-structure.md` and
+> `CHANGELOG.md`.
 
 ## Parts
 
@@ -26,8 +25,7 @@ An open interoperability series for AI Agent identity, registration, discovery, 
 | 6 | `agent-iam-6-audit` | Audit and Security Events | 1 | Draft (written) |
 | 7 | `agent-iam-7-conformance` | Conformance and Testing | all | Draft (written) |
 
-All seven parts carry the normative text. The former single-document edition is
-retained only for traceability and will be removed once the parts are reviewed.
+All seven parts carry the normative text. The former single-document edition has been removed.
 
 ## Language
 
