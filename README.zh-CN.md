@@ -26,6 +26,8 @@
 agent-iam-spec/
 ├── README.md            # 英文（主）
 ├── README.zh-CN.md      # 中文
+├── IMPLEMENTATIONS.md   # 参考实现（英文，主）
+├── IMPLEMENTATIONS.zh-CN.md
 ├── GOVERNANCE.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
@@ -74,6 +76,15 @@ agent-iam-spec/
 - 特定厂商 HSM、KMS、网关或服务网格实现；
 - 产品目录与工作流数据模型；
 - 全球统一 Agent ID 注册机构。
+
+## 参考实现
+
+| 组件 | 角色 |
+|---|---|
+| [EIDOVELA](https://github.com/axisrobo/eidovela) | Agent 身份提供商：注册、Authority Binding、工作负载登记、生命周期、PoP 凭据、身份 Token、联邦 |
+| [AEGIVELA](https://github.com/axisrobo/aegivela) | Agent 授权平面：Principal 解析、策略决策、Execution Grant、委托、撤销 |
+
+仓库、组件协作与一致性状态见 [`IMPLEMENTATIONS.zh-CN.md`](IMPLEMENTATIONS.zh-CN.md)。
 
 ## 一致性
 

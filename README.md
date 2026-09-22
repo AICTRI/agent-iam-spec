@@ -26,6 +26,8 @@ If the two language texts conflict, the English text governs and the Chinese tex
 agent-iam-spec/
 ├── README.md            # English (primary)
 ├── README.zh-CN.md      # Chinese
+├── IMPLEMENTATIONS.md   # Reference implementations (English, primary)
+├── IMPLEMENTATIONS.zh-CN.md
 ├── GOVERNANCE.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
@@ -74,6 +76,15 @@ Out of scope:
 - vendor-specific HSM, KMS, gateway, or service mesh implementations;
 - product catalogs and workflow data models;
 - a global Agent ID registration authority.
+
+## Reference implementations
+
+| Component | Role |
+|---|---|
+| [EIDOVELA](https://github.com/axisrobo/eidovela) | Agent Identity Provider: registration, Authority Binding, workload enrollment, lifecycle, PoP credentials, identity tokens, federation |
+| [AEGIVELA](https://github.com/axisrobo/aegivela) | Agent authorization plane: Principal resolution, policy decisions, execution grants, delegation, revocation |
+
+See [`IMPLEMENTATIONS.md`](IMPLEMENTATIONS.md) for repositories, composition, and conformance status.
 
 ## Conformance
 
