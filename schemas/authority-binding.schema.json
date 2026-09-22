@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/authority-binding.schema.json",
+  "title": "Authority Binding",
+  "description": "Immutable Agent Identity-to-Authority-Root binding defined in Part 2 Sections 4.5 and 5.3.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-2-registration-discovery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["namespace", "agent_id", "authority_root_ref", "authority_root_type", "immutable"],
+  "properties": {
+    "namespace": { "type": "string", "format": "uri" },
+    "agent_id": { "type": "string" },
+    "authority_root_ref": { "type": "string" },
+    "authority_root_type": { "enum": ["human_master", "organization_root"] },
+    "immutable": { "const": true },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}

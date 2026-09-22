@@ -32,7 +32,17 @@ Agent Identity 1 --- n Agent Instance 1 --- 1 current Workload Identity
 | WIT-SVID | WIMSE 兼容的 Workload Identity Token |
 | Workload API | 运行时凭据和 bundle 分发（实现细节） |
 
-## 4. 采用要求
+## 4. 系列部分映射
+
+| SPIFFE 概念 | 对应部分 | Agent IAM 系列对应 |
+|---|---|---|
+| SPIRE Registry / 注册 | 2 | Agent 注册表与 Authority Namespace |
+| Workload API / 身份分发 | 2, 3 | Workload Registration 与 Enrollment |
+| X.509-SVID / JWT-SVID | 3 | Workload Identity 与证明输入 |
+| trust domain | 2 | Authority Namespace（预先关联） |
+| SPIFFE Federation | 5 | 与 Agent 联邦互操作（不混同） |
+
+## 5. 采用要求
 
 - 校验 X.509-SVID 时必须验证证书链、有效期、trust domain 和唯一 SPIFFE URI SAN；
 - 仅从**已验证**证书派生 selector 属性；

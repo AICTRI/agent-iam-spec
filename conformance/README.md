@@ -6,12 +6,13 @@ Licensed under Apache-2.0. See `../LICENSE-CODE`.
 
 ## Status
 
-No test vectors have been published yet.
+Initial example vectors are published for Parts 2–5. Coverage is not yet complete.
 
 ## Layout
 
 ```text
 conformance/
+├── vector.schema.json
 ├── part-02-registration-discovery/
 ├── part-03-authentication/
 ├── part-04-authorization/
@@ -22,9 +23,35 @@ conformance/
 The series composite profiles (`Identity`, `Authorization`, `Federated`) defined in
 `../spec/part-07-conformance/` compose per-part vectors.
 
+## Vector format
+
+Every vector is a JSON document conforming to `vector.schema.json`:
+
+```json
+{
+  "id": "p2-agent-id-uniqueness-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "5.1",
+  "kind": "negative",
+  "description": "...",
+  "input": { "operation": "...", "..." : "..." },
+  "expected": { "outcome": "reject", "reason_code": "duplicate-agent-id" }
+}
+```
+
+## Published vectors
+
+| Vector | Part | Clause | Kind |
+|---|---|---|---|
+| `part-02-registration-discovery/agent-id-uniqueness.negative.json` | 2 | 5.1 | negative |
+| `part-02-registration-discovery/discovery-ssrf.negative.json` | 2 | 8.4 | negative |
+| `part-03-authentication/token-audience-binding.negative.json` | 3 | 5.1 | negative |
+| `part-04-authorization/delegation-non-amplification.negative.json` | 4 | 5.1 | negative |
+| `part-05-federation/trust-disable.negative.json` | 5 | 6 | negative |
+
 ## Requirements
 
-- Every vector must name the part, the conformance level, and the clause it exercises.
+- Every vector must name the part and the clause it exercises.
 - Negative vectors are mandatory for each security-critical clause.
 - Vectors must be language-neutral and reproducible.
 - Where behavior depends on a profile, the vector must state the profile and version.

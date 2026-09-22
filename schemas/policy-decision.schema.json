@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/policy-decision.schema.json",
+  "title": "Policy Decision",
+  "description": "Versioned policy decision defined in Part 4 Section 4.2.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-4-authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "namespace",
+    "authorization_mode",
+    "action",
+    "resource",
+    "scope",
+    "audience",
+    "policy_id",
+    "policy_version",
+    "lifecycle_epoch",
+    "decision_id",
+    "iat",
+    "exp",
+    "outcome"
+  ],
+  "properties": {
+    "namespace": { "type": "string", "format": "uri" },
+    "authorization_mode": {
+      "enum": ["human_web", "system_api", "delegated_api", "service_agent_api", "twin_agent_api"]
+    },
+    "subject": { "type": "string" },
+    "actor": { "type": "string" },
+    "client": { "type": "string" },
+    "workload": { "type": "string" },
+    "authority_root_ref": { "type": "string" },
+    "action": { "type": "string" },
+    "resource": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" },
+        "digest": { "type": "string" }
+      }
+    },
+    "scope": { "type": "array", "items": { "type": "string" } },
+    "audience": { "type": "string" },
+    "policy_id": { "type": "string" },
+    "policy_version": { "type": "string" },
+    "lifecycle_epoch": { "type": "integer", "minimum": 0 },
+    "decision_id": { "type": "string" },
+    "iat": { "type": "integer" },
+    "exp": { "type": "integer" },
+    "outcome": { "enum": ["allow", "deny", "approval_required", "revoked"] },
+    "obligations": { "type": "array", "items": { "type": "object" } }
+  }
+}

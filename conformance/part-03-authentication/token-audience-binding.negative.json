@@ -1,0 +1,23 @@
+{
+  "id": "p3-token-audience-001",
+  "part": "agent-iam-3-authentication",
+  "clause": "5.1",
+  "kind": "negative",
+  "description": "A token whose audience does not exactly match the endpoint audience must be rejected.",
+  "input": {
+    "operation": "verify-token",
+    "endpoint_audience": "https://api.example.com/tool/invoke",
+    "token": {
+      "iss": "https://id.example.com/org/acme",
+      "sub": "agt_01JABCDEF0000000000000000",
+      "aud": "https://api.example.com/tool",
+      "namespace": "https://id.example.com/org/acme",
+      "agent_class": "service",
+      "instance_id": "inst_01",
+      "workload_id": "spiffe://example.org/ns/a/sa/b",
+      "authority_root_ref": "org:acme",
+      "lifecycle_epoch": 3
+    }
+  },
+  "expected": { "outcome": "reject", "reason_code": "audience-mismatch" }
+}

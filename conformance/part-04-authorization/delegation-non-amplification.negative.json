@@ -1,0 +1,13 @@
+{
+  "id": "p4-delegation-amplification-001",
+  "part": "agent-iam-4-authorization",
+  "clause": "5.1",
+  "kind": "negative",
+  "description": "A child grant whose scope is not a subset of the parent scope must be rejected.",
+  "input": {
+    "operation": "attenuate",
+    "parent": { "scope": ["read:orders", "write:orders"], "audience": "https://api.example.com" },
+    "child": { "scope": ["read:orders", "delete:orders"], "audience": "https://api.example.com" }
+  },
+  "expected": { "outcome": "reject", "reason_code": "scope-amplification" }
+}

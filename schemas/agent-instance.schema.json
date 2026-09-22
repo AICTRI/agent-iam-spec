@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/agent-instance.schema.json",
+  "title": "Agent Instance",
+  "description": "Agent Instance record defined in Part 2 Section 5.6 of the Agent IAM Series.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-2-registration-discovery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "namespace",
+    "instance_id",
+    "agent_id",
+    "workload_registration_id",
+    "workload_id",
+    "attestation_ref",
+    "credential_generation",
+    "instance_state"
+  ],
+  "properties": {
+    "namespace": { "type": "string", "format": "uri" },
+    "instance_id": { "type": "string" },
+    "agent_id": { "type": "string" },
+    "workload_registration_id": { "type": "string" },
+    "workload_id": { "type": "string" },
+    "artifact_digest": { "type": "string" },
+    "attestation_ref": {
+      "type": "string",
+      "description": "Must correlate to an actual verification result (Part 2 Section 5.6)."
+    },
+    "credential_generation": { "type": "integer", "minimum": 0 },
+    "lease_expires_at": { "type": "string", "format": "date-time" },
+    "instance_state": { "enum": ["bound", "active", "expired", "terminated"] }
+  }
+}

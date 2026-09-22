@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/identity-token.schema.json",
+  "title": "Local Agent Identity Token Claims",
+  "description": "Proof-of-possession identity token claims defined in Part 3 Section 5.1.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-3-authentication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "iss",
+    "sub",
+    "aud",
+    "iat",
+    "exp",
+    "jti",
+    "namespace",
+    "agent_class",
+    "instance_id",
+    "workload_id",
+    "authority_root_ref",
+    "lifecycle_epoch"
+  ],
+  "properties": {
+    "iss": { "type": "string" },
+    "sub": { "type": "string" },
+    "aud": { "type": "string" },
+    "iat": { "type": "integer" },
+    "exp": { "type": "integer" },
+    "jti": { "type": "string" },
+    "namespace": { "type": "string", "format": "uri" },
+    "agent_class": { "enum": ["twin", "service", "ephemeral"] },
+    "instance_id": { "type": "string" },
+    "workload_id": { "type": "string" },
+    "authority_root_ref": { "type": "string" },
+    "lifecycle_epoch": { "type": "integer", "minimum": 0 },
+    "cnf": {
+      "type": "object",
+      "description": "Key confirmation, for example { \"jkt\": \"...\" }.",
+      "properties": { "jkt": { "type": "string" } },
+      "required": ["jkt"]
+    }
+  }
+}

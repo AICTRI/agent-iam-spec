@@ -1,0 +1,17 @@
+{
+  "id": "p5-trust-disable-001",
+  "part": "agent-iam-5-federation",
+  "clause": "6",
+  "kind": "negative",
+  "description": "After a Federation Trust is disabled, online verification must fail closed.",
+  "input": {
+    "operation": "verify-brokered-token",
+    "federation_trust": {
+      "namespace": "https://id.example.com/org/acme",
+      "peer_issuer": "https://id.partner.example/org/partner",
+      "trust_status": "disabled"
+    },
+    "local_token_expires_at": 9999999999
+  },
+  "expected": { "outcome": "reject", "reason_code": "trust-disabled" }
+}

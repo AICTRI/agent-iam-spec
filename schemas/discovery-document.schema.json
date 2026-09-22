@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/discovery-document.schema.json",
+  "title": "Discovery Document",
+  "description": "Authority Namespace discovery document defined in Part 2 Section 8.2.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-2-registration-discovery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["discovery_version", "namespace", "issuer", "jwks_uri"],
+  "properties": {
+    "discovery_version": { "type": "string" },
+    "namespace": { "type": "string", "format": "uri" },
+    "issuer": { "type": "string", "format": "uri" },
+    "registry_endpoint": { "type": "string", "format": "uri" },
+    "jwks_uri": { "type": "string", "format": "uri" },
+    "supported_proof_profiles": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "supported_artifact_types": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "conformance_claim_ref": { "type": "string" },
+    "key_rotation": {
+      "type": "object",
+      "properties": {
+        "overlap_seconds": { "type": "integer", "minimum": 0 },
+        "propagation_seconds": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

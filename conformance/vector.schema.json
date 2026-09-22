@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/conformance/vector.schema.json",
+  "title": "Conformance Test Vector",
+  "description": "Language-neutral conformance test vector for the Agent IAM Series (Part 7).",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "part", "clause", "kind", "description", "input", "expected"],
+  "properties": {
+    "id": { "type": "string" },
+    "part": {
+      "enum": [
+        "agent-iam-2-registration-discovery",
+        "agent-iam-3-authentication",
+        "agent-iam-4-authorization",
+        "agent-iam-5-federation",
+        "agent-iam-6-audit",
+        "agent-iam-7-conformance"
+      ]
+    },
+    "clause": { "type": "string" },
+    "kind": { "enum": ["positive", "negative"] },
+    "description": { "type": "string" },
+    "input": { "type": "object" },
+    "expected": {
+      "type": "object",
+      "required": ["outcome"],
+      "properties": {
+        "outcome": { "enum": ["accept", "reject"] },
+        "reason_code": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

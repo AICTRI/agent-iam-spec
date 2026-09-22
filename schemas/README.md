@@ -6,22 +6,23 @@ Licensed under Apache-2.0. See `../LICENSE-CODE`.
 
 ## Status
 
-No schema has been published yet. Until then, the normative text in `../spec/part-*/` governs.
+Draft schemas are published for the records below. They are derived from the
+normative text in `../spec/part-*/`, which governs if they conflict.
 
-## Planned schemas
+| Schema | Part | Purpose |
+|---|---|---|
+| `agent-identity.schema.json` | 2 | Agent Identity record |
+| `agent-instance.schema.json` | 2 | Agent Instance record |
+| `authority-binding.schema.json` | 2 | Authority Binding record |
+| `workload-registration.schema.json` | 2 | Workload Registration record |
+| `discovery-document.schema.json` | 2 | Authority Namespace discovery document |
+| `identity-token.schema.json` | 3 | Local Agent identity token claims |
+| `policy-decision.schema.json` | 4 | Versioned policy decision |
+| `execution-grant.schema.json` | 4 | Execution Grant claims |
+| `federation-trust.schema.json` | 5 | Federation trust configuration |
+| `security-event.schema.json` | 6 | Security event record |
 
-| Schema | Purpose |
-|---|---|
-| `agent-identity.schema.json` | Agent Identity record |
-| `agent-instance.schema.json` | Agent Instance record |
-| `authority-binding.schema.json` | Authority Binding record |
-| `workload-registration.schema.json` | Workload Registration record |
-| `enrollment-proof.schema.json` | Enrollment JWT proof claims |
-| `identity-token.schema.json` | Local Agent identity token claims |
-| `policy-decision.schema.json` | Versioned policy decision |
-| `execution-grant.schema.json` | Execution Grant claims |
-| `security-event.schema.json` | Security event record |
-| `federation-trust.schema.json` | Federation trust configuration |
+Not yet published: `enrollment-proof.schema.json` (Part 3).
 
 ## Requirements
 

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/agent-identity.schema.json",
+  "title": "Agent Identity Record",
+  "description": "Agent Identity record defined in Part 2 Section 5.1 of the Agent IAM Series.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-2-registration-discovery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "namespace",
+    "agent_id",
+    "agent_class",
+    "authority_binding_ref",
+    "lifecycle_state",
+    "lifecycle_epoch"
+  ],
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical Authority Namespace (Part 2 Section 4.3)."
+    },
+    "agent_id": {
+      "type": "string",
+      "pattern": "^agt_[A-Za-z0-9_-]+$",
+      "description": "Opaque local Agent ID, unique within the namespace."
+    },
+    "agent_class": { "enum": ["twin", "service", "ephemeral"] },
+    "blueprint_id": { "type": "string" },
+    "blueprint_version": { "type": "string" },
+    "authority_binding_ref": { "type": "string" },
+    "sponsor_ref": { "type": "string" },
+    "lifecycle_state": {
+      "enum": ["registered", "enrolled", "active", "suspended", "revoked"]
+    },
+    "lifecycle_epoch": { "type": "integer", "minimum": 0 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/workload-registration.schema.json",
+  "title": "Workload Registration",
+  "description": "Workload Registration record defined in Part 2 Section 5.5 of the Agent IAM Series.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-2-registration-discovery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "namespace",
+    "workload_registration_id",
+    "platform",
+    "selector",
+    "trust_domain",
+    "allowed_proof_methods",
+    "status"
+  ],
+  "properties": {
+    "namespace": { "type": "string", "format": "uri" },
+    "workload_registration_id": { "type": "string" },
+    "platform": { "enum": ["spiffe", "kubernetes", "mtls", "rats_eat", "other"] },
+    "selector": { "type": "object" },
+    "trust_domain": { "type": "string" },
+    "allowed_proof_methods": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "status": { "enum": ["active", "suspended", "revoked"] }
+  }
+}

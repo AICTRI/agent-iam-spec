@@ -1,0 +1,29 @@
+{
+  "id": "p2-agent-id-uniqueness-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "5.1",
+  "kind": "negative",
+  "description": "Registering a second Agent with the same namespace and agent_id must be rejected.",
+  "input": {
+    "operation": "register",
+    "records": [
+      {
+        "namespace": "https://id.example.com/org/acme",
+        "agent_id": "agt_01JABCDEF0000000000000000",
+        "agent_class": "service",
+        "authority_binding_ref": "ab_01",
+        "lifecycle_state": "registered",
+        "lifecycle_epoch": 0
+      },
+      {
+        "namespace": "https://id.example.com/org/acme",
+        "agent_id": "agt_01JABCDEF0000000000000000",
+        "agent_class": "service",
+        "authority_binding_ref": "ab_02",
+        "lifecycle_state": "registered",
+        "lifecycle_epoch": 0
+      }
+    ]
+  },
+  "expected": { "outcome": "reject", "reason_code": "duplicate-agent-id" }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/execution-grant.schema.json",
+  "title": "Execution Grant",
+  "description": "Execution Grant claims defined in Part 4 Section 4.3.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-4-authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "grant_id",
+    "namespace",
+    "action",
+    "resource",
+    "scope",
+    "task",
+    "audience",
+    "policy_version",
+    "lifecycle_epoch",
+    "parent_lineage",
+    "expires_at"
+  ],
+  "properties": {
+    "grant_id": { "type": "string" },
+    "namespace": { "type": "string", "format": "uri" },
+    "action": { "type": "string" },
+    "resource": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" },
+        "digest": { "type": "string" }
+      }
+    },
+    "scope": { "type": "array", "items": { "type": "string" } },
+    "task": { "type": "string" },
+    "audience": { "type": "string" },
+    "policy_version": { "type": "string" },
+    "lifecycle_epoch": { "type": "integer", "minimum": 0 },
+    "parent_lineage": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Parent decision/grant identifiers; must not be widened by children."
+    },
+    "expires_at": { "type": "integer" },
+    "cnf": {
+      "type": "object",
+      "properties": { "jkt": { "type": "string" } }
+    }
+  }
+}

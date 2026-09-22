@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/federation-trust.schema.json",
+  "title": "Federation Trust",
+  "description": "Namespace-scoped federation trust configuration defined in Part 5 Section 3.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-5-federation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["namespace", "peer_issuer", "trust_status"],
+  "properties": {
+    "namespace": { "type": "string", "format": "uri" },
+    "peer_issuer": { "type": "string", "format": "uri" },
+    "jwks_uri": { "type": "string", "format": "uri" },
+    "trust_bundle": { "type": "string" },
+    "allowed_audiences": { "type": "array", "items": { "type": "string" } },
+    "claim_mapping": { "type": "object" },
+    "pop_requirements": { "type": "array", "items": { "type": "string" } },
+    "trust_status": { "enum": ["active", "disabled"] },
+    "key_refresh": {
+      "type": "object",
+      "properties": {
+        "max_stale_seconds": { "type": "integer", "minimum": 0 },
+        "refresh_interval_seconds": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
