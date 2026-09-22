@@ -13,6 +13,10 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 - Part 2 Registration and Discovery, including a new discovery chapter (discovery document, resolution rules, SSRF defenses).
 - Part 3 Authentication, Part 4 Authorization, Part 5 Federation, Part 6 Audit, and Part 7 Conformance written in full, each with an informative migration-mapping appendix.
 - Series index `spec/README.md` and `spec/README.zh-CN.md`.
+- Draft JSON Schemas for Parts 2-6 records under `schemas/`, and OpenAPI 3.1 definitions for registry/discovery (Part 2), identity/STS (Part 3), and authorization (Part 4).
+- Conformance vector format (`conformance/vector.schema.json`) and initial positive and negative vectors for Parts 2-5.
+- End-to-end examples under `examples/` for twin onboarding, high-risk action, delegated cross-domain access, federation trust lifecycle, and revocation propagation.
+- Part-level EIDOVELA/AEGIVELA, SPIFFE, and IETF WIMSE mappings.
 
 ### Changed
 
