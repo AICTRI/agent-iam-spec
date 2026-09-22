@@ -1,3 +1,5 @@
+[English](agent-iam-spec.md) · [简体中文](../zh-CN/agent-iam-spec.md)
+
 # Agent Identity and Access Management Technical Specification (Draft)
 
 Version: 0.1.0-draft  
@@ -6,6 +8,8 @@ Status: Project standard draft; not an international, national, or industry stan
 Specification identifier: `agent-iam-spec`  
 License: CC BY 4.0 (specification text); Apache-2.0 (Schema, code, and conformance tooling)  
 Repository: <https://github.com/AICTRI/agent-iam-spec>
+
+This English text is the primary normative text. The [Chinese text](../zh-CN/agent-iam-spec.md) is an equivalent translation. If the two texts conflict, this English text governs.
 
 
 ## 1. Scope

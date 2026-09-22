@@ -28,3 +28,4 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 
 - This version is a project draft and is not an international, national, or industry standard.
 - `GB/Z 185` field-level compatibility is not yet verified; full standard text has not been reviewed.
+- English is the primary normative text. The Chinese text is an equivalent translation provided for reference; where the two conflict, the English text governs.

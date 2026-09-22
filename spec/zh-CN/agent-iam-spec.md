@@ -1,3 +1,5 @@
+[English](../en/agent-iam-spec.md) · [简体中文](agent-iam-spec.md)
+
 # Agent 身份与访问管理技术规范草案
 
 版本：0.1.0-draft  
@@ -6,6 +8,8 @@
 规范标识：`agent-iam-spec`  
 许可证：CC BY 4.0（规范文本）；Apache-2.0（Schema、代码与一致性工具）  
 仓库：<https://github.com/AICTRI/agent-iam-spec>
+
+本中文文本是[英文文本](../en/agent-iam-spec.md)的等价翻译，供对照参考。两种语言文本冲突时，以英文文本为准。
 
 
 ## 1. 范围

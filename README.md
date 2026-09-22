@@ -1,28 +1,31 @@
+[English](README.md) · [简体中文](README.zh-CN.md)
+
 # Agent IAM Specification
 
 An open interoperability specification for AI Agent identity, authentication, authorization, delegation, lifecycle, federation, and audit.
-
-面向 AI Agent 标识、认证、授权、委托、生命周期、联邦与审计的开放互操作规范。
 
 - Specification identifier: `agent-iam-spec`
 - Version: `0.1.0-draft`
 - Status: **Project draft**, not an international, national, or industry standard
 - Repository: <https://github.com/AICTRI/agent-iam-spec>
 
-## Documents
+## Language
+
+English is the primary language of this specification. The Chinese text is an equivalent translation provided for reference.
 
 | Document | Language | Path |
 |---|---|---|
-| Specification (normative) | 简体中文 | [`spec/zh-CN/agent-iam-spec.md`](spec/zh-CN/agent-iam-spec.md) |
-| Specification (normative) | English | [`spec/en/agent-iam-spec.md`](spec/en/agent-iam-spec.md) |
+| Specification (primary, normative) | English | [`spec/en/agent-iam-spec.md`](spec/en/agent-iam-spec.md) |
+| Specification (translation) | 简体中文 | [`spec/zh-CN/agent-iam-spec.md`](spec/zh-CN/agent-iam-spec.md) |
 
-Both language versions are normative and must be kept aligned. If they conflict, open an issue and treat the conflict as a defect.
+If the two language texts conflict, the English text governs and the Chinese text is treated as having a defect that must be fixed.
 
 ## Repository layout
 
 ```text
 agent-iam-spec/
-├── README.md
+├── README.md            # English (primary)
+├── README.zh-CN.md      # Chinese
 ├── GOVERNANCE.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
@@ -30,8 +33,8 @@ agent-iam-spec/
 ├── LICENSE              # CC BY 4.0 for specification text
 ├── LICENSE-CODE         # Apache-2.0 for schemas, code, tooling
 ├── spec/
-│   ├── zh-CN/           # Chinese normative text
-│   └── en/              # English normative text
+│   ├── en/              # English normative text (primary)
+│   └── zh-CN/           # Chinese translation
 ├── profiles/            # Normative profiles (narrow the base spec)
 ├── schemas/             # JSON Schema, OpenAPI, protocol schemas
 ├── conformance/         # Conformance test vectors and fixtures
@@ -59,7 +62,7 @@ In scope:
 - enrollment, workload attestation, and proof-of-possession;
 - identity tokens and authoritative online verification;
 - principal model and authorization modes;
-- policy decisions, execution grants, delegation non-amplification;
+- policy decisions, execution grants, and delegation non-amplification;
 - revocation classes and freshness;
 - federation and principal isolation;
 - security event records.

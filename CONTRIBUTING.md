@@ -17,7 +17,7 @@ Read:
 
 ## 3. Editing the specification
 
-- The Chinese and English texts are both normative. Any normative change must update both.
+- English is the primary normative text. Any normative change must be made in English first, then reflected in the Chinese translation.
 - Keep clause numbering identical between the two languages.
 - Use the defined normative keywords consistently. See the specification's normative language section.
 - Do not add vendor names to the specification body. Vendor and standards alignment belongs in `mappings/`.
@@ -41,7 +41,7 @@ Closes #12.
 
 ## 6. Pull request checklist
 
-- [ ] Both language versions updated, if normative.
+- [ ] English text updated first, then the Chinese translation, if normative.
 - [ ] Clause numbers stay aligned across languages.
 - [ ] `CHANGELOG.md` updated for normative changes.
 - [ ] No vendor names added to the specification body.

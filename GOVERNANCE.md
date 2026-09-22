@@ -12,13 +12,13 @@ This project is a project draft. It is not an international, national, or indust
 
 Only the following are normative:
 
-- `spec/zh-CN/agent-iam-spec.md`
-- `spec/en/agent-iam-spec.md`
+- `spec/en/agent-iam-spec.md` (primary normative text)
+- `spec/zh-CN/agent-iam-spec.md` (equivalent translation)
 - documents published under `profiles/`
 
 Everything else, including `mappings/`, `examples/`, `README.md`, and this file, is informative.
 
-The Chinese and English specification texts are normative and must stay aligned. A conflict between them is a defect and must be resolved by a change proposal.
+English is the primary language of the specification. The Chinese text is an equivalent translation and must stay aligned with it. If the two texts conflict, the English text governs, and the divergence is treated as a defect in the Chinese text that must be fixed by a change proposal.
 
 ## 4. Change process
 
