@@ -6,9 +6,20 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 
 ## [Unreleased]
 
+### Added
+
+- Multi-part `Agent IAM Series` structure under `spec/part-01-architecture` through `spec/part-07-conformance` (RFC-0002, Draft).
+- Part 1 Architecture and Terminology (framework: terms, layering, trusted data sources, fail-closed, canonicalization, revocation freshness, privacy).
+- Part 2 Registration and Discovery, including a new discovery chapter (discovery document, resolution rules, SSRF defenses).
+- Part 3 Authentication, Part 4 Authorization, Part 5 Federation, Part 6 Audit, and Part 7 Conformance written in full, each with an informative migration-mapping appendix.
+- Series index `spec/README.md` and `spec/README.zh-CN.md`.
+
 ### Changed
 
 - Removed `tenant_id` from the specification and replaced it with the hierarchical `Authority Namespace` (RFC-0001, Draft).
+- Superseded the single-document edition (`spec/en/agent-iam-spec.md`, `spec/zh-CN/agent-iam-spec.md`) with the series; retained only during the migration window.
+- `GOVERNANCE.md` normative-text list, versioning, and profile rules updated for the series.
+- Root `README.md` / `README.zh-CN.md` reorganized around the series and its seven parts.
 - Added terms `Namespace`, `Authority Namespace`, and `Organization Unit` to Section 4; removed the `Tenant` term.
 - Added the Namespace Hierarchy in Section 6.6; changed Agent ID uniqueness in Sections 6.2 and 7.1 to `namespace + agent_id`.
 - Replaced `namespace` for `tenant_id` in the Agent Identity Record, Workload Registration, Agent Instance, trusted data sources, identity Token claims, challenge scoping, JTI replay scope, Decisions, Grants, revocation selectors, Federation Trust, and security events.

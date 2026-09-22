@@ -1,24 +1,27 @@
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-# Agent IAM Specification
+# Agent IAM Series
 
-An open interoperability specification for AI Agent identity, authentication, authorization, delegation, lifecycle, federation, and audit.
+An open interoperability series for AI Agent identity, registration, discovery, authentication, authorization, delegation, lifecycle, federation, and audit.
 
-- Specification identifier: `agent-iam-spec`
+- Series identifier: `agent-iam-series`
 - Version: `0.1.0-draft`
 - Status: **Project draft**, not an international, national, or industry standard
 - Repository: <https://github.com/AICTRI/agent-iam-spec>
 
+The series is organized into seven parts. See [`spec/README.md`](spec/README.md) for the part map and migration status, and [`rfcs/0002-series-structure.md`](rfcs/0002-series-structure.md) for the restructuring decision.
+
 ## Language
 
-English is the primary language of this specification. The Chinese text is an equivalent translation provided for reference.
+English is the primary normative language. The Chinese text is an equivalent translation provided for reference. If the two conflict, the English text governs.
 
 | Document | Language | Path |
 |---|---|---|
-| Specification (primary, normative) | English | [`spec/en/agent-iam-spec.md`](spec/en/agent-iam-spec.md) |
-| Specification (translation) | 简体中文 | [`spec/zh-CN/agent-iam-spec.md`](spec/zh-CN/agent-iam-spec.md) |
-
-If the two language texts conflict, the English text governs and the Chinese text is treated as having a defect that must be fixed.
+| Series index | English | [`spec/README.md`](spec/README.md) |
+| Series index (translation) | 简体中文 | [`spec/README.zh-CN.md`](spec/README.zh-CN.md) |
+| Part 1–7 (primary, normative) | English | `spec/part-0N-*/en/` |
+| Part 1–7 (translation) | 简体中文 | `spec/part-0N-*/zh-CN/` |
+| Former single document (superseded) | English / 简体中文 | `spec/{en,zh-CN}/agent-iam-spec.md` |
 
 ## Repository layout
 
@@ -35,8 +38,15 @@ agent-iam-spec/
 ├── LICENSE              # CC BY 4.0 for specification text
 ├── LICENSE-CODE         # Apache-2.0 for schemas, code, tooling
 ├── spec/
-│   ├── en/              # English normative text (primary)
-│   └── zh-CN/           # Chinese translation
+│   ├── README.md        # series index and part map
+│   ├── part-01-architecture/{en,zh-CN}/
+│   ├── part-02-registration-discovery/{en,zh-CN}/
+│   ├── part-03-authentication/{en,zh-CN}/
+│   ├── part-04-authorization/{en,zh-CN}/
+│   ├── part-05-federation/{en,zh-CN}/
+│   ├── part-06-audit/{en,zh-CN}/
+│   ├── part-07-conformance/{en,zh-CN}/
+│   └── {en,zh-CN}/      # former single document (superseded)
 ├── profiles/            # Normative profiles (narrow the base spec)
 ├── schemas/             # JSON Schema, OpenAPI, protocol schemas
 ├── conformance/         # Conformance test vectors and fixtures
@@ -60,6 +70,7 @@ See [`mappings/`](mappings/) for details.
 In scope:
 
 - Agent identity objects: Agent, Agent Instance, Authority Root, Authority Binding;
+- registration and identity discovery;
 - lifecycle state machine and lifecycle epoch;
 - enrollment, workload attestation, and proof-of-possession;
 - identity tokens and authoritative online verification;
@@ -88,7 +99,7 @@ See [`IMPLEMENTATIONS.md`](IMPLEMENTATIONS.md) for repositories, composition, an
 
 ## Conformance
 
-Conformance is declared at Level 1, 2, or 3 as defined in the specification. A conformance claim must list the supported level, proof profiles, token/profile versions, revocation SLO, known extensions, and any unmet clauses.
+Conformance is declared per part and composed through the series profiles (`Identity`, `Authorization`, `Federated`) defined in Part 7. A conformance claim must list the supported parts and levels, proof profiles, token/artifact versions, revocation SLO, discovery mechanism, known extensions, and any unmet clauses.
 
 Reference implementation mappings are recorded in [`mappings/`](mappings/) and must not be used as a substitute for the specification.
 

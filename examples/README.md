@@ -1,6 +1,6 @@
 # Examples
 
-End-to-end examples for `agent-iam-spec`.
+End-to-end examples for the `Agent IAM Series`.
 
 Licensed under Apache-2.0. See `../LICENSE-CODE`.
 
@@ -18,4 +18,4 @@ No examples have been published yet.
 | `federation-trust-lifecycle.md` | Trust creation, federated introspection, trust disable |
 | `revocation-propagation.md` | Suspend, revoke, and freshness classes |
 
-Examples are informative only. When an example conflicts with `../spec/`, the specification governs.
+Examples are informative only. When an example conflicts with `../spec/part-*/`, the specification governs.

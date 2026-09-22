@@ -1,6 +1,6 @@
 # Conformance
 
-Conformance test vectors and fixtures for `agent-iam-spec`.
+Conformance test vectors and fixtures for the `Agent IAM Series`.
 
 Licensed under Apache-2.0. See `../LICENSE-CODE`.
 
@@ -12,15 +12,19 @@ No test vectors have been published yet.
 
 ```text
 conformance/
-├── level-1/
-├── level-2/
-├── level-3/
+├── part-02-registration-discovery/
+├── part-03-authentication/
+├── part-04-authorization/
+├── part-05-federation/
 └── negative/
 ```
 
+The series composite profiles (`Identity`, `Authorization`, `Federated`) defined in
+`../spec/part-07-conformance/` compose per-part vectors.
+
 ## Requirements
 
-- Every vector must name the conformance level and the clause it exercises.
+- Every vector must name the part, the conformance level, and the clause it exercises.
 - Negative vectors are mandatory for each security-critical clause.
 - Vectors must be language-neutral and reproducible.
 - Where behavior depends on a profile, the vector must state the profile and version.

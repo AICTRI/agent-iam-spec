@@ -4,14 +4,14 @@
 
 ## 规划中的 Profile
 
-| Profile | 覆盖范围 | 状态 |
-|---|---|---|
-| `identity-token.md` | 身份 Token 的 claim、`typ`、受众和验证 | 待编写 |
-| `enrollment.md` | Enrollment challenge、JWT proof、attestation 三阶段 | 待编写 |
-| `authorization.md` | Principal、authorization mode、PDP Decision | 待编写 |
-| `delegation.md` | Token exchange、衰减算法、Approval、Pre-Authorization | 待编写 |
-| `federation.md` | Federation Trust、联邦验证、主体隔离 | 待编写 |
-| `audit.md` | 安全事件记录的最小事件和字段 | 待编写 |
+| Profile | 所扩展的 Part | 覆盖范围 | 状态 |
+|---|---|---|---|
+| `identity-token.md` | Part 3 `agent-iam-3-authentication` | 身份 Token 的 claim、`typ`、受众和验证 | 待编写 |
+| `enrollment.md` | Part 3 `agent-iam-3-authentication` | Enrollment challenge、JWT proof、attestation 三阶段 | 待编写 |
+| `authorization.md` | Part 4 `agent-iam-4-authorization` | Principal、authorization mode、PDP Decision | 待编写 |
+| `delegation.md` | Part 4 `agent-iam-4-authorization` | Token exchange、衰减算法、Approval、Pre-Authorization | 待编写 |
+| `federation.md` | Part 5 `agent-iam-5-federation` | Federation Trust、联邦验证、主体隔离 | 待编写 |
+| `audit.md` | Part 6 `agent-iam-6-audit` | 安全事件记录的最小事件和字段 | 待编写 |
 
 ## Profile 编写要求
 
@@ -25,4 +25,4 @@
 
 ## 状态
 
-当前尚未发布任何 Profile。主规范 `spec/zh-CN/agent-iam-spec.md` 与 `spec/en/agent-iam-spec.md` 为唯一规范性文本。
+当前尚未发布任何 Profile。规范性文本为 `spec/part-*/en/` 与 `spec/part-*/zh-CN/`（见 `spec/README.zh-CN.md`）。每个 Profile 必须声明其扩展的 Part 标识与系列版本。

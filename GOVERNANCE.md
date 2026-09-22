@@ -12,9 +12,11 @@ This project is a project draft. It is not an international, national, or indust
 
 Only the following are normative:
 
-- `spec/en/agent-iam-spec.md` (primary normative text)
-- `spec/zh-CN/agent-iam-spec.md` (equivalent translation)
+- every `spec/part-*/en/` document (primary normative text)
+- every `spec/part-*/zh-CN/` document (equivalent translation)
 - documents published under `profiles/`
+
+The former single-document edition (`spec/en/agent-iam-spec.md`, `spec/zh-CN/agent-iam-spec.md`) is superseded by the multi-part series and is retained only during the migration window described in `rfcs/0002-series-structure.md`.
 
 Everything else, including `mappings/`, `examples/`, `README.md`, and this file, is informative.
 
@@ -39,10 +41,11 @@ Editorial changes, broken links, and typo fixes may be merged directly without a
 - `minor`: backward-compatible normative addition.
 - `patch`: editorial or clarification change with no behavior change.
 - Draft versions may change incompatibly at any time.
+- The series releases its parts synchronously under a shared series version. Each part also carries a stable part identifier of the form `agent-iam-N-<slug>`, which does not change when the series version changes.
 
 ## 6. Profiles
 
-Profiles under `profiles/` may only narrow or refine base requirements. A profile may not relax a `MUST` or `MUST NOT` in the base specification.
+Profiles under `profiles/` may only narrow or refine requirements of the part they extend. A profile may not relax a `MUST` or `MUST NOT` in that part. A profile MUST declare the part identifier and series version it applies to.
 
 ## 7. Internet-Drafts and external standards
 

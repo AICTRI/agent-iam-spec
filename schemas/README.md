@@ -6,7 +6,7 @@ Licensed under Apache-2.0. See `../LICENSE-CODE`.
 
 ## Status
 
-No schema has been published yet. Until then, the normative text in `../spec/` governs.
+No schema has been published yet. Until then, the normative text in `../spec/part-*/` governs.
 
 ## Planned schemas
 

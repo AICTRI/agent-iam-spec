@@ -11,6 +11,12 @@ Repository: <https://github.com/AICTRI/agent-iam-spec>
 
 This English text is the primary normative text. The [Chinese text](../zh-CN/agent-iam-spec.md) is an equivalent translation. If the two texts conflict, this English text governs.
 
+> **Superseded.** This single-document edition is being reorganized into the multi-part
+> [Agent IAM Series](../README.md): Part 1 Architecture, Part 2 Registration and Discovery,
+> Part 3 Authentication, Part 4 Authorization, Part 5 Federation, Part 6 Audit, and
+> Part 7 Conformance. This document is retained only during the migration window.
+> See [`rfcs/0002-series-structure.md`](../../rfcs/0002-series-structure.md).
+
 
 ## 1. Scope
 
