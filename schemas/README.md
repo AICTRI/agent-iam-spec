@@ -17,12 +17,13 @@ normative text in `../spec/part-*/`, which governs if they conflict.
 | `workload-registration.schema.json` | 2 | Workload Registration record |
 | `discovery-document.schema.json` | 2 | Authority Namespace discovery document |
 | `identity-token.schema.json` | 3 | Local Agent identity token claims |
+| `enrollment-proof.schema.json` | 3 | Enrollment JWT proof of possession claims |
 | `policy-decision.schema.json` | 4 | Versioned policy decision |
 | `execution-grant.schema.json` | 4 | Execution Grant claims |
 | `federation-trust.schema.json` | 5 | Federation trust configuration |
 | `security-event.schema.json` | 6 | Security event record |
 
-Not yet published: `enrollment-proof.schema.json` (Part 3).
+| `registry-discovery.openapi.json` | 2 | Registry and discovery HTTP API (OpenAPI 3.1) |
 
 ## Requirements
 

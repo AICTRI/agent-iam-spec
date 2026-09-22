@@ -1,0 +1,17 @@
+{
+  "id": "p5-principal-isolation-001",
+  "part": "agent-iam-5-federation",
+  "clause": "4",
+  "kind": "negative",
+  "description": "A peer claim that specifies or overrides the local namespace must be rejected.",
+  "input": {
+    "operation": "federated-verify",
+    "local_namespace": "https://id.example.com/org/acme",
+    "peer_claims": {
+      "iss": "https://id.partner.example/org/partner",
+      "sub": "agt_partner_01",
+      "namespace": "https://id.example.com/org/acme"
+    }
+  },
+  "expected": { "outcome": "reject", "reason_code": "peer-overrides-local-namespace" }
+}

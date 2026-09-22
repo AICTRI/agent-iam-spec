@@ -1,0 +1,133 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agent IAM Series — Registry and Discovery API",
+    "version": "0.1.0-draft",
+    "description": "Draft management and discovery API for Part 2 (agent-iam-2-registration-discovery). The normative requirements are in spec/part-02-registration-discovery/.",
+    "x-agent-iam-series-version": "0.1.0-draft",
+    "x-agent-iam-part": "agent-iam-2-registration-discovery"
+  },
+  "servers": [
+    { "url": "https://id.example.com/org/acme", "description": "Authority Namespace host (example)" }
+  ],
+  "paths": {
+    "/.well-known/agent-iam": {
+      "get": {
+        "operationId": "getDiscoveryDocument",
+        "summary": "Retrieve the Authority Namespace discovery document",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Discovery document. MUST be retrieved over HTTPS; results are cached with a bounded maximum age.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "./discovery-document.schema.json" }
+              }
+            }
+          },
+          "404": { "description": "No discovery document for this namespace" }
+        }
+      }
+    },
+    "/agents": {
+      "post": {
+        "operationId": "registerAgent",
+        "summary": "Register an Agent Identity and its Authority Binding",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "./agent-identity.schema.json" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Agent registered. Agent record, Authority Binding, and registration evidence are committed in one transaction.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "./agent-identity.schema.json" }
+              }
+            }
+          },
+          "409": { "description": "namespace + agent_id already exists" }
+        }
+      }
+    },
+    "/agents/{agent_id}": {
+      "get": {
+        "operationId": "getAgent",
+        "summary": "Read an Agent Identity Record",
+        "security": [{ "mutualTLS": [] }],
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent Identity Record",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "./agent-identity.schema.json" }
+              }
+            }
+          },
+          "404": { "description": "Unknown agent_id in this namespace" }
+        }
+      }
+    },
+    "/agents/{agent_id}/instances": {
+      "get": {
+        "operationId": "listAgentInstances",
+        "summary": "List Agent Instances for an Agent",
+        "security": [{ "mutualTLS": [] }],
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent Instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "./agent-instance.schema.json" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "mutualTLS": {
+        "type": "mutualTLS",
+        "description": "Management-plane calls MUST be strongly authenticated and finely authorized (Part 2 Section 7.3)."
+      },
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://id.example.com/org/acme/sts/token",
+            "scopes": {
+              "agent:register": "Register Agent Identities",
+              "agent:read": "Read Agent Identities"
+            }
+          }
+        }
+      }
+    }
+  }
+}

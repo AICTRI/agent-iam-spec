@@ -6,16 +6,16 @@ Licensed under Apache-2.0. See `../LICENSE-CODE`.
 
 ## Status
 
-No examples have been published yet.
+Initial examples are published. More are planned.
 
-## Planned examples
+## Examples
 
-| Example | Flow |
-|---|---|
-| `twin-agent-onboarding.md` | Register, enroll, activate, issue token, introspect |
-| `service-agent-high-risk-action.md` | Decision, approval, grant, PEP enforcement |
-| `delegated-cross-domain.md` | Token exchange, attenuation, cross-domain access |
-| `federation-trust-lifecycle.md` | Trust creation, federated introspection, trust disable |
-| `revocation-propagation.md` | Suspend, revoke, and freshness classes |
+| Example | Parts | Flow | Status |
+|---|---|---|---|
+| `twin-agent-onboarding.md` | 2, 3, 4 | Register, discover, enroll, issue token, verify | published |
+| `federation-trust-lifecycle.md` | 5, 6 | Trust creation, brokered verification, trust disable | published |
+| `service-agent-high-risk-action.md` | 4 | Decision, approval, grant, PEP enforcement | planned |
+| `delegated-cross-domain.md` | 4, 5 | Token exchange, attenuation, cross-domain access | planned |
+| `revocation-propagation.md` | 1, 3, 4 | Suspend, revoke, and freshness classes | planned |
 
 Examples are informative only. When an example conflicts with `../spec/part-*/`, the specification governs.

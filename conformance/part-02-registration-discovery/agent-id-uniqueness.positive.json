@@ -1,0 +1,21 @@
+{
+  "id": "p2-agent-id-uniqueness-002",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "5.1",
+  "kind": "positive",
+  "description": "Registering one Agent with a unique namespace and agent_id is accepted.",
+  "input": {
+    "operation": "register",
+    "records": [
+      {
+        "namespace": "https://id.example.com/org/acme",
+        "agent_id": "agt_01JABCDEF0000000000000000",
+        "agent_class": "service",
+        "authority_binding_ref": "ab_01",
+        "lifecycle_state": "registered",
+        "lifecycle_epoch": 0
+      }
+    ]
+  },
+  "expected": { "outcome": "accept" }
+}

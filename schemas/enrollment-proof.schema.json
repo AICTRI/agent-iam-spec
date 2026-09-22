@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/enrollment-proof.schema.json",
+  "title": "Enrollment JWT Proof of Possession Claims",
+  "description": "Project-defined Enrollment JWT proof claims defined in Part 3 Section 4.3. This is not the OAuth private_key_jwt wire protocol.",
+  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-part": "agent-iam-3-authentication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["iss", "sub", "aud", "iat", "exp", "jti", "challenge_id", "nonce"],
+  "properties": {
+    "iss": { "type": "string", "description": "Equals the agent_id." },
+    "sub": { "type": "string", "description": "agent_id or the Profile-defined instance subject." },
+    "aud": { "type": "string", "description": "Expected token endpoint audience." },
+    "iat": { "type": "integer" },
+    "exp": { "type": "integer" },
+    "jti": { "type": "string", "description": "Single-use identifier." },
+    "challenge_id": { "type": "string" },
+    "nonce": { "type": "string" }
+  }
+}

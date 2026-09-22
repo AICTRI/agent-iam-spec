@@ -1,0 +1,19 @@
+{
+  "id": "p2-lifecycle-epoch-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "6.2",
+  "kind": "negative",
+  "description": "A lifecycle transition that does not strictly increase lifecycle_epoch must be rejected.",
+  "input": {
+    "operation": "transition",
+    "agent": {
+      "namespace": "https://id.example.com/org/acme",
+      "agent_id": "agt_01JABCDEF0000000000000000",
+      "lifecycle_state": "active",
+      "lifecycle_epoch": 5
+    },
+    "target_state": "suspended",
+    "target_epoch": 5
+  },
+  "expected": { "outcome": "reject", "reason_code": "epoch-not-monotonic" }
+}
