@@ -19,6 +19,7 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 - Part-level EIDOVELA/AEGIVELA, SPIFFE, and IETF WIMSE mappings.
 - Reusable request body schemas under `schemas/requests/` and a field-to-clause mapping table in `schemas/FIELD-MAPPING.md`.
 - Conformance vectors for discovery, lifecycle, negation, brokered-field forgery, audit redaction/transaction, and composite-profile completeness.
+- Federation management OpenAPI (`schemas/federation.openapi.json`) and a Part-by-Part coverage matrix (`conformance/COVERAGE.md`).
 
 ### Changed
 

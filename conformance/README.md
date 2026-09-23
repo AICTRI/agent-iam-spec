@@ -53,6 +53,8 @@ Every vector is a JSON document conforming to `vector.schema.json`:
 }
 ```
 
+See `COVERAGE.md` for the Part-by-Part coverage matrix.
+
 ## Published vectors
 
 | Vector | Part | Clause | Kind |

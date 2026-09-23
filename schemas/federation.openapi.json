@@ -1,0 +1,127 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agent IAM Series — Federation API",
+    "version": "0.1.0-draft",
+    "description": "Draft federation trust management and brokered verification API for Part 5 (agent-iam-5-federation). Requirements are in spec/part-05-federation/.",
+    "x-agent-iam-series-version": "0.1.0-draft",
+    "x-agent-iam-part": "agent-iam-5-federation"
+  },
+  "servers": [
+    { "url": "https://id.example.com/org/acme/federation", "description": "Federation endpoint (example)" }
+  ],
+  "paths": {
+    "/trusts": {
+      "get": {
+        "operationId": "listFederationTrusts",
+        "summary": "List namespace-scoped Federation Trusts",
+        "security": [{ "mutualTLS": [] }],
+        "responses": {
+          "200": {
+            "description": "Federation Trusts",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "./federation-trust.schema.json" } }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createFederationTrust",
+        "summary": "Create a Federation Trust; peer claims MUST NOT override the local namespace",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "./federation-trust.schema.json" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Federation Trust created",
+            "content": { "application/json": { "schema": { "$ref": "./federation-trust.schema.json" } } }
+          }
+        }
+      }
+    },
+    "/trusts/{trust_id}": {
+      "parameters": [
+        { "name": "trust_id", "in": "path", "required": true, "schema": { "type": "string" } }
+      ],
+      "get": {
+        "operationId": "getFederationTrust",
+        "summary": "Read a Federation Trust",
+        "security": [{ "mutualTLS": [] }],
+        "responses": {
+          "200": {
+            "description": "Federation Trust",
+            "content": { "application/json": { "schema": { "$ref": "./federation-trust.schema.json" } } }
+          },
+          "404": { "description": "Unknown trust" }
+        }
+      },
+      "patch": {
+        "operationId": "updateFederationTrust",
+        "summary": "Update trust status; disabling a trust MUST cause the next online verification to fail closed",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["trust_status"],
+                "properties": { "trust_status": { "enum": ["active", "disabled"] } }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Updated Federation Trust" } }
+      }
+    },
+    "/verify": {
+      "post": {
+        "operationId": "verifyBrokeredToken",
+        "summary": "Verify a brokered token against the active Federation Trust",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["token"],
+                "properties": {
+                  "token": { "type": "string" },
+                  "expected_audience": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification result: trust status, signature, known kid, issuer, audience, time, PoP, and claim mapping are all checked.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["active"],
+                  "properties": {
+                    "active": { "type": "boolean" },
+                    "reason_code": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Trust disabled or verification failed (fail closed)" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "mutualTLS": { "type": "mutualTLS" }
+    }
+  }
+}
