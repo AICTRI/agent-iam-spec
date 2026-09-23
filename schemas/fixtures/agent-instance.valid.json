@@ -1,0 +1,11 @@
+{
+  "namespace": "https://id.example.com/org/acme",
+  "instance_id": "inst_01",
+  "agent_id": "agt_01JABCDEF0000000000000000",
+  "workload_registration_id": "wr_01",
+  "workload_id": "spiffe://example.org/ns/acme/sa/agent",
+  "attestation_ref": "att_01",
+  "credential_generation": 2,
+  "lease_expires_at": "2026-09-22T11:00:00Z",
+  "instance_state": "active"
+}

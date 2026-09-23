@@ -32,8 +32,9 @@ Reusable request body schemas are under `requests/`. Field-to-clause mappings ar
 
 ## Fixtures
 
-Valid record instances are under `fixtures/`; `fixtures/manifest.json` maps each
-instance to its schema. Run `node ../conformance/validate.mjs` to validate them.
+Valid record and request instances are under `fixtures/`; `fixtures/manifest.json`
+maps each instance to its schema. Run `node ../conformance/validate.mjs` to validate
+the full fixture set.
 
 ## Requirements
 

@@ -22,6 +22,7 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 - Federation management OpenAPI (`schemas/federation.openapi.json`) and a Part-by-Part coverage matrix (`conformance/COVERAGE.md`).
 - Part 1 and Part 5 conformance vectors, plus six schema-validated record fixtures under `schemas/fixtures/`.
 - Fixture validation in `conformance/validate.mjs`; the validator now reports JSON, vectors, fixtures, schema references, and Markdown links.
+- Valid fixtures for all record and request schemas, and additional dependency-free checks for schema patterns, URI/date-time formats, and array minimum lengths.
 
 ### Changed
 

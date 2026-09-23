@@ -1,0 +1,5 @@
+{
+  "instance_id": "inst_01",
+  "audience": "https://api.example.com/tool/invoke",
+  "proof": { "jti": "jti_02", "target_audience": "https://api.example.com/tool/invoke" }
+}

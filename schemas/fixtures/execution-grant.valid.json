@@ -1,0 +1,14 @@
+{
+  "grant_id": "grt_01",
+  "namespace": "https://id.example.com/org/acme",
+  "action": "orders.read",
+  "resource": { "type": "order", "id": "ord_1" },
+  "scope": ["read:orders"],
+  "task": "task_01",
+  "audience": "https://api.example.com",
+  "policy_version": "3",
+  "lifecycle_epoch": 4,
+  "parent_lineage": ["dec_01"],
+  "expires_at": 1900000300,
+  "cnf": { "jkt": "NzbLsXh8uDCcd-6MNwXF4W_7noWXFZAfHkxZsRGC9Xs" }
+}

@@ -5,6 +5,18 @@
       "instance": "agent-identity.valid.json"
     },
     {
+      "schema": "../agent-instance.schema.json",
+      "instance": "agent-instance.valid.json"
+    },
+    {
+      "schema": "../authority-binding.schema.json",
+      "instance": "authority-binding.valid.json"
+    },
+    {
+      "schema": "../workload-registration.schema.json",
+      "instance": "workload-registration.valid.json"
+    },
+    {
       "schema": "../discovery-document.schema.json",
       "instance": "discovery-document.valid.json"
     },
@@ -13,8 +25,16 @@
       "instance": "identity-token.valid.json"
     },
     {
+      "schema": "../enrollment-proof.schema.json",
+      "instance": "enrollment-proof.valid.json"
+    },
+    {
       "schema": "../policy-decision.schema.json",
       "instance": "policy-decision.valid.json"
+    },
+    {
+      "schema": "../execution-grant.schema.json",
+      "instance": "execution-grant.valid.json"
     },
     {
       "schema": "../federation-trust.schema.json",
@@ -23,6 +43,34 @@
     {
       "schema": "../security-event.schema.json",
       "instance": "security-event.valid.json"
+    },
+    {
+      "schema": "../requests/challenge-request.schema.json",
+      "instance": "challenge-request.valid.json"
+    },
+    {
+      "schema": "../requests/enrollment-request.schema.json",
+      "instance": "enrollment-request.valid.json"
+    },
+    {
+      "schema": "../requests/token-request.schema.json",
+      "instance": "token-request.valid.json"
+    },
+    {
+      "schema": "../requests/decision-request.schema.json",
+      "instance": "decision-request.valid.json"
+    },
+    {
+      "schema": "../requests/grant-request.schema.json",
+      "instance": "grant-request.valid.json"
+    },
+    {
+      "schema": "../requests/exchange-request.schema.json",
+      "instance": "exchange-request.valid.json"
+    },
+    {
+      "schema": "../requests/revocation-request.schema.json",
+      "instance": "revocation-request.valid.json"
     }
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "namespace": "https://id.example.com/org/acme",
+  "workload_registration_id": "wr_01",
+  "platform": "spiffe",
+  "selector": { "spiffe_id": "spiffe://example.org/ns/acme/sa/agent" },
+  "trust_domain": "example.org",
+  "allowed_proof_methods": ["x509-svid"],
+  "status": "active"
+}

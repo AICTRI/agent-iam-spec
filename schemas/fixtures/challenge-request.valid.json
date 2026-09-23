@@ -1,0 +1,5 @@
+{
+  "agent_id": "agt_01JABCDEF0000000000000000",
+  "workload_registration_id": "wr_01",
+  "audience": "https://id.example.com/org/acme/sts"
+}

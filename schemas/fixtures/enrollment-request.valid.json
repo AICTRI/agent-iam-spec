@@ -1,0 +1,15 @@
+{
+  "agent_id": "agt_01JABCDEF0000000000000000",
+  "workload_registration_id": "wr_01",
+  "workload_evidence": { "type": "spiffe", "verified": true },
+  "proof": {
+    "iss": "agt_01JABCDEF0000000000000000",
+    "sub": "agt_01JABCDEF0000000000000000",
+    "aud": "https://id.example.com/org/acme/sts",
+    "iat": 1900000000,
+    "exp": 1900000300,
+    "jti": "jti_01",
+    "challenge_id": "chl_01",
+    "nonce": "n_01"
+  }
+}

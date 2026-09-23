@@ -1,0 +1,6 @@
+{
+  "namespace": "https://id.example.com/org/acme",
+  "selector_type": "grant_jti",
+  "selector_value": "grt_01",
+  "freshness_class": "pre_dispatch"
+}

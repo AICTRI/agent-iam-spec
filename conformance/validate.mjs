@@ -69,6 +69,15 @@ function validate(instance, schema, path, errors, schemaFile) {
   if (schema.const !== undefined && instance !== schema.const) {
     errors.push(`${path}: expected const ${JSON.stringify(schema.const)}`);
   }
+  if (schema.pattern && typeof instance === "string" && !(new RegExp(schema.pattern).test(instance))) {
+    errors.push(`${path}: value ${JSON.stringify(instance)} does not match pattern ${schema.pattern}`);
+  }
+  if (schema.format === "uri" && typeof instance === "string") {
+    try { new URL(instance); } catch { errors.push(`${path}: invalid URI`); }
+  }
+  if (schema.format === "date-time" && typeof instance === "string" && Number.isNaN(Date.parse(instance))) {
+    errors.push(`${path}: invalid date-time`);
+  }
   if (typeOf(instance) === "object") {
     for (const key of schema.required ?? []) {
       if (!(key in instance)) errors.push(`${path}: missing required property "${key}"`);
@@ -80,6 +89,9 @@ function validate(instance, schema, path, errors, schemaFile) {
     }
   }
   if (typeOf(instance) === "array" && schema.items) {
+    if (schema.minItems !== undefined && instance.length < schema.minItems) {
+      errors.push(`${path}: expected at least ${schema.minItems} items`);
+    }
     instance.forEach((item, i) => validate(item, schema.items, `${path}[${i}]`, errors, schemaFile));
   }
 }
