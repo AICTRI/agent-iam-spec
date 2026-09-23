@@ -20,18 +20,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["namespace", "authorization_mode", "action", "resource", "scope", "audience"],
-                "properties": {
-                  "namespace": { "type": "string", "format": "uri" },
-                  "authorization_mode": { "enum": ["human_web", "system_api", "delegated_api", "service_agent_api", "twin_agent_api"] },
-                  "action": { "type": "string" },
-                  "resource": { "type": "object" },
-                  "scope": { "type": "array", "items": { "type": "string" } },
-                  "audience": { "type": "string" }
-                }
-              }
+              "schema": { "$ref": "./requests/decision-request.schema.json" }
             }
           }
         },
@@ -52,11 +41,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["decision_id"],
-                "properties": { "decision_id": { "type": "string" } }
-              }
+              "schema": { "$ref": "./requests/grant-request.schema.json" }
             }
           }
         },
@@ -78,16 +63,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["subject_token", "requested_scope", "audience"],
-                "properties": {
-                  "subject_token": { "type": "string" },
-                  "requested_scope": { "type": "array", "items": { "type": "string" } },
-                  "audience": { "type": "string" },
-                  "task": { "type": "string" }
-                }
-              }
+              "schema": { "$ref": "./requests/exchange-request.schema.json" }
             }
           }
         },
@@ -121,16 +97,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["namespace", "selector_type", "selector_value", "freshness_class"],
-                "properties": {
-                  "namespace": { "type": "string", "format": "uri" },
-                  "selector_type": { "type": "string" },
-                  "selector_value": { "type": "string" },
-                  "freshness_class": { "enum": ["pre_dispatch", "continuation", "connection"] }
-                }
-              }
+              "schema": { "$ref": "./requests/revocation-request.schema.json" }
             }
           }
         },

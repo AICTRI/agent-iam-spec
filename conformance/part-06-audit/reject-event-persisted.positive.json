@@ -1,0 +1,23 @@
+{
+  "id": "p6-reject-event-001",
+  "part": "agent-iam-6-audit",
+  "clause": "5",
+  "kind": "positive",
+  "description": "A rejection event persisted with a categorized reason_code, after rate limiting and sanitization, is accepted.",
+  "input": {
+    "operation": "persist-event",
+    "event": {
+      "event_id": "evt_02",
+      "event_type": "token.verify",
+      "timestamp": "2026-09-22T10:01:00Z",
+      "namespace": "https://id.example.com/org/acme",
+      "trace_id": "tr_02",
+      "outcome": "rejected",
+      "reason_code": "audience-mismatch"
+    },
+    "rate_limited": true,
+    "sanitized": true,
+    "in_process_counter_only": false
+  },
+  "expected": { "outcome": "accept" }
+}

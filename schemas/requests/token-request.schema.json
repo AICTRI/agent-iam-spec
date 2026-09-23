@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/token-request.schema.json",
+  "title": "Identity Token Request",
+  "description": "Request for a short-lived identity token (Part 3 Section 5.2).",
+  "x-agent-iam-part": "agent-iam-3-authentication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["instance_id", "audience", "proof"],
+  "properties": {
+    "instance_id": { "type": "string" },
+    "audience": { "type": "string" },
+    "proof": {
+      "type": "object",
+      "description": "Binds Agent, Instance, token endpoint audience, target audience, time, and single-use JTI."
+    }
+  }
+}

@@ -19,15 +19,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["agent_id", "workload_registration_id"],
-                "properties": {
-                  "agent_id": { "type": "string" },
-                  "workload_registration_id": { "type": "string" },
-                  "audience": { "type": "string" }
-                }
-              }
+              "schema": { "$ref": "./requests/challenge-request.schema.json" }
             }
           }
         },
@@ -59,16 +51,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["agent_id", "workload_registration_id", "workload_evidence", "proof"],
-                "properties": {
-                  "agent_id": { "type": "string" },
-                  "workload_registration_id": { "type": "string" },
-                  "workload_evidence": { "type": "object", "description": "Verified per the three-phase attestation model." },
-                  "proof": { "$ref": "./enrollment-proof.schema.json" }
-                }
-              }
+              "schema": { "$ref": "./requests/enrollment-request.schema.json" }
             }
           }
         },
@@ -93,18 +76,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["instance_id", "audience", "proof"],
-                "properties": {
-                  "instance_id": { "type": "string" },
-                  "audience": { "type": "string" },
-                  "proof": {
-                    "type": "object",
-                    "description": "Binds Agent, Instance, token endpoint audience, target audience, time, and single-use JTI (Part 3 Section 5.2)."
-                  }
-                }
-              }
+              "schema": { "$ref": "./requests/token-request.schema.json" }
             }
           }
         },

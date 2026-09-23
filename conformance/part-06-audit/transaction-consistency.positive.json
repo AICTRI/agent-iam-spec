@@ -1,0 +1,13 @@
+{
+  "id": "p6-transaction-consistency-001",
+  "part": "agent-iam-6-audit",
+  "clause": "6",
+  "kind": "positive",
+  "description": "Authoritative state change, evidence, and outbox committed in the same transaction is accepted.",
+  "input": {
+    "operation": "commit",
+    "changes": ["lifecycle_state", "evidence", "outbox"],
+    "atomic": true
+  },
+  "expected": { "outcome": "accept" }
+}

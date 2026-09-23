@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/decision-request.schema.json",
+  "title": "Decision Request",
+  "description": "Request to create a policy decision (Part 4 Section 4.2).",
+  "x-agent-iam-part": "agent-iam-4-authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["namespace", "authorization_mode", "action", "resource", "scope", "audience"],
+  "properties": {
+    "namespace": { "type": "string", "format": "uri" },
+    "authorization_mode": {
+      "enum": ["human_web", "system_api", "delegated_api", "service_agent_api", "twin_agent_api"]
+    },
+    "action": { "type": "string" },
+    "resource": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" },
+        "digest": { "type": "string" }
+      }
+    },
+    "scope": { "type": "array", "items": { "type": "string" } },
+    "audience": { "type": "string" },
+    "task": { "type": "string" }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "p6-event-redaction-001",
+  "part": "agent-iam-6-audit",
+  "clause": "5",
+  "kind": "negative",
+  "description": "A security event that stores a full bearer token or downstream credential must be rejected.",
+  "input": {
+    "operation": "persist-event",
+    "event": {
+      "event_id": "evt_01",
+      "event_type": "token.issued",
+      "timestamp": "2026-09-22T10:00:00Z",
+      "namespace": "https://id.example.com/org/acme",
+      "trace_id": "tr_01",
+      "outcome": "success",
+      "reason_code": "ok",
+      "bearer_token": "eyJhbGciOiJFUzI1NiJ9.payload.signature"
+    }
+  },
+  "expected": { "outcome": "reject", "reason_code": "sensitive-field-stored" }
+}

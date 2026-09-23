@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/grant-request.schema.json",
+  "title": "Execution Grant Request",
+  "description": "Request to mint an Execution Grant from a verified allow decision (Part 4 Section 4.3).",
+  "x-agent-iam-part": "agent-iam-4-authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_id"],
+  "properties": {
+    "decision_id": { "type": "string" }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/enrollment-request.schema.json",
+  "title": "Enrollment Request",
+  "description": "Request to enroll an Agent Instance (Part 3 Sections 4.1-4.4).",
+  "x-agent-iam-part": "agent-iam-3-authentication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent_id", "workload_registration_id", "workload_evidence", "proof"],
+  "properties": {
+    "agent_id": { "type": "string" },
+    "workload_registration_id": { "type": "string" },
+    "workload_evidence": { "type": "object" },
+    "proof": { "$ref": "../enrollment-proof.schema.json" }
+  }
+}

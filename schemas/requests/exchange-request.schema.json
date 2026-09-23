@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/exchange-request.schema.json",
+  "title": "Token Exchange Request",
+  "description": "OAuth token exchange request producing an attenuated grant (Part 4 Section 5.2).",
+  "x-agent-iam-part": "agent-iam-4-authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["subject_token", "requested_scope", "audience"],
+  "properties": {
+    "subject_token": { "type": "string" },
+    "requested_scope": { "type": "array", "items": { "type": "string" } },
+    "audience": { "type": "string" },
+    "task": { "type": "string" }
+  }
+}

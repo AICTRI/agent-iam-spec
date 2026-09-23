@@ -1,0 +1,21 @@
+{
+  "id": "p7-claim-completeness-001",
+  "part": "agent-iam-7-conformance",
+  "clause": "5",
+  "kind": "negative",
+  "description": "A conformance claim for the Federated profile that omits Part 5 must be rejected.",
+  "input": {
+    "operation": "validate-claim",
+    "claim": {
+      "composite_profile": "Federated",
+      "supported_parts": [2, 3, 4],
+      "proof_profiles": ["spiffe", "dpop"],
+      "token_versions": ["0.1.0-draft"],
+      "revocation_slo": "PT5M",
+      "discovery_mechanism": "well-known",
+      "known_extensions": [],
+      "unmet_clauses": []
+    }
+  },
+  "expected": { "outcome": "reject", "reason_code": "missing-part-for-profile" }
+}

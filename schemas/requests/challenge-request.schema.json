@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/challenge-request.schema.json",
+  "title": "Enrollment Challenge Request",
+  "description": "Request to issue an enrollment challenge (Part 3 Section 4.2).",
+  "x-agent-iam-part": "agent-iam-3-authentication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent_id", "workload_registration_id"],
+  "properties": {
+    "agent_id": { "type": "string" },
+    "workload_registration_id": { "type": "string" },
+    "audience": { "type": "string" }
+  }
+}

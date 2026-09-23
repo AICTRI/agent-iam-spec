@@ -125,3 +125,15 @@ The specification governs if this table conflicts with it.
 | `decision_id`, `grant_id`, `approval_id` | 4 |
 | `trace_id`, `outcome`, `reason_code` | 4 |
 | `evidence_refs` | 1, 4, 5 |
+
+## requests/*.schema.json
+
+| Schema | Key fields | Clause |
+|---|---|---|
+| `challenge-request.schema.json` | `agent_id`, `workload_registration_id`, `audience` | Part 3 4.2 |
+| `enrollment-request.schema.json` | `agent_id`, `workload_registration_id`, `workload_evidence`, `proof` | Part 3 4.1-4.4 |
+| `token-request.schema.json` | `instance_id`, `audience`, `proof` | Part 3 5.2 |
+| `decision-request.schema.json` | `namespace`, `authorization_mode`, `action`, `resource`, `scope`, `audience`, `task` | Part 4 4.2 |
+| `grant-request.schema.json` | `decision_id` | Part 4 4.3 |
+| `exchange-request.schema.json` | `subject_token`, `requested_scope`, `audience`, `task` | Part 4 5.2 |
+| `revocation-request.schema.json` | `namespace`, `selector_type`, `selector_value`, `freshness_class` | Part 1 6.3; Parts 3, 4, 5 |

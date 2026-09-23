@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/revocation-request.schema.json",
+  "title": "Revocation Request",
+  "description": "Namespace-scoped revocation request with a freshness class (Parts 3, 4, and 5).",
+  "x-agent-iam-part": "agent-iam-4-authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["namespace", "selector_type", "selector_value", "freshness_class"],
+  "properties": {
+    "namespace": { "type": "string", "format": "uri" },
+    "selector_type": {
+      "enum": [
+        "agent",
+        "instance",
+        "credential",
+        "lifecycle_epoch",
+        "workload_binding",
+        "attestation_ref",
+        "subject",
+        "session",
+        "authority_root",
+        "decision_jti",
+        "grant_jti",
+        "approval_jti",
+        "policy_version",
+        "resource_digest",
+        "federation_trust"
+      ]
+    },
+    "selector_value": { "type": "string" },
+    "freshness_class": { "enum": ["pre_dispatch", "continuation", "connection"] }
+  }
+}

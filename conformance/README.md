@@ -29,6 +29,8 @@ conformance/
 ├── part-03-authentication/
 ├── part-04-authorization/
 ├── part-05-federation/
+├── part-06-audit/
+├── part-07-conformance/
 └── negative/
 ```
 
@@ -77,6 +79,10 @@ Every vector is a JSON document conforming to `vector.schema.json`:
 | `part-05-federation/trust-disable.negative.json` | 5 | 6 | negative |
 | `part-05-federation/principal-isolation.negative.json` | 5 | 4 | negative |
 | `part-05-federation/brokered-token-forged-field.negative.json` | 5 | 5 | negative |
+| `part-06-audit/reject-event-persisted.positive.json` | 6 | 5 | positive |
+| `part-06-audit/event-redaction.negative.json` | 6 | 5 | negative |
+| `part-06-audit/transaction-consistency.positive.json` | 6 | 6 | positive |
+| `part-07-conformance/claim-missing-part.negative.json` | 7 | 5 | negative |
 
 ## Requirements
 

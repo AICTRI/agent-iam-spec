@@ -17,6 +17,8 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 - Conformance vector format (`conformance/vector.schema.json`) and initial positive and negative vectors for Parts 2-5.
 - End-to-end examples under `examples/` for twin onboarding, high-risk action, delegated cross-domain access, federation trust lifecycle, and revocation propagation.
 - Part-level EIDOVELA/AEGIVELA, SPIFFE, and IETF WIMSE mappings.
+- Reusable request body schemas under `schemas/requests/` and a field-to-clause mapping table in `schemas/FIELD-MAPPING.md`.
+- Conformance vectors for discovery, lifecycle, negation, brokered-field forgery, audit redaction/transaction, and composite-profile completeness.
 
 ### Changed
 
