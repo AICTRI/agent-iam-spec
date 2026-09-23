@@ -101,6 +101,8 @@ Conformance is declared per part and composed through the series profiles (`Iden
 
 Reference implementation mappings are recorded in [`mappings/`](mappings/) and must not be used as a substitute for the specification.
 
+Repository consistency (JSON, schemas, conformance vectors, and links) is checked by `node conformance/validate.mjs` and run in CI.
+
 ## License
 
 - Specification text: CC BY 4.0. See [`LICENSE`](LICENSE).

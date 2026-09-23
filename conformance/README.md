@@ -8,6 +8,18 @@ Licensed under Apache-2.0. See `../LICENSE-CODE`.
 
 Initial example vectors are published for Parts 2–5. Coverage is not yet complete.
 
+## Validation
+
+Run the dependency-free validator:
+
+```text
+node conformance/validate.mjs
+```
+
+It parses every `*.json`, validates each vector against `vector.schema.json`,
+checks that external `$ref` targets exist, and checks relative Markdown links.
+CI runs it on every push and pull request (`.github/workflows/validate.yml`).
+
 ## Layout
 
 ```text

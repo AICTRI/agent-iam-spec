@@ -43,6 +43,7 @@ Closes #12.
 
 - [ ] English text updated first, then the Chinese translation, if normative.
 - [ ] Clause numbers stay aligned across languages.
+- [ ] `node conformance/validate.mjs` passes (JSON, vectors, `$ref`s, and links).
 - [ ] `CHANGELOG.md` updated for normative changes.
 - [ ] No vendor names added to the specification body.
 - [ ] Conformance vectors added or updated where behavior is testable.
