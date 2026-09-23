@@ -1,0 +1,28 @@
+{
+  "id": "p5-active-trust-001",
+  "part": "agent-iam-5-federation",
+  "clause": "5",
+  "kind": "positive",
+  "description": "A brokered token with an active trust, known key, exact audience, valid PoP, and allowed claim mapping is accepted.",
+  "input": {
+    "operation": "verify-brokered-token",
+    "federation_trust": {
+      "namespace": "https://id.example.com/org/acme",
+      "peer_issuer": "https://id.globex.example/org/globex",
+      "allowed_audiences": ["https://api.example.com/partners"],
+      "trust_status": "active"
+    },
+    "token": {
+      "typ": "brokered+jwt",
+      "iss": "https://id.globex.example/org/globex",
+      "sub": "agt_globex_01",
+      "aud": "https://api.example.com/partners",
+      "kid_known": true,
+      "signature_valid": true,
+      "time_valid": true,
+      "pop_valid": true,
+      "claim_mapping_valid": true
+    }
+  },
+  "expected": { "outcome": "accept" }
+}

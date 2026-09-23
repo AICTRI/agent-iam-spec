@@ -1,0 +1,17 @@
+{
+  "namespace": "https://id.example.com/org/acme",
+  "authorization_mode": "service_agent_api",
+  "actor": "agt_01JABCDEF0000000000000000",
+  "action": "orders.read",
+  "resource": { "type": "order", "id": "ord_1" },
+  "scope": ["read:orders"],
+  "audience": "https://api.example.com",
+  "policy_id": "pol.orders",
+  "policy_version": "3",
+  "lifecycle_epoch": 4,
+  "decision_id": "dec_01",
+  "iat": 1900000000,
+  "exp": 1900000300,
+  "outcome": "allow",
+  "obligations": []
+}

@@ -1,0 +1,13 @@
+{
+  "id": "p1-revocation-freshness-001",
+  "part": "agent-iam-1-architecture",
+  "clause": "6.3",
+  "kind": "negative",
+  "description": "A pre_dispatch check that uses a negative cache must be rejected.",
+  "input": {
+    "operation": "check-revocation",
+    "freshness_class": "pre_dispatch",
+    "used_negative_cache": true
+  },
+  "expected": { "outcome": "reject", "reason_code": "negative-cache-not-allowed" }
+}

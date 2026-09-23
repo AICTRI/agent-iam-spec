@@ -20,6 +20,8 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 - Reusable request body schemas under `schemas/requests/` and a field-to-clause mapping table in `schemas/FIELD-MAPPING.md`.
 - Conformance vectors for discovery, lifecycle, negation, brokered-field forgery, audit redaction/transaction, and composite-profile completeness.
 - Federation management OpenAPI (`schemas/federation.openapi.json`) and a Part-by-Part coverage matrix (`conformance/COVERAGE.md`).
+- Part 1 and Part 5 conformance vectors, plus six schema-validated record fixtures under `schemas/fixtures/`.
+- Fixture validation in `conformance/validate.mjs`; the validator now reports JSON, vectors, fixtures, schema references, and Markdown links.
 
 ### Changed
 

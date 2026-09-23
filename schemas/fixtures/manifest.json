@@ -1,0 +1,28 @@
+{
+  "fixtures": [
+    {
+      "schema": "../agent-identity.schema.json",
+      "instance": "agent-identity.valid.json"
+    },
+    {
+      "schema": "../discovery-document.schema.json",
+      "instance": "discovery-document.valid.json"
+    },
+    {
+      "schema": "../identity-token.schema.json",
+      "instance": "identity-token.valid.json"
+    },
+    {
+      "schema": "../policy-decision.schema.json",
+      "instance": "policy-decision.valid.json"
+    },
+    {
+      "schema": "../federation-trust.schema.json",
+      "instance": "federation-trust.valid.json"
+    },
+    {
+      "schema": "../security-event.schema.json",
+      "instance": "security-event.valid.json"
+    }
+  ]
+}

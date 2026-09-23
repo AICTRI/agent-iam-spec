@@ -17,7 +17,8 @@ node conformance/validate.mjs
 ```
 
 It parses every `*.json`, validates each vector against `vector.schema.json`,
-checks that external `$ref` targets exist, and checks relative Markdown links.
+validates the fixtures declared in `../schemas/fixtures/manifest.json`, checks that
+external `$ref` targets exist, and checks relative Markdown links.
 CI runs it on every push and pull request (`.github/workflows/validate.yml`).
 
 ## Layout
@@ -81,6 +82,7 @@ See `COVERAGE.md` for the Part-by-Part coverage matrix.
 | `part-05-federation/trust-disable.negative.json` | 5 | 6 | negative |
 | `part-05-federation/principal-isolation.negative.json` | 5 | 4 | negative |
 | `part-05-federation/brokered-token-forged-field.negative.json` | 5 | 5 | negative |
+| `part-05-federation/active-trust-verification.positive.json` | 5 | 5 | positive |
 | `part-06-audit/reject-event-persisted.positive.json` | 6 | 5 | positive |
 | `part-06-audit/event-redaction.negative.json` | 6 | 5 | negative |
 | `part-06-audit/transaction-consistency.positive.json` | 6 | 6 | positive |

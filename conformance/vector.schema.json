@@ -11,6 +11,7 @@
     "id": { "type": "string" },
     "part": {
       "enum": [
+        "agent-iam-1-architecture",
         "agent-iam-2-registration-discovery",
         "agent-iam-3-authentication",
         "agent-iam-4-authorization",

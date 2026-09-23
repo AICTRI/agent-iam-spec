@@ -1,0 +1,15 @@
+{
+  "id": "p1-canonical-digest-001",
+  "part": "agent-iam-1-architecture",
+  "clause": "6.2",
+  "kind": "positive",
+  "description": "A security digest with a fixed algorithm, domain-separation label, profile version, and canonical bytes is accepted.",
+  "input": {
+    "operation": "compute-digest",
+    "algorithm": "SHA-256",
+    "domain_separator": "agent-iam:resource:0.1.0-draft\\u0000",
+    "canonicalization": "RFC8785-JCS-UTF8",
+    "canonical_bytes": "{\"id\":\"ord_1\",\"type\":\"order\"}"
+  },
+  "expected": { "outcome": "accept" }
+}

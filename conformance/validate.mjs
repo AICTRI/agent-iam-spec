@@ -48,7 +48,17 @@ function matchesType(value, type) {
 }
 
 // Minimal JSON Schema validator covering the subset used by vector.schema.json.
-function validate(instance, schema, path, errors) {
+function validate(instance, schema, path, errors, schemaFile) {
+  if (schema.$ref && schema.$ref.startsWith(".")) {
+    const target = resolve(dirname(schemaFile), schema.$ref.split("#")[0]);
+    const targetSchema = parsed.get(target);
+    if (!targetSchema) {
+      errors.push(`${path}: unresolved schema $ref "${schema.$ref}"`);
+      return;
+    }
+    validate(instance, targetSchema, path, errors, target);
+    return;
+  }
   if (schema.type && !matchesType(instance, schema.type)) {
     errors.push(`${path}: expected ${schema.type}, got ${typeOf(instance)}`);
     return;
@@ -65,12 +75,12 @@ function validate(instance, schema, path, errors) {
     }
     const props = schema.properties ?? {};
     for (const [key, value] of Object.entries(instance)) {
-      if (props[key]) validate(value, props[key], `${path}.${key}`, errors);
+      if (props[key]) validate(value, props[key], `${path}.${key}`, errors, schemaFile);
       else if (schema.additionalProperties === false) errors.push(`${path}: unexpected property "${key}"`);
     }
   }
   if (typeOf(instance) === "array" && schema.items) {
-    instance.forEach((item, i) => validate(item, schema.items, `${path}[${i}]`, errors));
+    instance.forEach((item, i) => validate(item, schema.items, `${path}[${i}]`, errors, schemaFile));
   }
 }
 
@@ -129,12 +139,28 @@ if (vectorSchema) {
     if (!r.startsWith("conformance/part-") || !r.endsWith(".json")) continue;
     vectorCount += 1;
     const local = [];
-    validate(doc, vectorSchema, r, local);
+    validate(doc, vectorSchema, r, local, join(repoRoot, "conformance", "vector.schema.json"));
     errors.push(...local);
   }
 }
 
 for (const [file, doc] of parsed) checkRefs(doc, dirname(file), rel(file), errors);
+
+const fixtureManifestPath = join(repoRoot, "schemas", "fixtures", "manifest.json");
+const fixtureManifest = parsed.get(fixtureManifestPath);
+let fixtureCount = 0;
+if (fixtureManifest) {
+  for (const fixture of fixtureManifest.fixtures ?? []) {
+    const schemaPath = resolve(dirname(fixtureManifestPath), fixture.schema);
+    const instancePath = resolve(dirname(fixtureManifestPath), fixture.instance);
+    const schema = parsed.get(schemaPath);
+    const instance = parsed.get(instancePath);
+    fixtureCount += 1;
+    if (!schema) errors.push(`schemas/fixtures/manifest.json: missing schema "${fixture.schema}"`);
+    else if (instance === undefined) errors.push(`schemas/fixtures/manifest.json: missing instance "${fixture.instance}"`);
+    else validate(instance, schema, rel(instancePath), errors, schemaPath);
+  }
+}
 
 const markdownFiles = allFiles.filter(
   (f) => f.endsWith(".md") && markdownRoots.some((root) => rel(f).startsWith(`${root}/`)),
@@ -147,6 +173,7 @@ for (const name of ["README.md", "README.zh-CN.md", "GOVERNANCE.md", "CONTRIBUTI
 
 console.log(`JSON files parsed: ${parsed.size}/${allJson.length}`);
 console.log(`Vectors validated: ${vectorCount}`);
+console.log(`Schema fixtures validated: ${fixtureCount}`);
 console.log(`Markdown files link-checked: ${markdownFiles.length + 5}`);
 
 if (errors.length > 0) {

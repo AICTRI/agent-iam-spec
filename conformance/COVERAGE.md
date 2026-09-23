@@ -5,18 +5,25 @@ review when adding artifacts; `node conformance/validate.mjs` verifies consisten
 
 | Part | Schemas | OpenAPI | Request schemas | Vectors (pos / neg) | Examples |
 |---|---|---|---|---|---|
-| 1 Architecture | — | — | — | shared vocabulary | — |
+| 1 Architecture | — | — | — | 1 / 1 | — |
 | 2 Registration & Discovery | agent-identity, agent-instance, authority-binding, workload-registration, discovery-document | registry-discovery | — | 3 / 4 | twin-agent-onboarding |
 | 3 Authentication | identity-token, enrollment-proof | identity-sts | challenge, enrollment, token | 2 / 4 | twin-agent-onboarding, revocation-propagation |
 | 4 Authorization | policy-decision, execution-grant | authorization | decision, grant, exchange, revocation | 2 / 4 | service-agent-high-risk-action, delegated-cross-domain, revocation-propagation |
-| 5 Federation | federation-trust | federation | — | 0 / 3 | delegated-cross-domain, federation-trust-lifecycle |
+| 5 Federation | federation-trust | federation | — | 1 / 3 | delegated-cross-domain, federation-trust-lifecycle |
 | 6 Audit | security-event | — | — | 2 / 1 | federation-trust-lifecycle |
 | 7 Conformance | — | — | — | 0 / 1 | — |
 
-Totals: 26 vectors (9 positive, 17 negative), 11 record schemas, 7 request schemas,
+Totals: 29 vectors (11 positive, 18 negative), 11 record schemas, 7 request schemas,
 4 OpenAPI documents.
 
 ## Vectors by part
+
+### Part 1
+
+| Vector | Clause | Kind |
+|---|---|---|
+| canonical-digest.positive | 6.2 | positive |
+| revocation-freshness-pre-dispatch.negative | 6.3 | negative |
 
 ### Part 2
 
@@ -59,6 +66,7 @@ Totals: 26 vectors (9 positive, 17 negative), 11 record schemas, 7 request schem
 | trust-disable.negative | 5 | 6 | negative |
 | principal-isolation.negative | 5 | 4 | negative |
 | brokered-token-forged-field.negative | 5 | 5 | negative |
+| active-trust-verification.positive | 5 | 5 | positive |
 | reject-event-persisted.positive | 6 | 5 | positive |
 | event-redaction.negative | 6 | 5 | negative |
 | transaction-consistency.positive | 6 | 6 | positive |
@@ -66,6 +74,5 @@ Totals: 26 vectors (9 positive, 17 negative), 11 record schemas, 7 request schem
 
 ## Gaps
 
-- Part 1 shared rules are exercised indirectly through Parts 2-6 vectors; no Part 1-only vectors yet.
-- Part 5 has no positive vectors yet (active trust verification, successful brokered exchange).
-- No JSON instance fixtures that validate records against the record schemas yet.
+- No successful brokered token exchange vector yet; Part 5 coverage currently verifies active trust.
+- Record fixtures cover six representative schemas; remaining record and request schemas need fixtures.
