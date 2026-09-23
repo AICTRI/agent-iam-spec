@@ -1,0 +1,21 @@
+{
+  "id": "p5-brokered-forged-field-001",
+  "part": "agent-iam-5-federation",
+  "clause": "5",
+  "kind": "negative",
+  "description": "A brokered token that forges a local identity field must be rejected.",
+  "input": {
+    "operation": "verify-brokered-token",
+    "trust_status": "active",
+    "external_issuer": "https://id.globex.example/org/globex",
+    "token": {
+      "typ": "brokered+jwt",
+      "iss": "https://id.globex.example/org/globex",
+      "sub": "agt_globex_01",
+      "agent_class": "twin",
+      "instance_id": "inst_local_forged",
+      "lifecycle_epoch": 9
+    }
+  },
+  "expected": { "outcome": "reject", "reason_code": "forged-local-identity-field" }
+}

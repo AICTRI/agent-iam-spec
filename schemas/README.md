@@ -27,6 +27,8 @@ normative text in `../spec/part-*/`, which governs if they conflict.
 | `identity-sts.openapi.json` | 3 | Enrollment, token, and introspection API (OpenAPI 3.1) |
 | `authorization.openapi.json` | 4 | Decision, grant, exchange, approval, revocation API (OpenAPI 3.1) |
 
+Field-to-clause mappings are in `FIELD-MAPPING.md`.
+
 ## Requirements
 
 - Schemas must not contradict `../spec/`.

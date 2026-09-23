@@ -1,0 +1,15 @@
+{
+  "id": "p2-discovery-stale-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "8.3",
+  "kind": "negative",
+  "description": "Stale discovery metadata must fail closed for new issuance and must not satisfy revocation.",
+  "input": {
+    "operation": "issue-with-cached-metadata",
+    "namespace": "https://id.example.com/org/acme",
+    "cache_age_seconds": 7200,
+    "cache_max_age_seconds": 3600,
+    "purpose": "new-issuance"
+  },
+  "expected": { "outcome": "reject", "reason_code": "stale-metadata" }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "p4-decision-deny-001",
+  "part": "agent-iam-4-authorization",
+  "clause": "4.2",
+  "kind": "negative",
+  "description": "A deny decision must block execution and must not derive an Execution Grant.",
+  "input": {
+    "operation": "derive-grant",
+    "decision": {
+      "outcome": "deny",
+      "namespace": "https://id.example.com/org/acme",
+      "action": "orders.read",
+      "resource": { "type": "order", "id": "ord_1" }
+    }
+  },
+  "expected": { "outcome": "reject", "reason_code": "decision-not-allow" }
+}

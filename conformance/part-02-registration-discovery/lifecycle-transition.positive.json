@@ -1,0 +1,19 @@
+{
+  "id": "p2-lifecycle-transition-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "6.2",
+  "kind": "positive",
+  "description": "A legal transition that strictly increases lifecycle_epoch is accepted.",
+  "input": {
+    "operation": "transition",
+    "agent": {
+      "namespace": "https://id.example.com/org/acme",
+      "agent_id": "agt_01JABCDEF0000000000000000",
+      "lifecycle_state": "registered",
+      "lifecycle_epoch": 0
+    },
+    "target_state": "enrolled",
+    "target_epoch": 1
+  },
+  "expected": { "outcome": "accept" }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "p3-token-epoch-001",
+  "part": "agent-iam-3-authentication",
+  "clause": "5.4",
+  "kind": "negative",
+  "description": "Authoritative online verification must reject a token whose epoch differs from the current Agent epoch.",
+  "input": {
+    "operation": "verify-online",
+    "token_lifecycle_epoch": 4,
+    "agent_lifecycle_epoch": 5,
+    "agent_state": "active"
+  },
+  "expected": { "outcome": "reject", "reason_code": "epoch-mismatch" }
+}

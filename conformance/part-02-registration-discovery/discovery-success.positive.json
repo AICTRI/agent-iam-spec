@@ -1,0 +1,22 @@
+{
+  "id": "p2-discovery-success-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "8",
+  "kind": "positive",
+  "description": "A registered canonical namespace resolves to a trusted discovery document over HTTPS.",
+  "input": {
+    "operation": "discover",
+    "namespace": "https://id.example.com/org/acme",
+    "document": {
+      "discovery_version": "0.1.0-draft",
+      "namespace": "https://id.example.com/org/acme",
+      "issuer": "https://id.example.com/org/acme",
+      "jwks_uri": "https://id.example.com/org/acme/jwks",
+      "supported_proof_profiles": ["spiffe", "mtls"]
+    },
+    "issuer_registered": true,
+    "cache_age_seconds": 30,
+    "cache_max_age_seconds": 3600
+  },
+  "expected": { "outcome": "accept" }
+}
