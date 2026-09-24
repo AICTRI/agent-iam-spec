@@ -7,7 +7,8 @@
 
 参考实现：
 
-- EIDOVELA（身份与认证，主要对应第 2、3、5 部分）：<https://github.com/axisrobo/eidovela>、<https://github.com/axisrobo/eidovela-open>
+- 独立 Agent Registry（注册与发现，对应第 2 部分）：待实现；它独立于 EIDOVELA，权威管理 Agent、Agent ID、Authority Namespace、Authority Binding 和发现。
+- EIDOVELA（身份与认证，主要对应第 3、5 部分，并消费第 2 部分 Registry 记录）：<https://github.com/axisrobo/eidovela>、<https://github.com/axisrobo/eidovela-open>
 - AEGIVELA（授权与委托，主要对应第 4、6 部分）：<https://github.com/axisrobo/aegivela>、<https://github.com/axisrobo/aegivela-open>
 
 ## 1. 系列部分映射
@@ -15,7 +16,7 @@
 | Part | 标识 | EIDOVELA | AEGIVELA | 当前符合状态 |
 |---|---|---|---|---|
 | 1 | `agent-iam-1-architecture` | 横切适用 | 横切适用 | — |
-| 2 | `agent-iam-2-registration-discovery` | Registry、Lifecycle、Workload profiles | — | 部分符合：注册/生命周期对象已实现；**发现（Discovery Document/解析）未实现** |
+| 2 | `agent-iam-2-registration-discovery` | 消费独立 Agent Registry 的记录 | — | 待实现：独立 Registry 是第 2 部分的参考实现；EIDOVELA 需迁移为 Registry client，不能继续作为 Agent/Agent ID 权威 |
 | 3 | `agent-iam-3-authentication` | Enrollment/STS、Workload profiles、身份 Token/introspection | — | 部分符合：项目 JWT proof 和短时 Token 已实现，生产级 attestor、请求级 PoP、credential 在线撤销未完整满足 |
 | 4 | `agent-iam-4-authorization` | — | Trusted Principal、PDP/Decision/Grant、Approval/Pre-Authorization、PEP/Revocation | 部分符合：核心模式与签名产物已实现，canonical allow lineage 和撤销契约未完整满足 |
 | 5 | `agent-iam-5-federation` | Federation/Broker | 跨域撤销接口 | 部分符合：核心路径已实现，Brokered Token 缺 trust-disable 在线撤销 |
@@ -26,9 +27,9 @@
 
 | 规范能力 | Part | 参考组件 | 当前符合状态 |
 |---|---|---|---|
-| Agent/Instance/Binding 注册 | 2 | EIDOVELA Registry | 部分符合：对象已实现，注册事务和 attestation reference 未完整满足 |
-| 生命周期与 epoch | 2 | EIDOVELA Lifecycle | 部分符合：Agent epoch 已实现，Instance/credential 在线撤销未完整满足 |
-| 发现（Discovery Document/解析） | 2 | 无 | 不符合：未实现 discovery document、issuer/JWKS 解析与缓存约束 |
+| Agent/Instance/Binding 注册 | 2 | 独立 Agent Registry（待实现） | 待实现：Registry 是唯一的 Agent/Agent ID/Authority Binding 权威；EIDOVELA 仅消费其记录 |
+| 生命周期与 epoch | 2, 3 | 独立 Agent Registry + EIDOVELA credential state | 待实现集成：Registry 权威管理 Agent 生命周期/epoch；EIDOVELA 管理凭据 generation、Instance 认证状态并在线校验 Registry 状态 |
+| 发现（Discovery Document/解析） | 2 | 独立 Agent Registry（发布）+ EIDOVELA（消费） | 待实现：Registry 发布 discovery document；EIDOVELA 解析 issuer/JWKS 并执行缓存/SSRF 约束 |
 | Enrollment 和 PoP | 3 | EIDOVELA Enrollment/STS | 部分符合：项目 JWT proof/JTI 已实现，不是 RFC 7523 线协议 |
 | SPIFFE/Kubernetes/mTLS | 3 | EIDOVELA Workload profiles | 不符合生产 Profile：属性匹配已实现，密码学 attestor 未接线且存在调用方属性回退 |
 | 身份 Token/introspection | 3 | EIDOVELA STS | 部分符合：短时 Token 和 Agent epoch 已实现，请求级 PoP 与 Instance/credential 在线检查不完整 |
@@ -41,12 +42,11 @@
 
 ## 3. EIDOVELA 阻塞项
 
-- 管理 API 需要强认证和授权（第 2 部分第 7.3 节）；
-- 所有存储实现需要一致执行 namespace/trust-domain 校验；
-- `tenant_id` 必须迁移为 `namespace`（RFC-0001），并保证 `namespace + agent_id` 唯一；
-- 必须实现 discovery document、issuer/JWKS 解析、缓存上限与 SSRF 防御（第 2 部分第 8 节）；
-- Blueprint 必须按请求版本精确校验和绑定；
-- Agent 注册与 Binding/evidence 需要事务一致性；
+- 必须集成独立 Agent Registry；EIDOVELA 不得分配 Agent ID、创建 Authority Binding 或作为 Agent 生命周期的权威来源；
+- 所有存储和缓存实现需要一致执行 Registry 返回的 namespace/trust-domain/Agent/Instance 约束；
+- `tenant_id` 必须迁移为 `namespace`（RFC-0001）；`namespace + agent_id` 唯一性由 Registry 保证；
+- 必须消费 Registry 发布的 discovery document、issuer/JWKS，执行缓存上限与 SSRF 防御（第 2 部分第 8 节）；
+- Blueprint 注册、Authority Binding、Agent/Instance 注册事务和注册 evidence 归独立 Registry；EIDOVELA 只保存可解析的外部引用；
 - SPIFFE、Kubernetes 和 mTLS 证据需要接入实际链/签名验证器；
 - 符合模式必须禁用调用方自报 workload attributes 的回退，并持久化可解析到验证结果的 `attestation_ref`；
 - Credential re-enrollment、轮换和撤销语义需要完成；
@@ -74,27 +74,27 @@
 
 | 规范术语 | EIDOVELA | AEGIVELA |
 |---|---|---|
-| Agent Identity | `agent` | Agent Identity Authority record |
-| Agent Instance | `instance` | workload binding / instance context |
-| Authority Root | Authority Binding (`human_master` / `organization_root`) | authority root |
-| Authority Namespace | `tenant` / trust domain（需迁移为 namespace） | tenant context（需迁移为 namespace） |
-| Discovery Document | 无（需新增） | 不适用 |
+| Agent Identity | 独立 Agent Registry record（EIDOVELA 消费） | Agent Identity Authority record |
+| Agent Instance | 独立 Agent Registry record；EIDOVELA 保存认证绑定 | workload binding / instance context |
+| Authority Root | 独立 Agent Registry Authority Binding | authority root |
+| Authority Namespace | 独立 Agent Registry（EIDOVELA 消费 namespace） | tenant context（需迁移为 namespace） |
+| Discovery Document | 独立 Agent Registry 发布；EIDOVELA 解析 | 不适用 |
 | Lifecycle Epoch | `lifecycle_epoch` | `lifecycle_epoch` |
 | Principal | verified principal | trusted principal |
 | Policy Decision | 不适用 | signed policy decision |
 | Execution Grant | 不适用 | execution grant |
 | Security Event Record | evidence event | security evidence envelope |
 
-## 6. 发现实现指引（EIDOVELA）
+## 6. 发现集成指引（EIDOVELA）
 
-第 2 部分第 8 节要求实现身份发现。EIDOVELA 目前没有 discovery document，建议按以下方式补齐（对应条款见括号）：
+第 2 部分第 8 节要求 Registry 实现身份发现。独立 Agent Registry 发布 discovery document；EIDOVELA 作为认证方按以下方式消费它（对应条款见括号）：
 
-1. **发布 discovery document**：在每个 Authority Namespace 的 HTTPS 主机下发布
+1. **消费 discovery document**：从独立 Agent Registry 在每个 Authority Namespace 的 HTTPS 主机下发布的
    `/.well-known/agent-iam`，至少包含
    `discovery_version`、`namespace`、`issuer`、`registry_endpoint`、`jwks_uri`、
    `supported_proof_profiles`、`supported_artifact_types`、`key_rotation`
    （第 2 部分第 8.2 节）。
-2. **签名与密钥**：对文档签名，且签名密钥必须能独立于文档解析；轮换 overlap 至少覆盖
+2. **签名与密钥**：验证 Registry 对文档的签名，且签名密钥必须能独立于文档解析；轮换 overlap 至少覆盖
    最大 artifact 寿命加时钟偏差（第 2 部分第 8.2 节、第 3 部分第 5.6 节）。
 3. **解析规则**：namespace 采用 canonical 形式并精确字符串比较；issuer 必须来自注册记录，
    不得因自声明而信任；结果带最大年龄缓存，过期元数据对新签发失败关闭，且不得用于满足撤销
@@ -102,7 +102,7 @@
 4. **获取安全**：仅 HTTPS；host/scheme allowlist、DNS/IP 再验证、redirect/大小/超时/内容类型限制；
    拒绝 loopback、link-local、云 metadata 与未批准私网；对未知 `kid` 刷新限速
    （第 2 部分第 8.4 节）。
-5. **绑定**：Registry 负责 namespace → issuer/registry 解析，STS 负责 `jwks_uri` 与轮换元数据，
+5. **绑定**：独立 Registry 负责 namespace → issuer/registry 解析，EIDOVELA STS 消费 `jwks_uri` 与轮换元数据，
    Federation 负责 peer trust 元数据；`iss`/OIDC discovery issuer 必须与 namespace issuer 语义一致
    （第 2 部分第 8.5 节、第 5 部分第 3 节）。
 

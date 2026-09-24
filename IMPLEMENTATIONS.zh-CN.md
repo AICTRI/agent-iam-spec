@@ -10,7 +10,8 @@
 
 | 组件 | 系列部分 | 在规范中的角色 | 仓库 |
 |---|---|---|---|
-| EIDOVELA | 2、3、5 | Agent 身份提供商：Agent 注册、Authority Binding、工作负载登记、生命周期与 epoch、持钥证明凭据、身份 Token、权威 introspection、联邦 | 核心（私有）：<https://github.com/axisrobo/eidovela> · 公开契约与 SDK：<https://github.com/axisrobo/eidovela-open> |
+| Agent Registry | 2 | Agent/Agent ID 注册权威：Authority Namespace、不可变 Authority Binding、生命周期权威、发现 | 规划中的独立系统 |
+| EIDOVELA | 3、5 | Agent 认证提供商：消费 Registry 记录；工作负载登记、证明、持钥证明凭据、身份 Token、权威 introspection、联邦 | 核心（私有）：<https://github.com/axisrobo/eidovela> · 公开契约与 SDK：<https://github.com/axisrobo/eidovela-open> |
 | AEGIVELA | 4、6 | Agent 授权平面：Principal 解析、授权模式、策略决策、Execution Grant、委托、审批、撤销 | 核心（私有）：<https://github.com/axisrobo/aegivela> · 公开契约与 SDK：<https://github.com/axisrobo/aegivela-open> |
 
 `-open` 仓库以 Apache-2.0 提供公开契约、SDK、示例与一致性 fixture。核心仓库承载实现，当前为私有，需要授权访问。

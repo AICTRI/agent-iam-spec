@@ -90,7 +90,8 @@ Out of scope:
 
 | Component | Role |
 |---|---|
-| [EIDOVELA](https://github.com/axisrobo/eidovela) | Agent Identity Provider: registration, Authority Binding, workload enrollment, lifecycle, PoP credentials, identity tokens, federation |
+| Agent Registry | Agent/Agent ID registration authority: Authority Namespace, Authority Binding, lifecycle authority, discovery (planned independent system) |
+| [EIDOVELA](https://github.com/axisrobo/eidovela) | Agent Authentication Provider: consumes Registry records; workload enrollment/attestation, PoP credentials, identity tokens, federation |
 | [AEGIVELA](https://github.com/axisrobo/aegivela) | Agent authorization plane: Principal resolution, policy decisions, execution grants, delegation, revocation |
 
 See [`IMPLEMENTATIONS.md`](IMPLEMENTATIONS.md) for repositories, composition, and conformance status.

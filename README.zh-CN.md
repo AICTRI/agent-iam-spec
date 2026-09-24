@@ -90,7 +90,8 @@ agent-iam-spec/
 
 | 组件 | 角色 |
 |---|---|
-| [EIDOVELA](https://github.com/axisrobo/eidovela) | Agent 身份提供商：注册、Authority Binding、工作负载登记、生命周期、PoP 凭据、身份 Token、联邦 |
+| Agent Registry | Agent/Agent ID 注册权威：Authority Namespace、Authority Binding、生命周期权威、发现（规划中的独立系统） |
+| [EIDOVELA](https://github.com/axisrobo/eidovela) | Agent 认证提供商：消费 Registry 记录；工作负载登记/证明、PoP 凭据、身份 Token、联邦 |
 | [AEGIVELA](https://github.com/axisrobo/aegivela) | Agent 授权平面：Principal 解析、策略决策、Execution Grant、委托、撤销 |
 
 仓库、组件协作与一致性状态见 [`IMPLEMENTATIONS.zh-CN.md`](IMPLEMENTATIONS.zh-CN.md)。

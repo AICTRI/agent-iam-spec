@@ -10,7 +10,8 @@ No implementation listed here is endorsed as fully conformant. Refer to the conf
 
 | Component | Series parts | Role in the specification | Repositories |
 |---|---|---|---|
-| EIDOVELA | 2, 3, 5 | Agent Identity Provider: Agent registration, Authority Binding, workload enrollment, lifecycle and epoch, proof-of-possession credentials, identity tokens, authoritative introspection, federation | Core (private): <https://github.com/axisrobo/eidovela> · Open contracts and SDKs: <https://github.com/axisrobo/eidovela-open> |
+| Agent Registry | 2 | Agent/Agent ID registration authority: Authority Namespace, immutable Authority Binding, lifecycle authority, discovery | Planned independent system |
+| EIDOVELA | 3, 5 | Agent Authentication Provider: consumes Registry records; workload enrollment, attestation, proof-of-possession credentials, identity tokens, authoritative introspection, federation | Core (private): <https://github.com/axisrobo/eidovela> · Open contracts and SDKs: <https://github.com/axisrobo/eidovela-open> |
 | AEGIVELA | 4, 6 | Agent Authorization plane: Principal resolution, authorization modes, policy decisions, execution grants, delegation, approval, revocation | Core (private): <https://github.com/axisrobo/aegivela> · Open contracts and SDK: <https://github.com/axisrobo/aegivela-open> |
 
 The `-open` repositories host public contracts, SDKs, examples, and conformance fixtures under Apache-2.0. The core repositories host the implementation and are private; access is required.

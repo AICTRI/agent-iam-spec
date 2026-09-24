@@ -111,7 +111,7 @@ spec/
 
 - Compatibility: 不兼容（文档结构、标识符与交叉引用变更）。规范要求内容不变，但位置与编号变化。
 - Affected profiles: 全部，需重新归属到对应 Part。
-- Affected reference implementations: EIDOVELA 主要映射 Part 2/3/5；AEGIVELA 主要映射 Part 4/5/6。
+- Affected reference implementations: 独立 Agent Registry 映射 Part 2；EIDOVELA 主要映射 Part 3/5 并消费 Part 2 记录；AEGIVELA 主要映射 Part 4/5/6。
 - Security impact: 正面。认证/授权边界显式化，发现引入独立攻击面并由专门安全条款约束。
 - Privacy impact: 中性。发现会新增元数据暴露面，需最小化与缓存上限约束。
 

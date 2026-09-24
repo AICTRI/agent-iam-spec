@@ -84,7 +84,7 @@ Authority Namespace 全局唯一、可委托、不得重分配；组织内划分
 
 - Compatibility: 不兼容（规范性变更，字段移除）。使用 `tenant_id` 的 Token、Decision、Grant、事件与 API 需迁移到 `namespace`。
 - Affected profiles: `identity-token.md`、`enrollment.md`、`authorization.md`、`delegation.md`、`federation.md`、`audit.md`。
-- Affected reference implementations: EIDOVELA（Registry、STS、Federation）与 AEGIVELA（Trusted Principal、撤销）必须将 `tenant_id` 迁移为 `namespace`；`mappings/eidovela-aegivela.md` 已记录该阻塞项。
+- Affected reference implementations: 独立 Agent Registry 必须将 Agent/Agent ID、Authority Namespace、Authority Binding 和发现从 `tenant_id` 迁移为 `namespace`；EIDOVELA（STS、Federation）与 AEGIVELA（Trusted Principal、撤销）必须消费该 namespace；`mappings/eidovela-aegivela.md` 已记录阻塞项。
 - Security impact: 正面。消除 `tenant_id` 扁平重名、跨域撤销不一致与 tenant/issuer 双重锚点风险。
 - Privacy impact: 中性。组织级命名可能泄露组织关系，需按第 19 节在跨域披露时最小化。
 
