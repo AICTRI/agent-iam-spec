@@ -60,6 +60,8 @@ See `COVERAGE.md` for the Part-by-Part coverage matrix.
 
 | Vector | Part | Clause | Kind |
 |---|---|---|---|
+| `part-01-architecture/canonical-digest.positive.json` | 1 | 6.2 | positive |
+| `part-01-architecture/revocation-freshness-pre-dispatch.negative.json` | 1 | 6.3 | negative |
 | `part-02-registration-discovery/agent-id-uniqueness.positive.json` | 2 | 5.1 | positive |
 | `part-02-registration-discovery/agent-id-uniqueness.negative.json` | 2 | 5.1 | negative |
 | `part-02-registration-discovery/lifecycle-transition.positive.json` | 2 | 6.2 | positive |
@@ -87,6 +89,7 @@ See `COVERAGE.md` for the Part-by-Part coverage matrix.
 | `part-06-audit/event-redaction.negative.json` | 6 | 5 | negative |
 | `part-06-audit/transaction-consistency.positive.json` | 6 | 6 | positive |
 | `part-07-conformance/claim-missing-part.negative.json` | 7 | 5 | negative |
+| `part-07-conformance/claim-federated-complete.positive.json` | 7 | 5 | positive |
 
 ## Requirements
 

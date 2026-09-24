@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/federation-trust-update-request.schema.json",
+  "title": "Federation Trust Update Request",
+  "description": "Federation Trust status update defined in Part 5 Section 6.",
+  "x-agent-iam-part": "agent-iam-5-federation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["trust_status"],
+  "properties": {
+    "trust_status": { "enum": ["active", "disabled"] }
+  }
+}

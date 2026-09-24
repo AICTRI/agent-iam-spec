@@ -1,0 +1,21 @@
+{
+  "id": "p7-claim-completeness-002",
+  "part": "agent-iam-7-conformance",
+  "clause": "5",
+  "kind": "positive",
+  "description": "A Federated composite-profile claim that lists Parts 2-5 and the required metadata is accepted.",
+  "input": {
+    "operation": "validate-claim",
+    "claim": {
+      "composite_profile": "Federated",
+      "supported_parts": [2, 3, 4, 5],
+      "proof_profiles": ["spiffe", "dpop"],
+      "token_versions": ["0.1.0-draft"],
+      "revocation_slo": "PT5M",
+      "discovery_mechanism": "well-known",
+      "known_extensions": [],
+      "unmet_clauses": []
+    }
+  },
+  "expected": { "outcome": "accept" }
+}

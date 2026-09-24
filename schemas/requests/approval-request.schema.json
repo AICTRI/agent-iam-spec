@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/approval-request.schema.json",
+  "title": "Approval Request",
+  "description": "Approval binding defined in Part 4 Section 5.3.",
+  "x-agent-iam-part": "agent-iam-4-authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "namespace",
+    "approver",
+    "agent_or_actor",
+    "action",
+    "resource",
+    "scope",
+    "audience",
+    "reason_digest",
+    "expires_at",
+    "policy_version"
+  ],
+  "properties": {
+    "namespace": { "type": "string", "format": "uri" },
+    "approver": { "type": "string" },
+    "agent_or_actor": { "type": "string" },
+    "action": { "type": "string" },
+    "resource": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" },
+        "digest": { "type": "string" }
+      }
+    },
+    "scope": { "type": "array", "items": { "type": "string" } },
+    "audience": { "type": "string" },
+    "reason_digest": { "type": "string" },
+    "expires_at": { "type": "integer" },
+    "policy_version": { "type": "string" }
+  }
+}

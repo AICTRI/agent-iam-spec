@@ -83,7 +83,7 @@
         "security": [{ "mutualTLS": [] }],
         "requestBody": {
           "required": true,
-          "content": { "application/json": { "schema": { "type": "object" } } }
+          "content": { "application/json": { "schema": { "$ref": "./requests/approval-request.schema.json" } } }
         },
         "responses": { "201": { "description": "Approval created" } }
       }

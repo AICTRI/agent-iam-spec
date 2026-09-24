@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/requests/brokered-token-verification-request.schema.json",
+  "title": "Brokered Token Verification Request",
+  "description": "Federated/brokered token verification request defined in Part 5 Section 5.",
+  "x-agent-iam-part": "agent-iam-5-federation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["token", "expected_audience"],
+  "properties": {
+    "token": { "type": "string" },
+    "expected_audience": { "type": "string" }
+  }
+}

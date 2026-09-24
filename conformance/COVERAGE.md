@@ -8,13 +8,13 @@ review when adding artifacts; `node conformance/validate.mjs` verifies consisten
 | 1 Architecture | — | — | — | 1 / 1 | — |
 | 2 Registration & Discovery | agent-identity, agent-instance, authority-binding, workload-registration, discovery-document | registry-discovery | — | 3 / 4 | twin-agent-onboarding |
 | 3 Authentication | identity-token, enrollment-proof | identity-sts | challenge, enrollment, token | 2 / 4 | twin-agent-onboarding, revocation-propagation |
-| 4 Authorization | policy-decision, execution-grant | authorization | decision, grant, exchange, revocation | 2 / 4 | service-agent-high-risk-action, delegated-cross-domain, revocation-propagation |
-| 5 Federation | federation-trust | federation | — | 1 / 3 | delegated-cross-domain, federation-trust-lifecycle |
-| 6 Audit | security-event | — | — | 2 / 1 | federation-trust-lifecycle |
-| 7 Conformance | — | — | — | 0 / 1 | — |
+| 4 Authorization | policy-decision, execution-grant | authorization | decision, grant, exchange, approval, revocation | 2 / 4 | service-agent-high-risk-action, delegated-cross-domain, revocation-propagation |
+| 5 Federation | federation-trust | federation | brokered verification, trust update | 1 / 3 | delegated-cross-domain, federation-trust-lifecycle |
+| 6 Audit | security-event | audit | — | 2 / 1 | federation-trust-lifecycle |
+| 7 Conformance | — | — | — | 1 / 1 | — |
 
-Totals: 29 vectors (11 positive, 18 negative), 11 record schemas, 7 request schemas,
-4 OpenAPI documents.
+Totals: 30 vectors (12 positive, 18 negative), 11 record schemas, 10 request schemas,
+5 OpenAPI documents.
 
 ## Vectors by part
 
@@ -71,6 +71,7 @@ Totals: 29 vectors (11 positive, 18 negative), 11 record schemas, 7 request sche
 | event-redaction.negative | 6 | 5 | negative |
 | transaction-consistency.positive | 6 | 6 | positive |
 | claim-missing-part.negative | 7 | 5 | negative |
+| claim-federated-complete.positive | 7 | 5 | positive |
 
 ## Gaps
 

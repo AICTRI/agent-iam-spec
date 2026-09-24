@@ -1,0 +1,4 @@
+{
+  "token": "brokered-token",
+  "expected_audience": "https://api.example.com/partners"
+}

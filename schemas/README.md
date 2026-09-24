@@ -27,6 +27,7 @@ normative text in `../spec/part-*/`, which governs if they conflict.
 | `identity-sts.openapi.json` | 3 | Enrollment, token, and introspection API (OpenAPI 3.1) |
 | `authorization.openapi.json` | 4 | Decision, grant, exchange, approval, revocation API (OpenAPI 3.1) |
 | `federation.openapi.json` | 5 | Federation trust management and brokered verification API (OpenAPI 3.1) |
+| `audit.openapi.json` | 6 | Security-event ingestion API (OpenAPI 3.1) |
 
 Reusable request body schemas are under `requests/`. Field-to-clause mappings are in `FIELD-MAPPING.md`.
 

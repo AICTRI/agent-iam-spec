@@ -1,0 +1,12 @@
+{
+  "namespace": "https://id.example.com/org/acme",
+  "approver": "human:alice",
+  "agent_or_actor": "agt_01JABCDEF0000000000000000",
+  "action": "payments.transfer",
+  "resource": { "type": "account", "id": "acct_42" },
+  "scope": ["payments:transfer"],
+  "audience": "https://payments.example.com",
+  "reason_digest": "sha256:abcd",
+  "expires_at": 1900000300,
+  "policy_version": "7"
+}

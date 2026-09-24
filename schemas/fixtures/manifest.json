@@ -91,6 +91,18 @@
     {
       "schema": "../requests/revocation-request.schema.json",
       "instance": "revocation-request.valid.json"
+    },
+    {
+      "schema": "../requests/approval-request.schema.json",
+      "instance": "approval-request.valid.json"
+    },
+    {
+      "schema": "../requests/brokered-token-verification-request.schema.json",
+      "instance": "brokered-token-verification-request.valid.json"
+    },
+    {
+      "schema": "../requests/federation-trust-update-request.schema.json",
+      "instance": "federation-trust-update-request.valid.json"
     }
   ]
 }

@@ -67,11 +67,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["trust_status"],
-                "properties": { "trust_status": { "enum": ["active", "disabled"] } }
-              }
+              "schema": { "$ref": "./requests/federation-trust-update-request.schema.json" }
             }
           }
         },
@@ -87,14 +83,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["token"],
-                "properties": {
-                  "token": { "type": "string" },
-                  "expected_audience": { "type": "string" }
-                }
-              }
+              "schema": { "$ref": "./requests/brokered-token-verification-request.schema.json" }
             }
           }
         },

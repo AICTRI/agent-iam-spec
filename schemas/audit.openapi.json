@@ -1,0 +1,56 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agent IAM Series — Audit Event API",
+    "version": "0.1.0-draft",
+    "description": "Draft security-event ingestion API for Part 6 (agent-iam-6-audit). Requirements are in spec/part-06-audit/.",
+    "x-agent-iam-series-version": "0.1.0-draft",
+    "x-agent-iam-part": "agent-iam-6-audit"
+  },
+  "servers": [
+    { "url": "https://audit.example.com/v1", "description": "Audit endpoint (example)" }
+  ],
+  "paths": {
+    "/events": {
+      "post": {
+        "operationId": "ingestSecurityEvent",
+        "summary": "Persist a sanitized Security Event Record",
+        "security": [{ "mutualTLS": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "./security-event.schema.json" }
+            }
+          }
+        },
+        "responses": {
+          "202": { "description": "Event accepted for transactional outbox delivery" },
+          "400": { "description": "Event contains prohibited sensitive values or violates the event schema" }
+        }
+      }
+    },
+    "/events/{event_id}": {
+      "get": {
+        "operationId": "getSecurityEvent",
+        "summary": "Read a Security Event Record",
+        "security": [{ "mutualTLS": [] }],
+        "parameters": [
+          { "name": "event_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Security Event Record",
+            "content": { "application/json": { "schema": { "$ref": "./security-event.schema.json" } } }
+          },
+          "404": { "description": "Unknown event" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "mutualTLS": { "type": "mutualTLS" }
+    }
+  }
+}

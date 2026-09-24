@@ -136,4 +136,7 @@ The specification governs if this table conflicts with it.
 | `decision-request.schema.json` | `namespace`, `authorization_mode`, `action`, `resource`, `scope`, `audience`, `task` | Part 4 4.2 |
 | `grant-request.schema.json` | `decision_id` | Part 4 4.3 |
 | `exchange-request.schema.json` | `subject_token`, `requested_scope`, `audience`, `task` | Part 4 5.2 |
+| `approval-request.schema.json` | `namespace`, `approver`, `agent_or_actor`, `action`, `resource`, `scope`, `audience`, `reason_digest`, `expires_at`, `policy_version` | Part 4 5.3 |
 | `revocation-request.schema.json` | `namespace`, `selector_type`, `selector_value`, `freshness_class` | Part 1 6.3; Parts 3, 4, 5 |
+| `brokered-token-verification-request.schema.json` | `token`, `expected_audience` | Part 5 5 |
+| `federation-trust-update-request.schema.json` | `trust_status` | Part 5 6 |
