@@ -75,4 +75,4 @@ Totals: 29 vectors (11 positive, 18 negative), 11 record schemas, 7 request sche
 ## Gaps
 
 - No successful brokered token exchange vector yet; Part 5 coverage currently verifies active trust.
-- All 11 record schemas and 7 request schemas have a valid JSON fixture; negative schema fixtures are still absent.
+- All 11 record schemas and 7 request schemas have a valid JSON fixture. Expected-invalid fixtures cover extra fields, missing discovery metadata, missing PoP confirmation, and a missing federation key source.

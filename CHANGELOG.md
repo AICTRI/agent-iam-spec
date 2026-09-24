@@ -23,6 +23,7 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 - Part 1 and Part 5 conformance vectors, plus six schema-validated record fixtures under `schemas/fixtures/`.
 - Fixture validation in `conformance/validate.mjs`; the validator now reports JSON, vectors, fixtures, schema references, and Markdown links.
 - Valid fixtures for all record and request schemas, and additional dependency-free checks for schema patterns, URI/date-time formats, and array minimum lengths.
+- Tightened discovery, identity-token, policy-decision, and federation-trust schemas to require their normative security fields; added expected-invalid fixtures and `anyOf` validation for a JWKS URI or trust bundle.
 
 ### Changed
 

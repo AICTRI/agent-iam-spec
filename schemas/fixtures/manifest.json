@@ -5,6 +5,11 @@
       "instance": "agent-identity.valid.json"
     },
     {
+      "schema": "../agent-identity.schema.json",
+      "instance": "agent-identity.invalid-extra-field.json",
+      "valid": false
+    },
+    {
       "schema": "../agent-instance.schema.json",
       "instance": "agent-instance.valid.json"
     },
@@ -21,8 +26,18 @@
       "instance": "discovery-document.valid.json"
     },
     {
+      "schema": "../discovery-document.schema.json",
+      "instance": "discovery-document.invalid-missing-profiles.json",
+      "valid": false
+    },
+    {
       "schema": "../identity-token.schema.json",
       "instance": "identity-token.valid.json"
+    },
+    {
+      "schema": "../identity-token.schema.json",
+      "instance": "identity-token.invalid-missing-cnf.json",
+      "valid": false
     },
     {
       "schema": "../enrollment-proof.schema.json",
@@ -39,6 +54,11 @@
     {
       "schema": "../federation-trust.schema.json",
       "instance": "federation-trust.valid.json"
+    },
+    {
+      "schema": "../federation-trust.schema.json",
+      "instance": "federation-trust.invalid-missing-key-source.json",
+      "valid": false
     },
     {
       "schema": "../security-event.schema.json",

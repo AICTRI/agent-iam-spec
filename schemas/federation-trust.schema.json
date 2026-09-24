@@ -7,7 +7,19 @@
   "x-agent-iam-part": "agent-iam-5-federation",
   "type": "object",
   "additionalProperties": false,
-  "required": ["namespace", "peer_issuer", "trust_status"],
+  "required": [
+    "namespace",
+    "peer_issuer",
+    "allowed_audiences",
+    "claim_mapping",
+    "pop_requirements",
+    "trust_status",
+    "key_refresh"
+  ],
+  "anyOf": [
+    { "required": ["jwks_uri"] },
+    { "required": ["trust_bundle"] }
+  ],
   "properties": {
     "namespace": { "type": "string", "format": "uri" },
     "peer_issuer": { "type": "string", "format": "uri" },

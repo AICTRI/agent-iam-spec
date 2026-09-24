@@ -59,6 +59,17 @@ function validate(instance, schema, path, errors, schemaFile) {
     validate(instance, targetSchema, path, errors, target);
     return;
   }
+  if (schema.anyOf) {
+    const alternatives = schema.anyOf.map((alternative) => {
+      const local = [];
+      validate(instance, alternative, path, local, schemaFile);
+      return local;
+    });
+    if (alternatives.every((local) => local.length > 0)) {
+      errors.push(`${path}: does not satisfy anyOf`);
+      return;
+    }
+  }
   if (schema.type && !matchesType(instance, schema.type)) {
     errors.push(`${path}: expected ${schema.type}, got ${typeOf(instance)}`);
     return;
@@ -161,6 +172,7 @@ for (const [file, doc] of parsed) checkRefs(doc, dirname(file), rel(file), error
 const fixtureManifestPath = join(repoRoot, "schemas", "fixtures", "manifest.json");
 const fixtureManifest = parsed.get(fixtureManifestPath);
 let fixtureCount = 0;
+let negativeFixtureCount = 0;
 if (fixtureManifest) {
   for (const fixture of fixtureManifest.fixtures ?? []) {
     const schemaPath = resolve(dirname(fixtureManifestPath), fixture.schema);
@@ -168,9 +180,18 @@ if (fixtureManifest) {
     const schema = parsed.get(schemaPath);
     const instance = parsed.get(instancePath);
     fixtureCount += 1;
+    if (fixture.valid === false) negativeFixtureCount += 1;
     if (!schema) errors.push(`schemas/fixtures/manifest.json: missing schema "${fixture.schema}"`);
     else if (instance === undefined) errors.push(`schemas/fixtures/manifest.json: missing instance "${fixture.instance}"`);
-    else validate(instance, schema, rel(instancePath), errors, schemaPath);
+    else {
+      const local = [];
+      validate(instance, schema, rel(instancePath), local, schemaPath);
+      if (fixture.valid === false) {
+        if (local.length === 0) errors.push(`${rel(instancePath)}: expected schema validation to fail`);
+      } else {
+        errors.push(...local);
+      }
+    }
   }
 }
 
@@ -185,7 +206,7 @@ for (const name of ["README.md", "README.zh-CN.md", "GOVERNANCE.md", "CONTRIBUTI
 
 console.log(`JSON files parsed: ${parsed.size}/${allJson.length}`);
 console.log(`Vectors validated: ${vectorCount}`);
-console.log(`Schema fixtures validated: ${fixtureCount}`);
+console.log(`Schema fixtures validated: ${fixtureCount} (${fixtureCount - negativeFixtureCount} valid, ${negativeFixtureCount} expected-invalid)`);
 console.log(`Markdown files link-checked: ${markdownFiles.length + 5}`);
 
 if (errors.length > 0) {

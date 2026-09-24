@@ -1,0 +1,8 @@
+{
+  "discovery_version": "0.1.0-draft",
+  "namespace": "https://id.example.com/org/acme",
+  "issuer": "https://id.example.com/org/acme",
+  "jwks_uri": "https://id.example.com/org/acme/jwks",
+  "supported_artifact_types": ["identity+jwt"],
+  "key_rotation": { "overlap_seconds": 86400, "propagation_seconds": 60 }
+}

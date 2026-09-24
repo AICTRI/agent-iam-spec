@@ -1,0 +1,9 @@
+{
+  "namespace": "https://id.example.com/org/acme",
+  "peer_issuer": "https://id.globex.example/org/globex",
+  "allowed_audiences": ["https://api.example.com/partners"],
+  "claim_mapping": { "sub": "sub" },
+  "pop_requirements": ["dpop"],
+  "trust_status": "active",
+  "key_refresh": { "max_stale_seconds": 3600, "refresh_interval_seconds": 300 }
+}

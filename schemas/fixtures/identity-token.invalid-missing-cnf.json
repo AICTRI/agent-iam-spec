@@ -1,0 +1,14 @@
+{
+  "iss": "https://id.example.com/org/acme",
+  "sub": "agt_01JABCDEF0000000000000000",
+  "aud": "https://api.example.com/tool/invoke",
+  "iat": 1900000000,
+  "exp": 1900000300,
+  "jti": "jti_01",
+  "namespace": "https://id.example.com/org/acme",
+  "agent_class": "service",
+  "instance_id": "inst_01",
+  "workload_id": "spiffe://example.org/ns/acme/sa/agent",
+  "authority_root_ref": "org:acme",
+  "lifecycle_epoch": 4
+}

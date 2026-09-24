@@ -20,7 +20,8 @@
     "decision_id",
     "iat",
     "exp",
-    "outcome"
+    "outcome",
+    "obligations"
   ],
   "properties": {
     "namespace": { "type": "string", "format": "uri" },

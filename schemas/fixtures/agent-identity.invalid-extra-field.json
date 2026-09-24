@@ -1,0 +1,9 @@
+{
+  "namespace": "https://id.example.com/org/acme",
+  "agent_id": "agt_01JABCDEF0000000000000000",
+  "agent_class": "service",
+  "authority_binding_ref": "ab_01",
+  "lifecycle_state": "active",
+  "lifecycle_epoch": 4,
+  "tenant_id": "must-not-exist"
+}

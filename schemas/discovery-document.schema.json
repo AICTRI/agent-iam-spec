@@ -7,7 +7,15 @@
   "x-agent-iam-part": "agent-iam-2-registration-discovery",
   "type": "object",
   "additionalProperties": false,
-  "required": ["discovery_version", "namespace", "issuer", "jwks_uri"],
+  "required": [
+    "discovery_version",
+    "namespace",
+    "issuer",
+    "jwks_uri",
+    "supported_proof_profiles",
+    "supported_artifact_types",
+    "key_rotation"
+  ],
   "properties": {
     "discovery_version": { "type": "string" },
     "namespace": { "type": "string", "format": "uri" },

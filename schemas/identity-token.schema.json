@@ -19,7 +19,8 @@
     "instance_id",
     "workload_id",
     "authority_root_ref",
-    "lifecycle_epoch"
+    "lifecycle_epoch",
+    "cnf"
   ],
   "properties": {
     "iss": { "type": "string" },
