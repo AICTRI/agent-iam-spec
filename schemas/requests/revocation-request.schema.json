@@ -6,29 +6,29 @@
   "x-agent-iam-part": "agent-iam-4-authorization",
   "type": "object",
   "additionalProperties": false,
-  "required": ["namespace", "selector_type", "selector_value", "freshness_class"],
+  "required": ["namespace", "selectorType", "selectorValue", "freshnessClass"],
   "properties": {
     "namespace": { "type": "string", "format": "uri" },
-    "selector_type": {
+    "selectorType": {
       "enum": [
         "agent",
         "instance",
         "credential",
-        "lifecycle_epoch",
-        "workload_binding",
-        "attestation_ref",
+        "agentEpoch", "identityEpoch",
+        "workloadBinding",
+        "attestationRef",
         "subject",
         "session",
-        "authority_root",
-        "decision_jti",
-        "grant_jti",
-        "approval_jti",
-        "policy_version",
-        "resource_digest",
-        "federation_trust"
+        "authorityRoot",
+        "decisionJti",
+        "grantJti",
+        "approvalJti",
+        "policyVersion",
+        "resourceDigest",
+        "federationTrust"
       ]
     },
-    "selector_value": { "type": "string" },
-    "freshness_class": { "enum": ["pre_dispatch", "continuation", "connection"] }
+    "selectorValue": { "type": "string" },
+    "freshnessClass": { "enum": ["pre_dispatch", "continuation", "connection"] }
   }
 }

@@ -50,7 +50,7 @@ Every vector is a JSON document conforming to `vector.schema.json`:
   "kind": "negative",
   "description": "...",
   "input": { "operation": "...", "..." : "..." },
-  "expected": { "outcome": "reject", "reason_code": "duplicate-agent-id" }
+  "expected": { "outcome": "reject", "reasonCode": "duplicate-agent-id" }
 }
 ```
 

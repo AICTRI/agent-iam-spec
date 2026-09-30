@@ -6,8 +6,8 @@
   "x-agent-iam-part": "agent-iam-4-authorization",
   "type": "object",
   "additionalProperties": false,
-  "required": ["decision_id"],
+  "required": ["decisionId"],
   "properties": {
-    "decision_id": { "type": "string" }
+    "decisionId": { "type": "string" }
   }
 }

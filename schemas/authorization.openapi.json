@@ -2,9 +2,9 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Agent IAM Series — Authorization API",
-    "version": "0.2.0-draft",
+    "version": "0.3.0-draft",
     "description": "Draft decision, grant, exchange, approval, and revocation API for Part 4 (agent-iam-4-authorization). Requirements are in spec/part-04-authorization/.",
-    "x-agent-iam-series-version": "0.2.0-draft",
+    "x-agent-iam-series-version": "0.3.0-draft",
     "x-agent-iam-part": "agent-iam-4-authorization"
   },
   "servers": [
@@ -109,9 +109,9 @@
         "security": [{ "mutualTLS": [] }],
         "parameters": [
           { "name": "namespace", "in": "query", "required": true, "schema": { "type": "string" } },
-          { "name": "selector_type", "in": "query", "required": true, "schema": { "type": "string" } },
-          { "name": "selector_value", "in": "query", "required": true, "schema": { "type": "string" } },
-          { "name": "freshness_class", "in": "query", "required": true, "schema": { "enum": ["pre_dispatch", "continuation", "connection"] } }
+          { "name": "selectorType", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "selectorValue", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "freshnessClass", "in": "query", "required": true, "schema": { "enum": ["pre_dispatch", "continuation", "connection"] } }
         ],
         "responses": {
           "200": {

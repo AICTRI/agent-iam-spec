@@ -7,7 +7,7 @@
   "input": {
     "operation": "discover",
     "namespace": "https://id.example.com/org/acme",
-    "resolved_document_uri": "https://169.254.169.254/.well-known/agent-iam"
+    "resolvedDocumentUri": "https://169.254.169.254/.well-known/agent-iam"
   },
-  "expected": { "outcome": "reject", "reason_code": "discovery-target-blocked" }
+  "expected": { "outcome": "reject", "reasonCode": "discovery-target-blocked" }
 }

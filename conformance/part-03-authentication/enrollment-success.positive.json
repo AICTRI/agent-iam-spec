@@ -6,10 +6,10 @@
   "description": "A valid, unconsumed challenge with verified workload evidence and a bound proof is accepted.",
   "input": {
     "operation": "enroll",
-    "challenge_id": "chl_02",
-    "challenge_consumed": false,
-    "workload_evidence": { "type": "spiffe", "svid_verified": true, "trust_domain": "example.org" },
-    "selector_match": true,
+    "challengeId": "chl_02",
+    "challengeConsumed": false,
+    "workloadEvidence": { "type": "spiffe", "svidVerified": true, "trustDomain": "example.org" },
+    "selectorMatch": true,
     "proof": {
       "iss": "agt_01JABCDEF0000000000000000",
       "sub": "agt_01JABCDEF0000000000000000",
@@ -17,7 +17,7 @@
       "iat": 1900000000,
       "exp": 1900000300,
       "jti": "jti_02",
-      "challenge_id": "chl_02",
+      "challengeId": "chl_02",
       "nonce": "n_02"
     }
   },

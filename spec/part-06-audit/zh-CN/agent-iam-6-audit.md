@@ -4,7 +4,7 @@
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-6-audit`
-- 版本：`0.2.0-draft`
+- 版本：`0.3.0-draft`
 - 日期：2026-09-22
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）
@@ -15,7 +15,7 @@
 
 ## 1. 范围
 
-本部分的安全事件记录用于审计，不同于 RFC 9334 中作为远程证明输入的 Attestation Evidence。字段名 `evidence_ref` 必须标识其引用的是证明证据、证明结果还是安全事件记录。
+本部分的安全事件记录用于审计，不同于 RFC 9334 中作为远程证明输入的 Attestation Evidence。字段名 `evidenceRef` 必须标识其引用的是证明证据、证明结果还是安全事件记录。
 
 ## 2. 规范性引用
 
@@ -39,16 +39,16 @@
 安全事件记录必须至少包含：
 
 ```text
-event_id, event_type, timestamp
+eventId, eventType, timestamp
 namespace
-agent_id and instance_id, when applicable
+agentId and instanceId, when applicable
 subject/actor/client/workload references, when applicable
-lifecycle_epoch, when applicable
+agentEpoch, when applicable
 action and resource digest, when applicable
-policy_version, when applicable
+policyVersion, when applicable
 decision/grant/approval identifiers, when applicable
-trace_id
-outcome and reason_code
+traceId
+outcome and reasonCode
 evidence references
 ```
 

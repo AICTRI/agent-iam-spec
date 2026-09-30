@@ -8,15 +8,15 @@
     "operation": "discover",
     "namespace": "https://id.example.com/org/acme",
     "document": {
-      "discovery_version": "0.2.0-draft",
+      "discoveryVersion": "0.3.0-draft",
       "namespace": "https://id.example.com/org/acme",
       "issuer": "https://id.example.com/org/acme",
-      "jwks_uri": "https://id.example.com/org/acme/jwks",
-      "supported_proof_profiles": ["spiffe", "mtls"]
+      "jwksUri": "https://id.example.com/org/acme/jwks",
+      "supportedProofProfiles": ["spiffe", "mtls"]
     },
-    "issuer_registered": true,
-    "cache_age_seconds": 30,
-    "cache_max_age_seconds": 3600
+    "issuerRegistered": true,
+    "cacheAgeSeconds": 30,
+    "cacheMaxAgeSeconds": 3600
   },
   "expected": { "outcome": "accept" }
 }

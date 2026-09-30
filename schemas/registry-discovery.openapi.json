@@ -2,9 +2,9 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Agent IAM Series — Registry and Discovery API",
-    "version": "0.2.0-draft",
+    "version": "0.3.0-draft",
     "description": "Draft management and discovery API for Part 2 (agent-iam-2-registration-discovery). The normative requirements are in spec/part-02-registration-discovery/.",
-    "x-agent-iam-series-version": "0.2.0-draft",
+    "x-agent-iam-series-version": "0.3.0-draft",
     "x-agent-iam-part": "agent-iam-2-registration-discovery"
   },
   "servers": [
@@ -51,18 +51,18 @@
               }
             }
           },
-          "409": { "description": "namespace + agent_id already exists" }
+          "409": { "description": "namespace + agentId already exists" }
         }
       }
     },
-    "/agents/{agent_id}": {
+    "/agents/{agentId}": {
       "get": {
         "operationId": "getAgent",
         "summary": "Read an Agent Identity Record",
         "security": [{ "mutualTLS": [] }],
         "parameters": [
           {
-            "name": "agent_id",
+            "name": "agentId",
             "in": "path",
             "required": true,
             "schema": { "type": "string" }
@@ -77,18 +77,18 @@
               }
             }
           },
-          "404": { "description": "Unknown agent_id in this namespace" }
+          "404": { "description": "Unknown agentId in this namespace" }
         }
       }
     },
-    "/agents/{agent_id}/instances": {
+    "/agents/{agentId}/instances": {
       "get": {
         "operationId": "listAgentInstances",
         "summary": "List Agent Instances for an Agent",
         "security": [{ "mutualTLS": [] }],
         "parameters": [
           {
-            "name": "agent_id",
+            "name": "agentId",
             "in": "path",
             "required": true,
             "schema": { "type": "string" }

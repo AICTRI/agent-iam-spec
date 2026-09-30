@@ -15,13 +15,13 @@ A Federation Trust MUST be namespace-scoped and preserve the peer Authority Name
 ```json
 {
   "namespace": "https://id.example.com/org/acme",
-  "peer_issuer": "https://id.globex.example/org/globex",
-  "jwks_uri": "https://id.globex.example/org/globex/jwks",
-  "allowed_audiences": ["https://api.example.com/partners"],
-  "claim_mapping": { "sub": "sub", "agent_class": "agent_class" },
-  "pop_requirements": ["dpop"],
-  "trust_status": "active",
-  "key_refresh": { "max_stale_seconds": 3600, "refresh_interval_seconds": 300 }
+  "peerIssuer": "https://id.globex.example/org/globex",
+  "jwksUri": "https://id.globex.example/org/globex/jwks",
+  "allowedAudiences": ["https://api.example.com/partners"],
+  "claimMapping": { "sub": "sub", "agentClass": "agentClass" },
+  "popRequirements": ["dpop"],
+  "trustStatus": "active",
+  "keyRefresh": { "maxStaleSeconds": 3600, "refreshIntervalSeconds": 300 }
 }
 ```
 
@@ -32,7 +32,7 @@ Peer claims MUST NOT specify or override the local namespace.
 Verification checks trust status, signature, known `kid`, issuer, audience, time, PoP,
 and claim mapping. The brokered token uses an independent `typ` and carries the external
 issuer/subject and the federation trust/version reference; it MUST NOT forge local
-`agent_class`, `instance_id`, `workload_id`, `authority_root_ref`, or lifecycle epoch.
+`agentClass`, `instanceId`, `workloadId`, `authorityRootRef`, or lifecycle epoch.
 
 The broker presents a distinct namespace that does not collide with local Agent IDs
 (Part 5 Section 4). The local namespace is not flattened into the peer's.
@@ -42,8 +42,8 @@ The broker presents a distinct namespace that does not collide with local Agent 
 ```json
 {
   "namespace": "https://id.example.com/org/acme",
-  "peer_issuer": "https://id.globex.example/org/globex",
-  "trust_status": "disabled"
+  "peerIssuer": "https://id.globex.example/org/globex",
+  "trustStatus": "disabled"
 }
 ```
 
@@ -54,5 +54,5 @@ requirement. This is exercised by
 
 ## 4. Evidence correlation (Part 6)
 
-Both sides record security events with a shared `trace_id` so the brokered flow can be
+Both sides record security events with a shared `traceId` so the brokered flow can be
 correlated without merging the federated principal into a local Agent Identity.

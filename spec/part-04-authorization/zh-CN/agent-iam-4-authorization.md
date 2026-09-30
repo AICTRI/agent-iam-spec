@@ -4,7 +4,7 @@
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-4-authorization`
-- 版本：`0.2.0-draft`
+- 版本：`0.3.0-draft`
 - 日期：2026-09-22
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）
@@ -122,7 +122,7 @@ Execution Grant 应为短时、audience-bound 和 sender-constrained，并至少
 ```text
 child.scope       subset-of parent.scope
 child.audience    subset-of parent.audience
-child.expires_at  <= parent.expires_at
+child.expiresAt  <= parent.expiresAt
 child.task        equal-to-or-narrower-than parent.task
 child.action      equal-to-or-narrower-than parent.action
 child.resource    equal-to-or-narrower-than parent.resource
@@ -130,7 +130,7 @@ child.resource    equal-to-or-narrower-than parent.resource
 
 namespace、Authority Root 和不可变主体绑定不得在委托中改变。
 
-衰减关系必须可判定且版本化：audience 必须规范化为精确字符串集合并执行集合子集；action 默认必须相等，除非 Profile 定义显式偏序；resource 必须使用类型化 canonical descriptor 和该类型的 containment function；task 必须使用不透明 `task_id` 或结构化约束，不得根据自然语言判断“更窄”。Decision 和 Grant 必须标识使用的 attenuation Profile 版本。
+衰减关系必须可判定且版本化：audience 必须规范化为精确字符串集合并执行集合子集；action 默认必须相等，除非 Profile 定义显式偏序；resource 必须使用类型化 canonical descriptor 和该类型的 containment function；task 必须使用不透明 `taskId` 或结构化约束，不得根据自然语言判断“更窄”。Decision 和 Grant 必须标识使用的 attenuation Profile 版本。
 
 ### 5.2 OAuth Token Exchange
 
@@ -147,7 +147,7 @@ namespace、Authority Root 和不可变主体绑定不得在委托中改变。
 
 Approval 必须绑定 namespace、approver、agent/actor、action、resource、scope、audience、reason digest、expiry 和 policy version。
 
-Pre-Authorization 只能为已有权限提供限时、限额的使用窗口，不得提升权限。`max_grants`、`used_grants` 等配额更新必须原子且单调。
+Pre-Authorization 只能为已有权限提供限时、限额的使用窗口，不得提升权限。`maxGrants`、`usedGrants` 等配额更新必须原子且单调。
 
 ## 6. PEP 和工具调用
 
@@ -160,7 +160,7 @@ PEP 必须：
 - 对动作、目标主机、路径、工具 ID、skill hash 和实现摘要执行精确匹配；
 - 不得把 Catalog 可见性、模型选择结果或自然语言计划当作授权。
 
-凭证注入必须是显式 obligation，并绑定 `credential_ref` 或 class、目标、scope 和 expiry。凭证值本身不得进入 Decision、Grant、提示词或 evidence。LLM 不得访问 Agent 主身份私钥或下游服务凭证。
+凭证注入必须是显式 obligation，并绑定 `credentialRef` 或 class、目标、scope 和 expiry。凭证值本身不得进入 Decision、Grant、提示词或 evidence。LLM 不得访问 Agent 主身份私钥或下游服务凭证。
 
 ## 7. 撤销（授权范围）
 

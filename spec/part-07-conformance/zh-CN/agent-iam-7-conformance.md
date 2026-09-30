@@ -4,7 +4,7 @@
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-7-conformance`
-- 版本：`0.2.0-draft`
+- 版本：`0.3.0-draft`
 - 日期：2026-09-22
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）
@@ -33,7 +33,7 @@
 
 ### 3.1 第 2 部分：注册与发现
 
-- namespace-scoped Agent ID 及 `namespace + agent_id` 唯一性；
+- namespace-scoped Agent ID 及 `namespace + agentId` 唯一性；
 - 不可变 Authority Binding；
 - Agent/Instance 分离与单调 epoch 生命周期；
 - discovery document 与解析规则；

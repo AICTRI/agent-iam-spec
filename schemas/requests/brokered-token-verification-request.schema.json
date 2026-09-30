@@ -6,9 +6,9 @@
   "x-agent-iam-part": "agent-iam-5-federation",
   "type": "object",
   "additionalProperties": false,
-  "required": ["token", "expected_audience"],
+  "required": ["token", "expectedAudience"],
   "properties": {
     "token": { "type": "string" },
-    "expected_audience": { "type": "string" }
+    "expectedAudience": { "type": "string" }
   }
 }

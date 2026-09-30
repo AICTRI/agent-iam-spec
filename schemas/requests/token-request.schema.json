@@ -6,9 +6,9 @@
   "x-agent-iam-part": "agent-iam-3-authentication",
   "type": "object",
   "additionalProperties": false,
-  "required": ["instance_id", "audience", "proof"],
+  "required": ["instanceId", "audience", "proof"],
   "properties": {
-    "instance_id": { "type": "string" },
+    "instanceId": { "type": "string" },
     "audience": { "type": "string" },
     "proof": {
       "type": "object",

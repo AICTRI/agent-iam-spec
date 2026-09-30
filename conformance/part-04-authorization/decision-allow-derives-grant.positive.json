@@ -14,8 +14,8 @@
       "resource": { "type": "order", "id": "ord_1" },
       "scope": ["read:orders"],
       "audience": "https://api.example.com",
-      "policy_version": "3",
-      "lifecycle_epoch": 7
+      "policyVersion": "3",
+      "agentEpoch": 7
     }
   },
   "expected": { "outcome": "accept" }

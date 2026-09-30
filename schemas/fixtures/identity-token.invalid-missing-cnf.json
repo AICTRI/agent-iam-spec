@@ -6,9 +6,9 @@
   "exp": 1900000300,
   "jti": "jti_01",
   "namespace": "https://id.example.com/org/acme",
-  "agent_class": "service",
-  "instance_id": "inst_01",
-  "workload_id": "spiffe://example.org/ns/acme/sa/agent",
-  "authority_root_ref": "org:acme",
-  "lifecycle_epoch": 4
+  "agentClass": "service",
+  "instanceId": "inst_01",
+  "workloadId": "spiffe://example.org/ns/acme/sa/agent",
+  "authorityRootRef": "org:acme",
+  "agentEpoch": 4, "identityEpoch": 4
 }

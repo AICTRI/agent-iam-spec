@@ -6,9 +6,9 @@
   "description": "Authoritative online verification must reject a token whose epoch differs from the current Agent epoch.",
   "input": {
     "operation": "verify-online",
-    "token_lifecycle_epoch": 4,
-    "agent_lifecycle_epoch": 5,
-    "agent_state": "active"
+    "tokenAgentEpoch": 4,
+    "agent_agentEpoch": 5,
+    "agentState": "active"
   },
-  "expected": { "outcome": "reject", "reason_code": "epoch-mismatch" }
+  "expected": { "outcome": "reject", "reasonCode": "epoch-mismatch" }
 }

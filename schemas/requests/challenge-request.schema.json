@@ -6,10 +6,10 @@
   "x-agent-iam-part": "agent-iam-3-authentication",
   "type": "object",
   "additionalProperties": false,
-  "required": ["agent_id", "workload_registration_id"],
+  "required": ["agentId", "workloadRegistrationId"],
   "properties": {
-    "agent_id": { "type": "string" },
-    "workload_registration_id": { "type": "string" },
+    "agentId": { "type": "string" },
+    "workloadRegistrationId": { "type": "string" },
     "audience": { "type": "string" }
   }
 }

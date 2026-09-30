@@ -6,16 +6,16 @@
   "description": "Token issuance is accepted when the Agent is active, the Instance belongs to the same namespace, the lease is valid, and the audience matches.",
   "input": {
     "operation": "issue-token",
-    "agent": { "lifecycle_state": "active", "lifecycle_epoch": 6 },
+    "agent": { "agentState": "active", "agentEpoch": 6 },
     "instance": {
       "namespace": "https://id.example.com/org/acme",
-      "agent_id": "agt_01JABCDEF0000000000000000",
-      "instance_state": "active",
+      "agentId": "agt_01JABCDEF0000000000000000",
+      "instanceState": "active",
       "lease_expired": false
     },
     "credential": { "active": true, "generation": 2 },
-    "requested_audience": "https://api.example.com/tool/invoke",
-    "registered_audience": "https://api.example.com/tool/invoke"
+    "requestedAudience": "https://api.example.com/tool/invoke",
+    "registeredAudience": "https://api.example.com/tool/invoke"
   },
   "expected": { "outcome": "accept" }
 }

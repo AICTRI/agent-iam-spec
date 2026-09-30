@@ -4,7 +4,7 @@
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-1-architecture`
-- 版本：`0.2.0-draft`
+- 版本：`0.3.0-draft`
 - 日期：2026-09-22
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）
@@ -203,10 +203,10 @@ PEP:      API Gateway、Tool Gateway、模型入口、业务服务、执行器
 安全关键引用和摘要必须固定规范化算法、字符编码、hash 算法、域分离标签和 Profile 版本。基础结构为：
 
 ```text
-SHA-256("agent-iam:<object-type>:<profile-version>\x00" || canonical_bytes)
+SHA-256("agent-iam:<object-type>:<profile-version>\x00" || canonicalBytes)
 ```
 
-每类 resource、subject、reason 和 implementation 必须定义 `canonical_bytes`。JSON 类型默认必须使用 RFC 8785 JCS 的 UTF-8 输出。不得根据未规范化 JSON、自然语言或平台相关路径直接计算安全摘要。
+每类 resource、subject、reason 和 implementation 必须定义 `canonicalBytes`。JSON 类型默认必须使用 RFC 8785 JCS 的 UTF-8 输出。不得根据未规范化 JSON、自然语言或平台相关路径直接计算安全摘要。
 
 ### 6.3 撤销 freshness 词表
 
@@ -237,7 +237,7 @@ SHA-256("agent-iam:<object-type>:<profile-version>\x00" || canonical_bytes)
 
 - Agent ID 应为不透明 pseudonymous identifier；
 - 跨 trust domain 不应无必要复用稳定关联标识；
-- Twin 的 `master_id` 只应向确有授权需要的组件披露；
+- Twin 的 `masterId` 只应向确有授权需要的组件披露；
 - 外部展示和审计导出应优先使用受控 reference 或 digest；
 - 数据保留期限应按事件类型、监管目的和最小化原则设定；
 - 联邦 claim mapping 应执行白名单，不得透传全部上游 claim。

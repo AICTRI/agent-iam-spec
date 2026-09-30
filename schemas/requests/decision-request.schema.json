@@ -6,10 +6,10 @@
   "x-agent-iam-part": "agent-iam-4-authorization",
   "type": "object",
   "additionalProperties": false,
-  "required": ["namespace", "authorization_mode", "action", "resource", "scope", "audience"],
+  "required": ["namespace", "authorizationMode", "action", "resource", "scope", "audience"],
   "properties": {
     "namespace": { "type": "string", "format": "uri" },
-    "authorization_mode": {
+    "authorizationMode": {
       "enum": ["human_web", "system_api", "delegated_api", "service_agent_api", "twin_agent_api"]
     },
     "action": { "type": "string" },

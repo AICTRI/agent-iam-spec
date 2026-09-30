@@ -1,10 +1,10 @@
 {
   "namespace": "https://id.example.com/org/acme",
-  "peer_issuer": "https://id.globex.example/org/globex",
-  "jwks_uri": "https://id.globex.example/org/globex/jwks",
-  "allowed_audiences": ["https://api.example.com/partners"],
-  "claim_mapping": { "sub": "sub" },
-  "pop_requirements": ["dpop"],
-  "trust_status": "active",
-  "key_refresh": { "max_stale_seconds": 3600, "refresh_interval_seconds": 300 }
+  "peerIssuer": "https://id.globex.example/org/globex",
+  "jwksUri": "https://id.globex.example/org/globex/jwks",
+  "allowedAudiences": ["https://api.example.com/partners"],
+  "claimMapping": { "sub": "sub" },
+  "popRequirements": ["dpop"],
+  "trustStatus": "active",
+  "keyRefresh": { "maxStaleSeconds": 3600, "refreshIntervalSeconds": 300 }
 }

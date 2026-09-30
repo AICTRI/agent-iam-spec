@@ -9,5 +9,5 @@
     "parent": { "scope": ["read:orders", "write:orders"], "audience": "https://api.example.com" },
     "child": { "scope": ["read:orders", "delete:orders"], "audience": "https://api.example.com" }
   },
-  "expected": { "outcome": "reject", "reason_code": "scope-amplification" }
+  "expected": { "outcome": "reject", "reasonCode": "scope-amplification" }
 }

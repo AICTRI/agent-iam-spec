@@ -6,8 +6,8 @@
   "x-agent-iam-part": "agent-iam-5-federation",
   "type": "object",
   "additionalProperties": false,
-  "required": ["trust_status"],
+  "required": ["trustStatus"],
   "properties": {
-    "trust_status": { "enum": ["active", "disabled"] }
+    "trustStatus": { "enum": ["active", "disabled"] }
   }
 }

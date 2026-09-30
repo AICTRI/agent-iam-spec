@@ -4,7 +4,7 @@
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-3-authentication`
-- 版本：`0.2.0-draft`
+- 版本：`0.3.0-draft`
 - 日期：2026-09-22
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）
@@ -41,15 +41,16 @@
 
 ```text
 namespace
-agent_id
-agent_class
-instance_id
-workload_id
-authority_root_ref
-lifecycle_epoch
-attestation_status
-credential_status
-revocation_status
+agentId
+agentClass
+instanceId
+workloadId
+authorityRootRef
+agentEpoch
+identityEpoch
+attestationStatus
+credentialStatus
+revocationStatus
 ```
 
 该上下文必须完全来自已验证证据和权威记录。第 4 部分必须消费该上下文，不得从调用方自报值重新推导其字段。
@@ -84,8 +85,8 @@ Enrollment challenge 必须：
 
 使用项目定义的 Enrollment JWT proof 时，proof 至少必须绑定：
 
-- `iss = agent_id`；
-- `sub = agent_id` 或 Profile 规定的 instance subject；
+- `iss = agentId`；
+- `sub = agentId` 或 Profile 规定的 instance subject；
 - 预期 `aud`；
 - challenge ID；
 - nonce；
@@ -94,7 +95,7 @@ Enrollment challenge 必须：
 
 Verifier 必须固定允许的算法，拒绝未知 `kid`、重复 claim、超长有效期和重放。
 
-该机制借鉴 RFC 7523 的 JWT assertion 处理，但其 challenge、nonce、claim 和 HTTP 传输绑定属于本 Profile，不声明符合 OAuth `private_key_jwt` 客户端认证。若实现声明 RFC 7523 互操作，还必须实现该 RFC 规定的 `client_assertion_type`、`client_assertion`、client identifier、endpoint 和错误响应。
+该机制借鉴 RFC 7523 的 JWT assertion 处理，但其 challenge、nonce、claim 和 HTTP 传输绑定属于本 Profile，不声明符合 OAuth `private_key_jwt` 客户端认证。若实现声明 RFC 7523 互操作，还必须实现该 RFC 规定的 `clientAssertion_type`、`clientAssertion`、client identifier、endpoint 和错误响应。
 
 ### 4.4 Attestation 三阶段
 
@@ -122,15 +123,15 @@ Verifier 必须固定允许的算法，拒绝未知 `kid`、重复 claim、超�
 ```text
 iss, sub, aud, iat, exp, jti
 namespace (canonical) and/or a namespace-scoped iss
-agent_class
-instance_id
-workload_id
-authority_root_ref
-lifecycle_epoch
+agentClass
+instanceId
+workloadId
+authorityRootRef
+agentEpoch
 cnf.jkt or equivalent confirmation
 ```
 
-若 namespace 从 `iss` 派生，映射必须唯一且规范化。Federated/Brokered Token 必须使用独立的 `typ`，并携带不可歧义的 external issuer、external subject 和 federation trust/version reference；它不得伪造本地 `agent_class`、`instance_id`、`workload_id`、`authority_root_ref` 或 lifecycle epoch。
+若 namespace 从 `iss` 派生，映射必须唯一且规范化。Federated/Brokered Token 必须使用独立的 `typ`，并携带不可歧义的 external issuer、external subject 和 federation trust/version reference；它不得伪造本地 `agentClass`、`instanceId`、`workloadId`、`authorityRootRef` 或 lifecycle epoch。
 
 身份 Token、Enrollment proof、Token 请求 proof、Policy Decision 和 Execution Grant 必须使用不同且固定的 `typ` 或等价 artifact type。Verifier 必须按 endpoint 固定允许的类型，防止 Token substitution。
 

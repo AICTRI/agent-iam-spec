@@ -6,8 +6,8 @@
   "description": "Submitting a public JWK or thumbprint without a proof of possession must be rejected.",
   "input": {
     "operation": "verify-resource-request",
-    "token_cnf_jkt": "NzbLsXh8uDCcd-6MNwXF4W_7noWXFZAfHkxZsRGC9Xs",
-    "request_proof": { "type": "public-jwk", "jwk": { "kty": "EC", "crv": "P-256" } }
+    "tokenCnfJkt": "NzbLsXh8uDCcd-6MNwXF4W_7noWXFZAfHkxZsRGC9Xs",
+    "requestProof": { "type": "public-jwk", "jwk": { "kty": "EC", "crv": "P-256" } }
   },
-  "expected": { "outcome": "reject", "reason_code": "missing-proof-of-possession" }
+  "expected": { "outcome": "reject", "reasonCode": "missing-proof-of-possession" }
 }

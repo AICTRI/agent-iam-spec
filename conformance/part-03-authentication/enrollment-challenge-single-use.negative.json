@@ -6,8 +6,8 @@
   "description": "Reusing an already consumed enrollment challenge must be rejected.",
   "input": {
     "operation": "enroll",
-    "challenge_id": "chl_01",
-    "challenge_consumed": true,
+    "challengeId": "chl_01",
+    "challengeConsumed": true,
     "proof": {
       "iss": "agt_01JABCDEF0000000000000000",
       "sub": "agt_01JABCDEF0000000000000000",
@@ -15,9 +15,9 @@
       "iat": 1900000000,
       "exp": 1900000300,
       "jti": "jti_01",
-      "challenge_id": "chl_01",
+      "challengeId": "chl_01",
       "nonce": "n_01"
     }
   },
-  "expected": { "outcome": "reject", "reason_code": "challenge-reuse" }
+  "expected": { "outcome": "reject", "reasonCode": "challenge-reuse" }
 }

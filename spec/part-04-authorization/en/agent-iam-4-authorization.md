@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-4-authorization`
-- Version: `0.2.0-draft`
+- Version: `0.3.0-draft`
 - Date: 2026-09-22
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
@@ -120,7 +120,7 @@ Any child authorization MUST satisfy:
 ```text
 child.scope       subset-of parent.scope
 child.audience    subset-of parent.audience
-child.expires_at  <= parent.expires_at
+child.expiresAt  <= parent.expiresAt
 child.task        equal-to-or-narrower-than parent.task
 child.action      equal-to-or-narrower-than parent.action
 child.resource    equal-to-or-narrower-than parent.resource
@@ -128,7 +128,7 @@ child.resource    equal-to-or-narrower-than parent.resource
 
 The namespace, Authority Root, and immutable principal binding MUST NOT change during delegation.
 
-The attenuation relation MUST be decidable and versioned: audience MUST be normalized into an exact string set and a set subset MUST be performed; action MUST be equal by default, unless the Profile defines an explicit partial order; resource MUST use a typed canonical descriptor and the containment function of that type; task MUST use an opaque `task_id` or structured constraints, and "narrower" MUST NOT be judged from natural language. A Decision and a Grant MUST identify the version of the attenuation Profile used.
+The attenuation relation MUST be decidable and versioned: audience MUST be normalized into an exact string set and a set subset MUST be performed; action MUST be equal by default, unless the Profile defines an explicit partial order; resource MUST use a typed canonical descriptor and the containment function of that type; task MUST use an opaque `taskId` or structured constraints, and "narrower" MUST NOT be judged from natural language. A Decision and a Grant MUST identify the version of the attenuation Profile used.
 
 ### 5.2 OAuth Token Exchange
 
@@ -145,7 +145,7 @@ An exchange that only preserves identity, audience, expiry, and PoP MUST NOT be 
 
 An Approval MUST bind the namespace, approver, agent/actor, action, resource, scope, audience, reason digest, expiry, and policy version.
 
-Pre-Authorization can only provide a time-limited, quota-limited usage window for existing authority, and MUST NOT elevate authority. Quota updates such as `max_grants` and `used_grants` MUST be atomic and monotonic.
+Pre-Authorization can only provide a time-limited, quota-limited usage window for existing authority, and MUST NOT elevate authority. Quota updates such as `maxGrants` and `usedGrants` MUST be atomic and monotonic.
 
 ## 6. PEP and Tool Invocation
 
@@ -158,7 +158,7 @@ The PEP MUST:
 - perform exact matching on the action, target host, path, tool ID, skill hash, and implementation digest;
 - MUST NOT treat Catalog visibility, model selection results, or natural-language plans as authorization.
 
-Credential injection MUST be an explicit obligation and MUST bind `credential_ref` or class, target, scope, and expiry. The credential value itself MUST NOT enter a Decision, Grant, prompt, or evidence. An LLM MUST NOT have access to an Agent's primary identity private key or downstream service credentials.
+Credential injection MUST be an explicit obligation and MUST bind `credentialRef` or class, target, scope, and expiry. The credential value itself MUST NOT enter a Decision, Grant, prompt, or evidence. An LLM MUST NOT have access to an Agent's primary identity private key or downstream service credentials.
 
 ## 7. Revocation (Authorization Scope)
 

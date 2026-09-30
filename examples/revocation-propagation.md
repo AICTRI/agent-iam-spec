@@ -10,14 +10,14 @@ of each are checked under the correct freshness class.
 ## Flow (Parts 1, 3, 4)
 
 ```text
-suspend Agent        -> lifecycle_epoch increases (Part 2 Section 6.2)
+suspend Agent        -> agentEpoch increases (Part 2 Section 6.2)
 terminate Instance   -> tokens inactive at next online verification (Part 3)
 revoke Grant JTI     -> pre_dispatch / continuation checks (Part 4)
 ```
 
 ## 1. Lifecycle and credential revocation (Parts 2 and 3)
 
-A suspend transition strictly increases `lifecycle_epoch`; authoritative online
+A suspend transition strictly increases `agentEpoch`; authoritative online
 verification requires the token epoch to equal the current Agent epoch. Credential and
 Instance selectors are namespace-scoped (Part 3 Section 7). Instance termination makes
 already-issued tokens inactive at the next authoritative online verification; offline

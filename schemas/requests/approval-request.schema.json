@@ -9,19 +9,19 @@
   "required": [
     "namespace",
     "approver",
-    "agent_or_actor",
+    "agentOrActor",
     "action",
     "resource",
     "scope",
     "audience",
-    "reason_digest",
-    "expires_at",
-    "policy_version"
+    "reasonDigest",
+    "expiresAt",
+    "policyVersion"
   ],
   "properties": {
     "namespace": { "type": "string", "format": "uri" },
     "approver": { "type": "string" },
-    "agent_or_actor": { "type": "string" },
+    "agentOrActor": { "type": "string" },
     "action": { "type": "string" },
     "resource": {
       "type": "object",
@@ -34,8 +34,8 @@
     },
     "scope": { "type": "array", "items": { "type": "string" } },
     "audience": { "type": "string" },
-    "reason_digest": { "type": "string" },
-    "expires_at": { "type": "integer" },
-    "policy_version": { "type": "string" }
+    "reasonDigest": { "type": "string" },
+    "expiresAt": { "type": "integer" },
+    "policyVersion": { "type": "string" }
   }
 }

@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-1-architecture`
-- Version: `0.2.0-draft`
+- Version: `0.3.0-draft`
 - Date: 2026-09-22
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
@@ -204,10 +204,10 @@ An identity token only establishes an identity context. A raw bearer token MUST 
 Security-critical references and digests MUST fix the canonicalization algorithm, character encoding, hash algorithm, domain-separation label, and profile version. The base construction is:
 
 ```text
-SHA-256("agent-iam:<object-type>:<profile-version>\x00" || canonical_bytes)
+SHA-256("agent-iam:<object-type>:<profile-version>\x00" || canonicalBytes)
 ```
 
-Each resource, subject, reason, and implementation type MUST define `canonical_bytes`. JSON types MUST use RFC 8785 JCS UTF-8 output by default. Security digests MUST NOT be computed directly from unnormalized JSON, natural language, or platform-dependent paths.
+Each resource, subject, reason, and implementation type MUST define `canonicalBytes`. JSON types MUST use RFC 8785 JCS UTF-8 output by default. Security digests MUST NOT be computed directly from unnormalized JSON, natural language, or platform-dependent paths.
 
 ### 6.3 Revocation Freshness Vocabulary
 
@@ -238,7 +238,7 @@ No caller-supplied value, model output, natural-language instruction, or tool re
 
 - Agent IDs SHOULD be opaque pseudonymous identifiers;
 - stable correlation identifiers SHOULD NOT be reused across trust domains without need;
-- a twin's `master_id` SHOULD be disclosed only to components with a genuine authorization need;
+- a twin's `masterId` SHOULD be disclosed only to components with a genuine authorization need;
 - external presentation and audit export SHOULD prefer controlled references or digests;
 - retention periods SHOULD be set per event type, regulatory purpose, and minimization;
 - federation claim mapping SHOULD enforce a whitelist and MUST NOT pass through all upstream claims.

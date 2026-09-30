@@ -8,54 +8,54 @@ The specification governs if this table conflicts with it.
 | Field | Clause |
 |---|---|
 | `namespace` | 4.3 |
-| `agent_id` | 4.2 |
-| `agent_class` | 5.2 |
-| `blueprint_id`, `blueprint_version` | 5.4 |
-| `authority_binding_ref` | 5.3 |
-| `sponsor_ref` | 5.1 |
-| `lifecycle_state`, `lifecycle_epoch` | 6.1, 6.2 |
-| `created_at`, `updated_at` | 5.1 |
+| `agentId` | 4.2 |
+| `agentClass` | 5.2 |
+| `blueprintId`, `blueprintVersion` | 5.4 |
+| `authorityBindingRef` | 5.3 |
+| `sponsorRef` | 5.1 |
+| `agentState`, `agentEpoch` | 6.1, 6.2 |
+| `createdAt`, `updatedAt` | 5.1 |
 
 ## agent-instance.schema.json (Part 2)
 
 | Field | Clause |
 |---|---|
-| `namespace`, `instance_id`, `agent_id` | 5.6 |
-| `workload_registration_id`, `workload_id` | 5.6, 5.5 |
-| `artifact_digest` | 5.6 |
-| `attestation_ref` | 5.6 |
-| `credential_generation`, `lease_expires_at` | 5.6, 3.5 (Part 3) |
-| `instance_state` | 6.3 |
+| `namespace`, `instanceId`, `agentId` | 5.6 |
+| `workloadRegistrationId`, `workloadId` | 5.6, 5.5 |
+| `artifactDigest` | 5.6 |
+| `attestationRef` | 5.6 |
+| `credentialGeneration`, `lease_expiresAt` | 5.6, 3.5 (Part 3) |
+| `instanceState` | 6.3 |
 
 ## authority-binding.schema.json (Part 2)
 
 | Field | Clause |
 |---|---|
-| `namespace`, `agent_id`, `authority_root_ref` | 4.4, 5.3 |
-| `authority_root_type` | 5.2 |
+| `namespace`, `agentId`, `authorityRootRef` | 4.4, 5.3 |
+| `authorityRootType` | 5.2 |
 | `immutable` | 4.5, 5.3 |
 
 ## workload-registration.schema.json (Part 2)
 
 | Field | Clause |
 |---|---|
-| `namespace`, `workload_registration_id` | 5.5 |
+| `namespace`, `workloadRegistrationId` | 5.5 |
 | `platform`, `selector` | 5.5, 4.4 (Part 3) |
-| `trust_domain` | 5.5 |
-| `allowed_proof_methods` | 5.5, 4.5 (Part 3) |
+| `trustDomain` | 5.5 |
+| `allowedProofMethods` | 5.5, 4.5 (Part 3) |
 | `status` | 5.5 |
 
 ## discovery-document.schema.json (Part 2)
 
 | Field | Clause |
 |---|---|
-| `discovery_version` | 8.2 |
+| `discoveryVersion` | 8.2 |
 | `namespace`, `issuer` | 8.2, 8.3 |
-| `registry_endpoint` | 8.2 |
-| `jwks_uri` | 8.2 |
-| `supported_proof_profiles`, `supported_artifact_types` | 8.2 |
-| `conformance_claim_ref` | 8.2 |
-| `key_rotation` | 8.2 (Part 3 5.6) |
+| `registryEndpoint` | 8.2 |
+| `jwksUri` | 8.2 |
+| `supportedProofProfiles`, `supportedArtifactTypes` | 8.2 |
+| `conformanceClaimRef` | 8.2 |
+| `keyRotation` | 8.2 (Part 3 5.6) |
 
 ## identity-token.schema.json (Part 3)
 
@@ -63,7 +63,7 @@ The specification governs if this table conflicts with it.
 |---|---|
 | `iss`, `sub`, `aud`, `iat`, `exp`, `jti` | 5.1 |
 | `namespace` | 5.1 |
-| `agent_class`, `instance_id`, `workload_id`, `authority_root_ref`, `lifecycle_epoch` | 5.1 |
+| `agentClass`, `instanceId`, `workloadId`, `authorityRootRef`, `agentEpoch` | 5.1 |
 | `cnf.jkt` | 5.1, 5.4 |
 
 ## enrollment-proof.schema.json (Part 3)
@@ -72,71 +72,71 @@ The specification governs if this table conflicts with it.
 |---|---|
 | `iss`, `sub`, `aud` | 4.3 |
 | `iat`, `exp`, `jti` | 4.3 |
-| `challenge_id`, `nonce` | 4.2, 4.3 |
+| `challengeId`, `nonce` | 4.2, 4.3 |
 
 ## policy-decision.schema.json (Part 4)
 
 | Field | Clause |
 |---|---|
-| `namespace`, `authorization_mode` | 4.2, 3.2 |
-| `subject`, `actor`, `client`, `workload`, `authority_root_ref` | 4.2, 3.3 |
+| `namespace`, `authorizationMode` | 4.2, 3.2 |
+| `subject`, `actor`, `client`, `workload`, `authorityRootRef` | 4.2, 3.3 |
 | `action`, `resource` | 4.2 |
 | `scope`, `audience` | 4.2 |
-| `policy_id`, `policy_version` | 4.2 |
-| `lifecycle_epoch` | 4.2 |
-| `decision_id`, `iat`, `exp` | 4.2 |
+| `policyId`, `policyVersion` | 4.2 |
+| `agentEpoch` | 4.2 |
+| `decisionId`, `iat`, `exp` | 4.2 |
 | `outcome`, `obligations` | 4.2 |
 
 ## execution-grant.schema.json (Part 4)
 
 | Field | Clause |
 |---|---|
-| `grant_id`, `namespace` | 4.3 |
+| `grantId`, `namespace` | 4.3 |
 | `action`, `resource`, `scope`, `task` | 4.3 |
 | `audience` | 4.3 |
-| `policy_version`, `lifecycle_epoch` | 4.3 |
-| `parent_lineage` | 4.1, 4.3 |
-| `expires_at` | 4.3, 5.1 |
+| `policyVersion`, `agentEpoch` | 4.3 |
+| `parentLineage` | 4.1, 4.3 |
+| `expiresAt` | 4.3, 5.1 |
 | `cnf` | 3.1 (Part 3), 4.3 |
 
 ## federation-trust.schema.json (Part 5)
 
 | Field | Clause |
 |---|---|
-| `namespace`, `peer_issuer` | 3 |
-| `jwks_uri`, `trust_bundle` | 3 |
-| `allowed_audiences` | 3 |
-| `claim_mapping` | 3 |
-| `pop_requirements` | 3 |
-| `trust_status` | 3, 6 |
-| `key_refresh` | 3, 8 |
+| `namespace`, `peerIssuer` | 3 |
+| `jwksUri`, `trustBundle` | 3 |
+| `allowedAudiences` | 3 |
+| `claimMapping` | 3 |
+| `popRequirements` | 3 |
+| `trustStatus` | 3, 6 |
+| `keyRefresh` | 3, 8 |
 
 ## security-event.schema.json (Part 6)
 
 | Field | Clause |
 |---|---|
-| `event_id`, `event_type`, `timestamp` | 4 |
+| `eventId`, `eventType`, `timestamp` | 4 |
 | `namespace` | 4 |
-| `agent_id`, `instance_id` | 4 |
+| `agentId`, `instanceId` | 4 |
 | `subject`, `actor`, `client`, `workload` | 4 |
-| `lifecycle_epoch` | 4 |
-| `action`, `resource_digest` | 4 |
-| `policy_version` | 4 |
-| `decision_id`, `grant_id`, `approval_id` | 4 |
-| `trace_id`, `outcome`, `reason_code` | 4 |
-| `evidence_refs` | 1, 4, 5 |
+| `agentEpoch` | 4 |
+| `action`, `resourceDigest` | 4 |
+| `policyVersion` | 4 |
+| `decisionId`, `grantId`, `approvalId` | 4 |
+| `traceId`, `outcome`, `reasonCode` | 4 |
+| `evidenceRefs` | 1, 4, 5 |
 
 ## requests/*.schema.json
 
 | Schema | Key fields | Clause |
 |---|---|---|
-| `challenge-request.schema.json` | `agent_id`, `workload_registration_id`, `audience` | Part 3 4.2 |
-| `enrollment-request.schema.json` | `agent_id`, `workload_registration_id`, `workload_evidence`, `proof` | Part 3 4.1-4.4 |
-| `token-request.schema.json` | `instance_id`, `audience`, `proof` | Part 3 5.2 |
-| `decision-request.schema.json` | `namespace`, `authorization_mode`, `action`, `resource`, `scope`, `audience`, `task` | Part 4 4.2 |
-| `grant-request.schema.json` | `decision_id` | Part 4 4.3 |
-| `exchange-request.schema.json` | `subject_token`, `requested_scope`, `audience`, `task` | Part 4 5.2 |
-| `approval-request.schema.json` | `namespace`, `approver`, `agent_or_actor`, `action`, `resource`, `scope`, `audience`, `reason_digest`, `expires_at`, `policy_version` | Part 4 5.3 |
-| `revocation-request.schema.json` | `namespace`, `selector_type`, `selector_value`, `freshness_class` | Part 1 6.3; Parts 3, 4, 5 |
-| `brokered-token-verification-request.schema.json` | `token`, `expected_audience` | Part 5 5 |
-| `federation-trust-update-request.schema.json` | `trust_status` | Part 5 6 |
+| `challenge-request.schema.json` | `agentId`, `workloadRegistrationId`, `audience` | Part 3 4.2 |
+| `enrollment-request.schema.json` | `agentId`, `workloadRegistrationId`, `workloadEvidence`, `proof` | Part 3 4.1-4.4 |
+| `token-request.schema.json` | `instanceId`, `audience`, `proof` | Part 3 5.2 |
+| `decision-request.schema.json` | `namespace`, `authorizationMode`, `action`, `resource`, `scope`, `audience`, `task` | Part 4 4.2 |
+| `grant-request.schema.json` | `decisionId` | Part 4 4.3 |
+| `exchange-request.schema.json` | `subjectToken`, `requestedScope`, `audience`, `task` | Part 4 5.2 |
+| `approval-request.schema.json` | `namespace`, `approver`, `agentOrActor`, `action`, `resource`, `scope`, `audience`, `reasonDigest`, `expiresAt`, `policyVersion` | Part 4 5.3 |
+| `revocation-request.schema.json` | `namespace`, `selectorType`, `selectorValue`, `freshnessClass` | Part 1 6.3; Parts 3, 4, 5 |
+| `brokered-token-verification-request.schema.json` | `token`, `expectedAudience` | Part 5 5 |
+| `federation-trust-update-request.schema.json` | `trustStatus` | Part 5 6 |

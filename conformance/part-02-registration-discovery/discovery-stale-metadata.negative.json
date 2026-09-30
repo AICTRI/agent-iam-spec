@@ -7,9 +7,9 @@
   "input": {
     "operation": "issue-with-cached-metadata",
     "namespace": "https://id.example.com/org/acme",
-    "cache_age_seconds": 7200,
-    "cache_max_age_seconds": 3600,
+    "cacheAgeSeconds": 7200,
+    "cacheMaxAgeSeconds": 3600,
     "purpose": "new-issuance"
   },
-  "expected": { "outcome": "reject", "reason_code": "stale-metadata" }
+  "expected": { "outcome": "reject", "reasonCode": "stale-metadata" }
 }

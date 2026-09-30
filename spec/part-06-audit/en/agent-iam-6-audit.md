@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-6-audit`
-- Version: `0.2.0-draft`
+- Version: `0.3.0-draft`
 - Date: 2026-09-22
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
@@ -13,7 +13,7 @@ This part specifies the Security Event Records used for audit across all parts.
 
 ## 1. Scope
 
-The Security Event Records in this part are used for audit and are different from the Attestation Evidence that serves as input to remote attestation in RFC 9334. The field name `evidence_ref` MUST identify whether it references attestation evidence, an attestation result, or a Security Event Record.
+The Security Event Records in this part are used for audit and are different from the Attestation Evidence that serves as input to remote attestation in RFC 9334. The field name `evidenceRef` MUST identify whether it references attestation evidence, an attestation result, or a Security Event Record.
 
 ## 2. Normative References
 
@@ -37,16 +37,16 @@ The following operations MUST produce security evidence:
 A Security Event Record MUST contain at least:
 
 ```text
-event_id, event_type, timestamp
+eventId, eventType, timestamp
 namespace
-agent_id and instance_id, when applicable
+agentId and instanceId, when applicable
 subject/actor/client/workload references, when applicable
-lifecycle_epoch, when applicable
+agentEpoch, when applicable
 action and resource digest, when applicable
-policy_version, when applicable
+policyVersion, when applicable
 decision/grant/approval identifiers, when applicable
-trace_id
-outcome and reason_code
+traceId
+outcome and reasonCode
 evidence references
 ```
 

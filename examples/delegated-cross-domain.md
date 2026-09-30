@@ -26,7 +26,7 @@ is the actor; the required proof is user delegation + client/workload proof
 ```text
 child.scope       subset-of parent.scope
 child.audience    subset-of parent.audience
-child.expires_at  <= parent.expires_at
+child.expiresAt  <= parent.expiresAt
 child.task        equal-to-or-narrower-than parent.task
 child.action      equal-to-or-narrower-than parent.action
 child.resource    equal-to-or-narrower-than parent.resource

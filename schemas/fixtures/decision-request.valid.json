@@ -1,6 +1,6 @@
 {
   "namespace": "https://id.example.com/org/acme",
-  "authorization_mode": "service_agent_api",
+  "authorizationMode": "service_agent_api",
   "action": "orders.read",
   "resource": { "type": "order", "id": "ord_1" },
   "scope": ["read:orders"],

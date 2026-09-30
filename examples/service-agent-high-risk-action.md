@@ -32,15 +32,15 @@ input is rejected.
 ```json
 {
   "namespace": "https://id.example.com/org/acme",
-  "authorization_mode": "service_agent_api",
+  "authorizationMode": "service_agent_api",
   "action": "payments.transfer",
   "resource": { "type": "account", "id": "acct_42" },
   "scope": ["payments:transfer"],
   "audience": "https://payments.example.com",
-  "policy_id": "pol.payments",
-  "policy_version": "7",
-  "lifecycle_epoch": 12,
-  "decision_id": "dec_01",
+  "policyId": "pol.payments",
+  "policyVersion": "7",
+  "agentEpoch": 12,
+  "decisionId": "dec_01",
   "outcome": "approval_required"
 }
 ```

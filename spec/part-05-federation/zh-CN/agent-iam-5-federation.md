@@ -4,7 +4,7 @@
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-5-federation`
-- 版本：`0.2.0-draft`
+- 版本：`0.3.0-draft`
 - 日期：2026-09-22
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）
@@ -63,12 +63,12 @@ Federated Principal 不得自动合并为本地 Agent Identity。Brokered Princi
 
 ## 7. 跨域 evidence correlation
 
-不同 Authority Namespace 产生的安全事件应能通过 `trace_id` 和受控引用关联，且不披露不必要的标识。关联不得要求把 federated principal 合并为本地 Agent Identity。
+不同 Authority Namespace 产生的安全事件应能通过 `traceId` 和受控引用关联，且不披露不必要的标识。关联不得要求把 federated principal 合并为本地 Agent Identity。
 
 ## 8. 安全考虑
 
 - 发现与 peer 元数据获取复用第 2 部分第 8.4 节和本部分第 3 节的 SSRF 防御。
-- Brokered Token 不得伪造本地 `agent_class`、`instance_id`、`workload_id`、`authority_root_ref` 或 lifecycle epoch（第 3 部分第 5.1 节）。
+- Brokered Token 不得伪造本地 `agentClass`、`instanceId`、`workloadId`、`authorityRootRef` 或 lifecycle epoch（第 3 部分第 5.1 节）。
 - trust-disable 在线撤销为强制要求；本地 Token 到期不是可接受的替代。
 
 ## 附录 A. 迁移来源（参考）

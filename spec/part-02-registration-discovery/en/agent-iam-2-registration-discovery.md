@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-2-registration-discovery`
-- Version: `0.2.0-draft`
+- Version: `0.3.0-draft`
 - Date: 2026-09-22
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
@@ -69,11 +69,11 @@ The local Agent ID:
 
 ### 4.3 Global Uniqueness
 
-Across namespaces or organizations, a bare `agent_id` does not have global uniqueness. A cross-domain principal key MUST be determined by the `(issuer, subject)` tuple. The issuer MUST resolve to an Authority Namespace, so `(issuer, subject)` is equivalent to `(Authority Namespace, Agent Subject)`; a Namespace may contain organization-internal division levels, but all levels MUST jointly form a single stable canonical value. At registration, the issuer MUST form a stable canonical value; at token verification, an exact string comparison MUST be performed against that registered value, and different issuers MUST NOT be collapsed through URI normalization during the verification phase. The subject MUST be unique under that issuer and MUST never be reassigned. The `iss_sub` of RFC 9493 can serve as a structured representation of this tuple:
+Across namespaces or organizations, a bare `agentId` does not have global uniqueness. A cross-domain principal key MUST be determined by the `(issuer, subject)` tuple. The issuer MUST resolve to an Authority Namespace, so `(issuer, subject)` is equivalent to `(Authority Namespace, Agent Subject)`; a Namespace may contain organization-internal division levels, but all levels MUST jointly form a single stable canonical value. At registration, the issuer MUST form a stable canonical value; at token verification, an exact string comparison MUST be performed against that registered value, and different issuers MUST NOT be collapsed through URI normalization during the verification phase. The subject MUST be unique under that issuer and MUST never be reassigned. The `issSub` of RFC 9493 can serve as a structured representation of this tuple:
 
 ```json
 {
-  "format": "iss_sub",
+  "format": "issSub",
   "iss": "https://id.example.com/org/acme",
   "sub": "agt_01JABCDEF..."
 }
@@ -136,18 +136,20 @@ The minimal record SHOULD contain:
 
 ```text
 namespace
-agent_id
-agent_class
-blueprint_id and blueprint_version, if used
-authority_binding_ref
-sponsor_ref, optional
-lifecycle_state
-lifecycle_epoch
-created_at
-updated_at
+agentId
+agentClass
+blueprintId and blueprintVersion, if used
+authorityBindingRef
+sponsorRef, optional
+agentState
+identityState
+agentEpoch
+identityEpoch
+createdAt
+updatedAt
 ```
 
-`namespace + agent_id` MUST be unique and is the uniqueness basis. Registering an Agent, creating an Authority Binding, and recording registration evidence SHOULD be committed in the same transaction.
+`namespace + agentId` MUST be unique and is the uniqueness basis. Registering an Agent, creating an Authority Binding, and recording registration evidence SHOULD be committed in the same transaction.
 
 ### 5.2 Agent Class
 
@@ -175,11 +177,11 @@ A Workload Registration MUST contain at least:
 
 ```text
 namespace
-workload_registration_id
+workloadRegistrationId
 platform
 selector
-trust_domain
-allowed_proof_methods
+trustDomain
+allowedProofMethods
 status
 ```
 
@@ -191,18 +193,18 @@ An Agent Instance MUST contain at least:
 
 ```text
 namespace
-instance_id
-agent_id
-workload_registration_id
-workload_id
-artifact_digest, optional
-attestation_ref
-credential_generation
-lease_expires_at, optional
-instance_state
+instanceId
+agentId
+workloadRegistrationId
+workloadId
+artifactDigest, optional
+attestationRef
+credentialGeneration
+lease_expiresAt, optional
+instanceState
 ```
 
-`attestation_ref` MUST be able to correlate to an actual verification result, and MUST NOT be merely declared in the schema without being written. The enrollment and attestation procedures that populate these fields are specified in Part 3.
+`attestationRef` MUST be able to correlate to an actual verification result, and MUST NOT be merely declared in the schema without being written. The enrollment and attestation procedures that populate these fields are specified in Part 3.
 
 ## 6. Lifecycle
 
@@ -223,7 +225,7 @@ An implementation may keep an internal `draft` state but MUST NOT issue usable i
 
 ### 6.2 Lifecycle Invariants
 
-- Every legal state transition MUST atomically and strictly increase `lifecycle_epoch`;
+- Every legal state transition MUST atomically and strictly increase `agentEpoch`;
 - the epoch MUST NOT roll back or be reused;
 - `revoked` MUST be terminal;
 - only an `active` local Agent may obtain a new identity token or Execution Grant; a Federated/Brokered Principal without a local Agent record MUST obtain an Execution Grant only after an active Federation Trust, PoP, and authoritative online verification per Part 5;
@@ -252,9 +254,9 @@ Registration MUST:
 
 ### 7.2 Uniqueness and Namespace Integrity
 
-- `namespace + agent_id` MUST be unique within the registry;
+- `namespace + agentId` MUST be unique within the registry;
 - a namespace MUST NOT be reassigned to a different principal;
-- cross-namespace queries MUST NOT assume that a bare `agent_id` is unique;
+- cross-namespace queries MUST NOT assume that a bare `agentId` is unique;
 - tenant-like deployment partitions, if retained internally by an implementation, MUST NOT appear as interoperable claims.
 
 ### 7.3 Management Plane
@@ -279,15 +281,15 @@ Discovery concerns identity and registration only. Capability, tool, and busines
 An Authority Namespace SHOULD publish a discovery document at a well-known HTTPS location under the namespace, for example `https://<namespace-host>/.well-known/agent-iam`. The document MUST be retrieved over HTTPS and MUST contain at least:
 
 ```text
-discovery_version
+discoveryVersion
 namespace                      # canonical Authority Namespace
 issuer                         # canonical issuer identifier
-registry_endpoint              # optional; registration/management API
-jwks_uri                       # verification keys
-supported_proof_profiles
-supported_artifact_types
-conformance_claim_ref          # optional
-key_rotation                   # overlap and propagation metadata
+registryEndpoint              # optional; registration/management API
+jwksUri                       # verification keys
+supportedProofProfiles
+supportedArtifactTypes
+conformanceClaimRef          # optional
+keyRotation                   # overlap and propagation metadata
 ```
 
 The document SHOULD be signed. When signed, the signature key MUST be resolvable independently of the document itself, and key rotation MUST preserve verification of previously issued artifacts for at least the maximum artifact lifetime plus clock skew.

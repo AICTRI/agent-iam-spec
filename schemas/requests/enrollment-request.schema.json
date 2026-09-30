@@ -6,11 +6,11 @@
   "x-agent-iam-part": "agent-iam-3-authentication",
   "type": "object",
   "additionalProperties": false,
-  "required": ["agent_id", "workload_registration_id", "workload_evidence", "proof"],
+  "required": ["agentId", "workloadRegistrationId", "workloadEvidence", "proof"],
   "properties": {
-    "agent_id": { "type": "string" },
-    "workload_registration_id": { "type": "string" },
-    "workload_evidence": { "type": "object" },
+    "agentId": { "type": "string" },
+    "workloadRegistrationId": { "type": "string" },
+    "workloadEvidence": { "type": "object" },
     "proof": { "$ref": "../enrollment-proof.schema.json" }
   }
 }

@@ -1,8 +1,8 @@
 {
   "namespace": "https://id.example.com/org/acme",
-  "agent_id": "agt_01JABCDEF0000000000000000",
-  "authority_root_ref": "org:acme",
-  "authority_root_type": "organization_root",
+  "agentId": "agt_01JABCDEF0000000000000000",
+  "authorityRootRef": "org:acme",
+  "authorityRootType": "organization_root",
   "immutable": true,
-  "created_at": "2026-09-22T10:00:00Z"
+  "createdAt": "2026-09-22T10:00:00Z"
 }

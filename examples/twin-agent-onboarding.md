@@ -26,11 +26,11 @@ resource PEP -> authoritative online verification / introspection (Part 3)
 ```json
 {
   "namespace": "https://id.example.com/org/acme",
-  "agent_id": "agt_01JABCDEF0000000000000000",
-  "agent_class": "twin",
-  "authority_binding_ref": "ab_twin_01",
-  "lifecycle_state": "registered",
-  "lifecycle_epoch": 0
+  "agentId": "agt_01JABCDEF0000000000000000",
+  "agentClass": "twin",
+  "authorityBindingRef": "ab_twin_01",
+  "agentState": "registered",
+  "agentEpoch": 0
 }
 ```
 
@@ -43,13 +43,13 @@ The Authority Binding is immutable and points to exactly one human master
 
 ```json
 {
-  "discovery_version": "0.2.0-draft",
+  "discoveryVersion": "0.3.0-draft",
   "namespace": "https://id.example.com/org/acme",
   "issuer": "https://id.example.com/org/acme",
-  "jwks_uri": "https://id.example.com/org/acme/jwks",
-  "supported_proof_profiles": ["spiffe", "kubernetes", "mtls"],
-  "supported_artifact_types": ["identity+jwt", "enrollment+jwt"],
-  "key_rotation": { "overlap_seconds": 86400, "propagation_seconds": 60 }
+  "jwksUri": "https://id.example.com/org/acme/jwks",
+  "supportedProofProfiles": ["spiffe", "kubernetes", "mtls"],
+  "supportedArtifactTypes": ["identity+jwt", "enrollment+jwt"],
+  "keyRotation": { "overlapSeconds": 86400, "propagationSeconds": 60 }
 }
 ```
 
@@ -58,11 +58,11 @@ The Authority Binding is immutable and points to exactly one human master
 1. The registry issues a single-use, namespace-scoped challenge with a nonce.
 2. The workload presents verified workload evidence (for example a SPIFFE X.509-SVID).
 3. The Agent proves possession of its private key with an Enrollment JWT proof bound
-   to `challenge_id` and `nonce` (Part 3 Section 4.3).
+   to `challengeId` and `nonce` (Part 3 Section 4.3).
 4. The credential, instance, state transition, and evidence are created atomically.
 
 The Agent transitions `registered -> enrolled -> active`, increasing
-`lifecycle_epoch` on each transition (Part 2 Section 6.2).
+`agentEpoch` on each transition (Part 2 Section 6.2).
 
 ## 4. Obtain an identity token (Part 3)
 

@@ -6,10 +6,10 @@
   "x-agent-iam-part": "agent-iam-4-authorization",
   "type": "object",
   "additionalProperties": false,
-  "required": ["subject_token", "requested_scope", "audience"],
+  "required": ["subjectToken", "requestedScope", "audience"],
   "properties": {
-    "subject_token": { "type": "string" },
-    "requested_scope": { "type": "array", "items": { "type": "string" } },
+    "subjectToken": { "type": "string" },
+    "requestedScope": { "type": "array", "items": { "type": "string" } },
     "audience": { "type": "string" },
     "task": { "type": "string" }
   }

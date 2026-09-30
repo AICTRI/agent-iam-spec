@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-3-authentication`
-- Version: `0.2.0-draft`
+- Version: `0.3.0-draft`
 - Date: 2026-09-22
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
@@ -39,15 +39,16 @@ Authentication MUST produce a `Verified Agent Identity Context` that includes at
 
 ```text
 namespace
-agent_id
-agent_class
-instance_id
-workload_id
-authority_root_ref
-lifecycle_epoch
-attestation_status
-credential_status
-revocation_status
+agentId
+agentClass
+instanceId
+workloadId
+authorityRootRef
+agentEpoch
+identityEpoch
+attestationStatus
+credentialStatus
+revocationStatus
 ```
 
 The context MUST be derived exclusively from verified evidence and authoritative records. Part 4 MUST consume this context and MUST NOT re-derive its fields from caller-supplied values.
@@ -82,8 +83,8 @@ An enrollment challenge MUST:
 
 When using the project-defined Enrollment JWT proof, the proof MUST bind at least:
 
-- `iss = agent_id`;
-- `sub = agent_id` or the instance subject specified by the Profile;
+- `iss = agentId`;
+- `sub = agentId` or the instance subject specified by the Profile;
 - the expected `aud`;
 - challenge ID;
 - nonce;
@@ -92,7 +93,7 @@ When using the project-defined Enrollment JWT proof, the proof MUST bind at leas
 
 The Verifier MUST pin the allowed algorithms and reject unknown `kid`, duplicate claims, excessively long validity periods, and replay.
 
-This mechanism draws on the JWT assertion handling of RFC 7523, but its challenge, nonce, claims, and HTTP transport binding belong to this Profile, and it does not claim to conform to OAuth `private_key_jwt` client authentication. If an implementation claims RFC 7523 interoperability, it MUST also implement the `client_assertion_type`, `client_assertion`, client identifier, endpoint, and error responses specified by that RFC.
+This mechanism draws on the JWT assertion handling of RFC 7523, but its challenge, nonce, claims, and HTTP transport binding belong to this Profile, and it does not claim to conform to OAuth `private_key_jwt` client authentication. If an implementation claims RFC 7523 interoperability, it MUST also implement the `clientAssertion_type`, `clientAssertion`, client identifier, endpoint, and error responses specified by that RFC.
 
 ### 4.4 Three Phases of Attestation
 
@@ -120,15 +121,15 @@ Production credentials SHOULD use proof-of-possession. A local Agent identity To
 ```text
 iss, sub, aud, iat, exp, jti
 namespace (canonical) and/or a namespace-scoped iss
-agent_class
-instance_id
-workload_id
-authority_root_ref
-lifecycle_epoch
+agentClass
+instanceId
+workloadId
+authorityRootRef
+agentEpoch
 cnf.jkt or equivalent confirmation
 ```
 
-If the namespace is derived from `iss`, the mapping MUST be unique and canonical. A Federated/Brokered Token MUST use an independent `typ` and carry an unambiguous external issuer, external subject, and federation trust/version reference; it MUST NOT forge local `agent_class`, `instance_id`, `workload_id`, `authority_root_ref`, or lifecycle epoch.
+If the namespace is derived from `iss`, the mapping MUST be unique and canonical. A Federated/Brokered Token MUST use an independent `typ` and carry an unambiguous external issuer, external subject, and federation trust/version reference; it MUST NOT forge local `agentClass`, `instanceId`, `workloadId`, `authorityRootRef`, or lifecycle epoch.
 
 Identity Tokens, Enrollment proofs, Token request proofs, Policy Decisions, and Execution Grants MUST use different and fixed `typ` or equivalent artifact types. The Verifier MUST pin the allowed types per endpoint to prevent Token substitution.
 

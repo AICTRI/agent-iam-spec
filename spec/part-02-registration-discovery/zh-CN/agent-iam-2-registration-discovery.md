@@ -4,7 +4,7 @@
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-2-registration-discovery`
-- 版本：`0.2.0-draft`
+- 版本：`0.3.0-draft`
 - 日期：2026-09-22
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）
@@ -71,11 +71,11 @@
 
 ### 4.3 全局唯一性
 
-跨 Namespace 或跨组织时，裸 `agent_id` 不具有全局唯一性。跨域主体键必须以 `(issuer, subject)` 二元组确定。issuer 必须解析到一个 Authority Namespace，因此 `(issuer, subject)` 等价于 `(Authority Namespace, Agent Subject)`；Namespace 可以包含组织内划分层，但各层必须共同形成同一个稳定 canonical value。issuer 注册时必须形成稳定的 canonical value；Token 验证时必须与该注册值执行精确字符串比较，不得在验证阶段通过 URI 规范化折叠不同 issuer。subject 必须在该 issuer 下唯一且永不重分配。RFC 9493 的 `iss_sub` 可以作为该二元组的结构化表示：
+跨 Namespace 或跨组织时，裸 `agentId` 不具有全局唯一性。跨域主体键必须以 `(issuer, subject)` 二元组确定。issuer 必须解析到一个 Authority Namespace，因此 `(issuer, subject)` 等价于 `(Authority Namespace, Agent Subject)`；Namespace 可以包含组织内划分层，但各层必须共同形成同一个稳定 canonical value。issuer 注册时必须形成稳定的 canonical value；Token 验证时必须与该注册值执行精确字符串比较，不得在验证阶段通过 URI 规范化折叠不同 issuer。subject 必须在该 issuer 下唯一且永不重分配。RFC 9493 的 `issSub` 可以作为该二元组的结构化表示：
 
 ```json
 {
-  "format": "iss_sub",
+  "format": "issSub",
   "iss": "https://id.example.com/org/acme",
   "sub": "agt_01JABCDEF..."
 }
@@ -138,18 +138,20 @@ Agent Identity 1 --- n Agent Instance 1 --- 1 current Workload Identity
 
 ```text
 namespace
-agent_id
-agent_class
-blueprint_id and blueprint_version, if used
-authority_binding_ref
-sponsor_ref, optional
-lifecycle_state
-lifecycle_epoch
-created_at
-updated_at
+agentId
+agentClass
+blueprintId and blueprintVersion, if used
+authorityBindingRef
+sponsorRef, optional
+agentState
+identityState
+agentEpoch
+identityEpoch
+createdAt
+updatedAt
 ```
 
-`namespace + agent_id` 必须唯一，它是唯一性依据。注册 Agent、创建 Authority Binding 和记录注册 evidence 应在同一事务提交。
+`namespace + agentId` 必须唯一，它是唯一性依据。注册 Agent、创建 Authority Binding 和记录注册 evidence 应在同一事务提交。
 
 ### 5.2 Agent Class
 
@@ -177,11 +179,11 @@ Workload Registration 必须至少包含：
 
 ```text
 namespace
-workload_registration_id
+workloadRegistrationId
 platform
 selector
-trust_domain
-allowed_proof_methods
+trustDomain
+allowedProofMethods
 status
 ```
 
@@ -193,18 +195,18 @@ Agent Instance 必须至少包含：
 
 ```text
 namespace
-instance_id
-agent_id
-workload_registration_id
-workload_id
-artifact_digest, optional
-attestation_ref
-credential_generation
-lease_expires_at, optional
-instance_state
+instanceId
+agentId
+workloadRegistrationId
+workloadId
+artifactDigest, optional
+attestationRef
+credentialGeneration
+lease_expiresAt, optional
+instanceState
 ```
 
-`attestation_ref` 必须能够关联到实际验证结果，不得只在 schema 中声明而不写入。填充这些字段的 Enrollment 与证明流程由第 3 部分规定。
+`attestationRef` 必须能够关联到实际验证结果，不得只在 schema 中声明而不写入。填充这些字段的 Enrollment 与证明流程由第 3 部分规定。
 
 ## 6. 生命周期
 
@@ -225,7 +227,7 @@ revoked   -> no transition
 
 ### 6.2 生命周期不变量
 
-- 每次合法状态转换必须原子地令 `lifecycle_epoch` 严格增加；
+- 每次合法状态转换必须原子地令 `agentEpoch` 严格增加；
 - epoch 不得回退或重用；
 - `revoked` 必须是终态；
 - 只有 `active` 的本地 Agent 可以获得新的身份 Token 或 Execution Grant；无本地 Agent 记录的 Federated/Brokered Principal 必须通过 active Federation Trust、PoP 和第 5 部分的权威在线验证后，才可以按策略获得 Execution Grant；
@@ -254,9 +256,9 @@ revoked   -> no transition
 
 ### 7.2 唯一性与命名空间完整性
 
-- `namespace + agent_id` 在注册表内必须唯一；
+- `namespace + agentId` 在注册表内必须唯一；
 - namespace 不得重分配给不同主体；
-- 跨 namespace 查询不得假定裸 `agent_id` 唯一；
+- 跨 namespace 查询不得假定裸 `agentId` 唯一；
 - 实现内部若保留类 tenant 的部署分区，不得将其作为互操作 claim 暴露。
 
 ### 7.3 管理面
@@ -281,15 +283,15 @@ revoked   -> no transition
 Authority Namespace 应在其命名空间下的 well-known HTTPS 位置发布 discovery document，例如 `https://<namespace-host>/.well-known/agent-iam`。该文档必须通过 HTTPS 获取，且至少包含：
 
 ```text
-discovery_version
+discoveryVersion
 namespace                      # canonical Authority Namespace
 issuer                         # canonical issuer identifier
-registry_endpoint              # optional; registration/management API
-jwks_uri                       # verification keys
-supported_proof_profiles
-supported_artifact_types
-conformance_claim_ref          # optional
-key_rotation                   # overlap and propagation metadata
+registryEndpoint              # optional; registration/management API
+jwksUri                       # verification keys
+supportedProofProfiles
+supportedArtifactTypes
+conformanceClaimRef          # optional
+keyRotation                   # overlap and propagation metadata
 ```
 
 文档应被签名。签名时，签名密钥必须能够独立于文档本身被解析，且密钥轮换必须至少覆盖最大 artifact 寿命加时钟偏差，以保证既有产物的验证。

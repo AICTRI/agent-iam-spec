@@ -13,5 +13,5 @@
       "resource": { "type": "order", "id": "ord_1" }
     }
   },
-  "expected": { "outcome": "reject", "reason_code": "decision-not-allow" }
+  "expected": { "outcome": "reject", "reasonCode": "decision-not-allow" }
 }

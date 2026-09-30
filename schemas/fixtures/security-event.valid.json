@@ -1,16 +1,16 @@
 {
-  "event_id": "evt_01",
-  "event_type": "grant.issued",
+  "eventId": "evt_01",
+  "eventType": "grant.issued",
   "timestamp": "2026-09-22T10:00:00Z",
   "namespace": "https://id.example.com/org/acme",
-  "agent_id": "agt_01JABCDEF0000000000000000",
-  "lifecycle_epoch": 4,
+  "agentId": "agt_01JABCDEF0000000000000000",
+  "agentEpoch": 4, "identityEpoch": 4,
   "action": "orders.read",
-  "resource_digest": "sha256:abcd",
-  "policy_version": "3",
-  "grant_id": "grt_01",
-  "trace_id": "tr_01",
+  "resourceDigest": "sha256:abcd",
+  "policyVersion": "3",
+  "grantId": "grt_01",
+  "traceId": "tr_01",
   "outcome": "success",
-  "reason_code": "ok",
-  "evidence_refs": ["ev_01"]
+  "reasonCode": "ok",
+  "evidenceRefs": ["ev_01"]
 }

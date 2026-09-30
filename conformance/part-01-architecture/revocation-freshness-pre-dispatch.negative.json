@@ -6,8 +6,8 @@
   "description": "A pre_dispatch check that uses a negative cache must be rejected.",
   "input": {
     "operation": "check-revocation",
-    "freshness_class": "pre_dispatch",
-    "used_negative_cache": true
+    "freshnessClass": "pre_dispatch",
+    "usedNegativeCache": true
   },
-  "expected": { "outcome": "reject", "reason_code": "negative-cache-not-allowed" }
+  "expected": { "outcome": "reject", "reasonCode": "negative-cache-not-allowed" }
 }

@@ -1,6 +1,6 @@
 {
-  "subject_token": "opaque-subject-token",
-  "requested_scope": ["read:orders"],
+  "subjectToken": "opaque-subject-token",
+  "requestedScope": ["read:orders"],
   "audience": "https://api.example.com",
   "task": "task_01"
 }

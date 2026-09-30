@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-7-conformance`
-- Version: `0.2.0-draft`
+- Version: `0.3.0-draft`
 - Date: 2026-09-22
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
@@ -31,7 +31,7 @@ Each part defines its own conformance level. At minimum:
 
 ### 3.1 Part 2: Registration and Discovery
 
-- namespace-scoped Agent ID and `namespace + agent_id` uniqueness;
+- namespace-scoped Agent ID and `namespace + agentId` uniqueness;
 - immutable Authority Binding;
 - Agent/Instance separation and lifecycle with monotonic epoch;
 - discovery document and resolution rules;

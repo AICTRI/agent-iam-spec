@@ -6,7 +6,7 @@
   "description": "Authoritative state change, evidence, and outbox committed in the same transaction is accepted.",
   "input": {
     "operation": "commit",
-    "changes": ["lifecycle_state", "evidence", "outbox"],
+    "changes": ["agentState", "evidence", "outbox"],
     "atomic": true
   },
   "expected": { "outcome": "accept" }

@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-5-federation`
-- Version: `0.2.0-draft`
+- Version: `0.3.0-draft`
 - Date: 2026-09-22
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
@@ -61,12 +61,12 @@ After a trust is disabled, the next authoritative online verification MUST fail 
 
 ## 7. Cross-Domain Evidence Correlation
 
-Security events produced in different Authority Namespaces SHOULD be correlatable through a `trace_id` and controlled references, without disclosing unnecessary identifiers. Correlation MUST NOT require merging federated principals into local Agent Identities.
+Security events produced in different Authority Namespaces SHOULD be correlatable through a `traceId` and controlled references, without disclosing unnecessary identifiers. Correlation MUST NOT require merging federated principals into local Agent Identities.
 
 ## 8. Security Considerations
 
 - Discovery and peer-metadata retrieval share the SSRF defenses defined in Part 2 Section 8.4 and Section 3 of this part.
-- A Brokered Token MUST NOT forge local `agent_class`, `instance_id`, `workload_id`, `authority_root_ref`, or lifecycle epoch (Part 3 Section 5.1).
+- A Brokered Token MUST NOT forge local `agentClass`, `instanceId`, `workloadId`, `authorityRootRef`, or lifecycle epoch (Part 3 Section 5.1).
 - Trust-disable online revocation is mandatory; local token expiry is not an acceptable substitute.
 
 ## Appendix A. Migration Source (Informative)

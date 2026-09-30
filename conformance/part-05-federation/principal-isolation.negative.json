@@ -6,12 +6,12 @@
   "description": "A peer claim that specifies or overrides the local namespace must be rejected.",
   "input": {
     "operation": "federated-verify",
-    "local_namespace": "https://id.example.com/org/acme",
-    "peer_claims": {
+    "localNamespace": "https://id.example.com/org/acme",
+    "peerClaims": {
       "iss": "https://id.partner.example/org/partner",
       "sub": "agt_partner_01",
       "namespace": "https://id.example.com/org/acme"
     }
   },
-  "expected": { "outcome": "reject", "reason_code": "peer-overrides-local-namespace" }
+  "expected": { "outcome": "reject", "reasonCode": "peer-overrides-local-namespace" }
 }

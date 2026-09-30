@@ -6,8 +6,8 @@
   "description": "A child grant whose scope and audience are subsets of the parent is accepted.",
   "input": {
     "operation": "attenuate",
-    "parent": { "scope": ["read:orders", "write:orders"], "audience": "https://api.example.com", "expires_at": 2000000000 },
-    "child": { "scope": ["read:orders"], "audience": "https://api.example.com", "expires_at": 1999999000 }
+    "parent": { "scope": ["read:orders", "write:orders"], "audience": "https://api.example.com", "expiresAt": 2000000000 },
+    "child": { "scope": ["read:orders"], "audience": "https://api.example.com", "expiresAt": 1999999000 }
   },
   "expected": { "outcome": "accept" }
 }

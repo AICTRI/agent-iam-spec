@@ -3,39 +3,39 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/discovery-document.schema.json",
   "title": "Discovery Document",
   "description": "Authority Namespace discovery document defined in Part 2 Section 8.2.",
-  "x-agent-iam-series-version": "0.2.0-draft",
+  "x-agent-iam-series-version": "0.3.0-draft",
   "x-agent-iam-part": "agent-iam-2-registration-discovery",
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "discovery_version",
+    "discoveryVersion",
     "namespace",
     "issuer",
-    "jwks_uri",
-    "supported_proof_profiles",
-    "supported_artifact_types",
-    "key_rotation"
+    "jwksUri",
+    "supportedProofProfiles",
+    "supportedArtifactTypes",
+    "keyRotation"
   ],
   "properties": {
-    "discovery_version": { "type": "string" },
+    "discoveryVersion": { "type": "string" },
     "namespace": { "type": "string", "format": "uri" },
     "issuer": { "type": "string", "format": "uri" },
-    "registry_endpoint": { "type": "string", "format": "uri" },
-    "jwks_uri": { "type": "string", "format": "uri" },
-    "supported_proof_profiles": {
+    "registryEndpoint": { "type": "string", "format": "uri" },
+    "jwksUri": { "type": "string", "format": "uri" },
+    "supportedProofProfiles": {
       "type": "array",
       "items": { "type": "string" }
     },
-    "supported_artifact_types": {
+    "supportedArtifactTypes": {
       "type": "array",
       "items": { "type": "string" }
     },
-    "conformance_claim_ref": { "type": "string" },
-    "key_rotation": {
+    "conformanceClaimRef": { "type": "string" },
+    "keyRotation": {
       "type": "object",
       "properties": {
-        "overlap_seconds": { "type": "integer", "minimum": 0 },
-        "propagation_seconds": { "type": "integer", "minimum": 0 }
+        "overlapSeconds": { "type": "integer", "minimum": 0 },
+        "propagationSeconds": { "type": "integer", "minimum": 0 }
       }
     }
   }

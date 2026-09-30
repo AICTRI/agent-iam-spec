@@ -5,6 +5,6 @@
   "iat": 1900000000,
   "exp": 1900000300,
   "jti": "jti_01",
-  "challenge_id": "chl_01",
+  "challengeId": "chl_01",
   "nonce": "n_01"
 }

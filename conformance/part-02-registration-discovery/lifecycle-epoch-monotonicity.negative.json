@@ -3,17 +3,17 @@
   "part": "agent-iam-2-registration-discovery",
   "clause": "6.2",
   "kind": "negative",
-  "description": "A lifecycle transition that does not strictly increase lifecycle_epoch must be rejected.",
+  "description": "A lifecycle transition that does not strictly increase agentEpoch must be rejected.",
   "input": {
     "operation": "transition",
     "agent": {
       "namespace": "https://id.example.com/org/acme",
-      "agent_id": "agt_01JABCDEF0000000000000000",
-      "lifecycle_state": "active",
-      "lifecycle_epoch": 5
+      "agentId": "agt_01JABCDEF0000000000000000",
+      "agentState": "active",
+      "agentEpoch": 5
     },
-    "target_state": "suspended",
-    "target_epoch": 5
+    "targetState": "suspended",
+    "targetEpoch": 5
   },
-  "expected": { "outcome": "reject", "reason_code": "epoch-not-monotonic" }
+  "expected": { "outcome": "reject", "reasonCode": "epoch-not-monotonic" }
 }

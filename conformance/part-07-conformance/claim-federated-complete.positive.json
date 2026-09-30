@@ -7,14 +7,14 @@
   "input": {
     "operation": "validate-claim",
     "claim": {
-      "composite_profile": "Federated",
-      "supported_parts": [2, 3, 4, 5],
-      "proof_profiles": ["spiffe", "dpop"],
-      "token_versions": ["0.2.0-draft"],
-      "revocation_slo": "PT5M",
-      "discovery_mechanism": "well-known",
-      "known_extensions": [],
-      "unmet_clauses": []
+      "compositeProfile": "Federated",
+      "supportedParts": [2, 3, 4, 5],
+      "proofProfiles": ["spiffe", "dpop"],
+      "tokenVersions": ["0.3.0-draft"],
+      "revocationSlo": "PT5M",
+      "discoveryMechanism": "well-known",
+      "knownExtensions": [],
+      "unmetClauses": []
     }
   },
   "expected": { "outcome": "accept" }
