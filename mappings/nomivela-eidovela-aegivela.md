@@ -25,7 +25,18 @@
 | 6 | `agent-iam-6-audit` | 注册表生命周期事件与证据 | evidence event | security evidence envelope | AEGIVELA 已补齐 Part 6 证据一致性（按 tenant/namespace/trace 关联，脱敏） |
 | 7 | `agent-iam-7-conformance` | — | 一致性声明 | 一致性声明 | 待补：尚未按系列组合 profile 声明；跨仓 fixtures 依赖规范仓库交付 |
 
-## 2. 能力映射
+## 2. 统一契约约定（RFC-0003）
+
+三个实现与规范统一采用以下约定（详见 `rfcs/0003-contract-naming-and-identity-conventions.md`）：
+
+- **命名**:线上 JSON 字段一律 **camelCase**。
+- **引用**:引用字段用 **`…Ref`** 后缀（`agentRef`、`authorityBindingRef`、`authorityRootRef`、`sponsorRef`、`ownerRef`、`workloadRegistrationRef`、`instanceRef`）;标识字段用 `…Id`（`agentId`）。
+- **Epoch**:采用**双 epoch** `agentEpoch` + `identityEpoch`;`lifecycleEpoch` 仅作 legacy 兼容,不再作为稳定面唯一信号。
+- **Agent class**:采用**合集** 9 类 —— `embedded`、`organizational`、`user`、`assetTwin`、`personalTwin`、`twin`、`service`、`ephemeral`、`simulation`。
+- **Authority Binding**:记录字段用 `authorityBindingRef`(ref 格式);需要种类时用 `authorityBindingKind`（`human_master`/`organization_root`）。
+- **tenant**:不作为互操作 claim,不得作为规范记录/上下文/决策/资产/事件的必填字段;实现可保留为**内部键**,由 Authority Namespace 确定性映射（用于 SaaS 多租户）。唯一互操作命名锚点是 `namespace`,`namespace + agentId` 为唯一性基础。
+
+## 3. 能力映射
 
 | 规范能力 | Part | 参考组件 | 当前符合状态 |
 |---|---|---|---|
@@ -42,43 +53,44 @@
 | PEP/Revocation | 4 | AEGIVELA PEP SDK/运行时 | 已实现：selector 与 freshness class 一致（`pre_dispatch`/`continuation`/`connection`），依赖不可用即失败关闭 |
 | Security Event | 6 | AEGIVELA security evidence | 已实现：append-only `evidence_events`，脱敏，按 tenant/namespace/trace 关联 |
 
-## 3. NOMIVELA 阻塞项
+## 4. NOMIVELA 阻塞项
 
 - C1 的 EIDOVELA 登记握手契约仍标记 Pending；其余注册/生命周期/实例/命名空间路径已实现。
 - EIDOVELA 写权重的受控切换（cutover）程序与校验器已就绪，实际执行待集成环境。
 - C4 的联邦与边缘投影尚未开始（未来阶段）。
 
-## 4. EIDOVELA 阻塞项
+## 5. EIDOVELA 阻塞项
 
 - EE 侧 HSM/KMS KeyProvider 的 cgo 接线与 console UI 待补（私有 EE 仓库跟踪）。
 - 其余核心项（consumer 模式、证明信任、credential generation、PoP、双 epoch 在线验证、Federation Trust 复检、registry-consumer 一致性套件）已实现并在 CI 复现。
 
-## 5. AEGIVELA 阻塞项
+## 6. AEGIVELA 阻塞项
 
 - Part 7 一致性组合 profile 声明待补；具体依赖规范仓库交付 Parts 3–7 跨仓 fixtures（当前标注为 *pending external delivery*）。
 - 企业服务授权 profile 已从 exploratory 转为已实现（`contracts/enterprise-service/v1alpha1`，请求路径强制词汇校验）。
 - web 资源投影证据已补齐 namespace 关联。
 
-## 6. 术语对照
+## 7. 术语对照
 
 | 规范术语 | NOMIVELA | EIDOVELA | AEGIVELA |
 |---|---|---|---|
 | Agent Identity | Agent registry record（权威） | 消费 | Agent Identity Authority record |
 | Agent Instance | Agent Instance record（权威） | 消费认证绑定 | workload binding / instance context |
-| Authority Root | Authority Binding（不可变） | 消费 | authority root |
-| Authority Namespace | Namespace Authority（权威） | 消费 namespace | tenant context（保留 `tenant_id` 作为技术键） |
-| Discovery Document | 发布且签名 | 解析消费 | 不适用 |
-| Lifecycle Epoch | `agent_epoch`/`identity_epoch`（权威） | 在线校验 | 绑定到决策与 grant |
+| Authority Root | `authorityRootRef`（不可变） | 消费 | `authorityRootRef` |
+| Authority Binding | `authorityBindingRef` | 消费 | `authorityBindingRef` / `authorityBindingKind` |
+| Authority Namespace | Namespace Authority（权威，`namespace`） | 消费 `namespace` | `namespace`（tenant 为内部键） |
+| Discovery Document | 发布且签名（camelCase 文档） | 解析消费 | 不适用 |
+| Lifecycle Epoch | `agentEpoch` + `identityEpoch`（权威） | 在线校验 | 绑定到决策与 grant |
 | Principal | — | verified principal | trusted principal |
 | Policy Decision | — | — | signed policy decision |
 | Execution Grant | — | — | execution grant |
 | Security Event Record | 注册表生命周期事件/证据 | evidence event | security evidence envelope |
 
-## 7. 发现集成指引
+## 8. 发现集成指引
 
 独立 Registry（NOMIVELA）在 Authority Namespace 的 HTTPS 主机下发布 `/.well-known/agent-iam`，至少包含
-`discovery_version`、`namespace`、`issuer`、`registry_endpoint`、`jwks_uri`、
-`supported_proof_profiles`、`supported_artifact_types`、`key_rotation`，并以独立可解析的签名密钥签名；
+`discoveryVersion`、`namespace`、`issuer`、`registryEndpoint`、`jwksUri`、
+`supportedProofProfiles`、`supportedArtifactTypes`、`keyRotation`，并以独立可解析的签名密钥签名；
 `/.well-known/agent-iam/jwks.json` 暴露公钥。EIDOVELA 作为认证方消费该文档：
 
 1. **消费与验证**：校验 Registry 文档签名，签名密钥可独立于文档解析；轮换 overlap 至少覆盖最大 artifact 寿命加时钟偏差。
@@ -86,7 +98,7 @@
 3. **获取安全**：仅 HTTPS；host/scheme allowlist、DNS/IP 再验证、redirect/大小/超时/内容类型限制，拒绝 loopback、link-local、云 metadata 与未批准私网；对未知 `kid` 刷新限速。
 4. **在线权威**：签发与在线验证以 Registry Context 单点读取为唯一 Registry 读取单元，不可用时失败关闭。
 
-## 8. 一致性声明模板
+## 9. 一致性声明模板
 
 ```text
 实现名称：

@@ -8,6 +8,7 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 
 ### Added
 
+- RFC-0003 `Contract Naming and Identity Conventions` (Draft): camelCase wire naming, `…Ref` references, dual `agentEpoch`/`identityEpoch`, a nine-class Agent set, `authorityBindingRef`/`authorityBindingKind`, and `tenant` as an implementation-only key mapped from the Authority Namespace.
 - The NOMIVELA registry reference-implementation mapping, and a refreshed AxisRobo mapping covering NOMIVELA (Part 2), EIDOVELA (Parts 3, 5), and AEGIVELA (Parts 4, 6) under `mappings/nomivela-eidovela-aegivela.md`; `mappings/eidovela-aegivela.md` now points to it.
 - Multi-part `Agent IAM Series` structure under `spec/part-01-architecture` through `spec/part-07-conformance` (RFC-0002, Draft).
 - Part 1 Architecture and Terminology (framework: terms, layering, trusted data sources, fail-closed, canonicalization, revocation freshness, privacy).
