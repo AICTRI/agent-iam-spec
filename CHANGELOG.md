@@ -8,6 +8,7 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 
 ### Added
 
+- The NOMIVELA registry reference-implementation mapping, and a refreshed AxisRobo mapping covering NOMIVELA (Part 2), EIDOVELA (Parts 3, 5), and AEGIVELA (Parts 4, 6) under `mappings/nomivela-eidovela-aegivela.md`; `mappings/eidovela-aegivela.md` now points to it.
 - Multi-part `Agent IAM Series` structure under `spec/part-01-architecture` through `spec/part-07-conformance` (RFC-0002, Draft).
 - Part 1 Architecture and Terminology (framework: terms, layering, trusted data sources, fail-closed, canonicalization, revocation freshness, privacy).
 - Part 2 Registration and Discovery, including a new discovery chapter (discovery document, resolution rules, SSRF defenses).
@@ -28,6 +29,7 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 
 ### Changed
 
+- Updated `IMPLEMENTATIONS.md` / `IMPLEMENTATIONS.zh-CN.md` to list NOMIVELA as the implemented Agent Registry and Namespace Authority and to refresh the EIDOVELA and AEGIVELA status summaries.
 - Removed `tenant_id` from the specification and replaced it with the hierarchical `Authority Namespace` (RFC-0001, Draft).
 - Split the single-document edition into the series and removed `spec/en/agent-iam-spec.md` and `spec/zh-CN/agent-iam-spec.md`; their content is carried by the seven parts.
 - `GOVERNANCE.md` normative-text list, versioning, and profile rules updated for the series.

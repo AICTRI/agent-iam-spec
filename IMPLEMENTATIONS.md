@@ -10,7 +10,7 @@ No implementation listed here is endorsed as fully conformant. Refer to the conf
 
 | Component | Series parts | Role in the specification | Repositories |
 |---|---|---|---|
-| Agent Registry | 2 | Agent/Agent ID registration authority: Authority Namespace, immutable Authority Binding, lifecycle authority, discovery | Planned independent system |
+| NOMIVELA | 2 | Agent Registry and Namespace Authority: Agent/Agent ID registration, Authority Namespace, immutable Authority Binding, lifecycle and epochs, Workload Registration, Agent Instance, signed discovery | Core (private): <https://github.com/axisrobo/nomivela> · Open contracts and SDKs: <https://github.com/axisrobo/nomivela-open> |
 | EIDOVELA | 3, 5 | Agent Authentication Provider: consumes Registry records; workload enrollment, attestation, proof-of-possession credentials, identity tokens, authoritative introspection, federation | Core (private): <https://github.com/axisrobo/eidovela> · Open contracts and SDKs: <https://github.com/axisrobo/eidovela-open> |
 | AEGIVELA | 4, 6 | Agent Authorization plane: Principal resolution, authorization modes, policy decisions, execution grants, delegation, approval, revocation | Core (private): <https://github.com/axisrobo/aegivela> · Open contracts and SDK: <https://github.com/axisrobo/aegivela-open> |
 
@@ -22,9 +22,16 @@ The `-open` repositories host public contracts, SDKs, examples, and conformance 
 Enterprise human IdP / organization authority
           |
           v
-EIDOVELA  Agent Identity Provider
-          registration, Authority Binding, workload enrollment,
-          lifecycle and epoch, PoP identity credentials, federation
+NOMIVELA  Agent Registry and Namespace Authority
+          Agent / Agent ID / Authority Namespace / Authority Binding /
+          lifecycle and epochs / Workload Registration / Agent Instance /
+          signed discovery
+          |
+          v
+EIDOVELA  Agent Authentication Provider
+          consumes Registry records; registration, Authority Binding,
+          workload enrollment, lifecycle and epoch, PoP identity
+          credentials, federation
           |
           v
 AEGIVELA  Agent Authorization plane
@@ -35,20 +42,21 @@ AEGIVELA  Agent Authorization plane
 PEP       API gateway, tool gateway, model ingress, business service, executor
 ```
 
-Identity credentials prove who is calling and the current identity state. They do not authorize an action. Execution authorization is decided by the authorization plane, as required by the specification.
+Identity credentials prove who is calling and the current identity state. They do not authorize an action. Registration and lifecycle are authoritative in the Registry; authentication is authoritative in the Authentication Provider; execution authorization is decided by the authorization plane, as required by the specification.
 
 ## Mapping and conformance status
 
 The clause-by-clause mapping and the gaps that must be closed before a conformance claim are recorded in:
 
-- [`mappings/eidovela-aegivela.md`](mappings/eidovela-aegivela.md)
+- [`mappings/nomivela-eidovela-aegivela.md`](mappings/nomivela-eidovela-aegivela.md)
 
 Current status summary:
 
 | Component | Status |
 |---|---|
-| EIDOVELA | Partial: identity object model, lifecycle epoch, and PoP enrollment exist; request-level PoP, instance and credential online revocation, attestor integration, and brokered token revocation are incomplete |
-| AEGIVELA | Partial: authorization modes, decisions, and grants exist; the token exchange path does not yet satisfy the canonical allow lineage, and some contracts and runtime behavior diverge |
+| NOMIVELA | Implemented (`v2.0.0`): registration, separate lifecycle epochs, immutable Authority Binding, Workload Registration, Agent Instance, signed discovery, and the Registry Context point read; the public contract graduated from `0.1` to `agent-registry-v1.0` |
+| EIDOVELA | Implemented (`v2.2.1`): registry-consumer mode (write endpoints return `410 write_authority_moved`), enrollment and workload attestation, credential generations, PoP tokens, dual-epoch online verification, credential revocation, and federation trust with brokered issuance; EE HSM/KMS custody and console remain pending |
+| AEGIVELA | Implemented (`v1.1.1`): authorization modes, signed decisions, execution grants, delegation, approval, revocation, and Part 6 evidence alignment; the Part 7 composite conformance claim and the cross-repository Part 3–7 fixtures remain pending |
 
 ## Conformance claim template
 

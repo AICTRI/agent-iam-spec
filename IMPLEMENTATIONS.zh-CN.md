@@ -10,7 +10,7 @@
 
 | 组件 | 系列部分 | 在规范中的角色 | 仓库 |
 |---|---|---|---|
-| Agent Registry | 2 | Agent/Agent ID 注册权威：Authority Namespace、不可变 Authority Binding、生命周期权威、发现 | 规划中的独立系统 |
+| NOMIVELA | 2 | Agent Registry 与 Namespace Authority：Agent/Agent ID 注册、Authority Namespace、不可变 Authority Binding、生命周期与 epoch、Workload Registration、Agent Instance、签名 discovery | 核心（私有）：<https://github.com/axisrobo/nomivela> · 公开契约与 SDK：<https://github.com/axisrobo/nomivela-open> |
 | EIDOVELA | 3、5 | Agent 认证提供商：消费 Registry 记录；工作负载登记、证明、持钥证明凭据、身份 Token、权威 introspection、联邦 | 核心（私有）：<https://github.com/axisrobo/eidovela> · 公开契约与 SDK：<https://github.com/axisrobo/eidovela-open> |
 | AEGIVELA | 4、6 | Agent 授权平面：Principal 解析、授权模式、策略决策、Execution Grant、委托、审批、撤销 | 核心（私有）：<https://github.com/axisrobo/aegivela> · 公开契约与 SDK：<https://github.com/axisrobo/aegivela-open> |
 
@@ -22,8 +22,14 @@
 企业人类 IdP / 组织权威
           |
           v
+NOMIVELA  Agent Registry 与 Namespace Authority
+          Agent / Agent ID / Authority Namespace / Authority Binding /
+          生命周期与 epoch / Workload Registration / Agent Instance /
+          签名 discovery
+          |
+          v
 EIDOVELA  Agent 身份提供商
-          注册、Authority Binding、工作负载登记、
+          消费 Registry 记录；注册、Authority Binding、工作负载登记、
           生命周期与 epoch、PoP 身份凭据、联邦
           |
           v
@@ -35,20 +41,21 @@ AEGIVELA  Agent 授权平面
 PEP       API 网关、工具网关、模型入口、业务服务、执行器
 ```
 
-身份凭据证明“谁在调用”以及当前身份状态，不构成对动作的授权。执行授权由授权平面决定，这是规范的要求。
+身份凭据证明“谁在调用”以及当前身份状态，不构成对动作的授权。注册与生命周期以 Registry 为权威，认证以 Authentication Provider 为权威，执行授权由授权平面决定，这是规范的要求。
 
 ## 映射与一致性状态
 
 逐条映射以及进入一致性声明前必须解决的差距记录在：
 
-- [`mappings/eidovela-aegivela.md`](mappings/eidovela-aegivela.md)
+- [`mappings/nomivela-eidovela-aegivela.md`](mappings/nomivela-eidovela-aegivela.md)
 
 当前状态概要：
 
 | 组件 | 状态 |
 |---|---|
-| EIDOVELA | 部分符合：身份对象模型、生命周期 epoch 与 PoP 登记已存在；请求级 PoP、实例与凭据在线撤销、attestor 接入以及 brokered token 撤销尚不完整 |
-| AEGIVELA | 部分符合：授权模式、决策与 grant 已存在；token exchange 路径尚未满足 canonical allow lineage，部分契约与运行时行为存在偏差 |
+| NOMIVELA | 已实现（`v2.0.0`）：注册、独立生命周期 epoch、不可变 Authority Binding、Workload Registration、Agent Instance、签名 discovery、Registry Context 单点读取；公共契约自 `0.1` 毕业为 `agent-registry-v1.0` |
+| EIDOVELA | 已实现（`v2.2.1`）：registry-consumer 模式（写端点返回 `410 write_authority_moved`）、登记与工作负载证明、credential generation、PoP Token、双 epoch 在线验证、credential 撤销、Federation Trust 与 brokered issuance；EE HSM/KMS 托管与 console 待补 |
+| AEGIVELA | 已实现（`v1.1.1`）：授权模式、签名决策、Execution Grant、委托、审批、撤销，以及 Part 6 证据一致性；Part 7 组合一致性声明与 Parts 3–7 跨仓 fixtures 待补 |
 
 ## 一致性声明模板
 
