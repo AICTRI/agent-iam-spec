@@ -33,13 +33,15 @@ The series currently uses snake_case field names and a single `lifecycleEpoch`, 
 
 6. **Tenant.** `tenant` is **not** an interoperable claim and MUST NOT appear as a required field in normative records, contexts, decisions, grants, or events. It MAY be retained by an implementation as an internal key that is deterministically mapped from the Authority Namespace (`namespace`), e.g. to operate a SaaS deployment. `namespace` is the only interoperable naming anchor; `namespace + agentId` is the uniqueness basis.
 
+7. **Contract version format.** A contract version is written `v<major>.<minor>` — a `v` prefix followed by `major.minor`, for example `v1.0`, `v2.0`. No `-alpha`/`-beta`/`-draft` suffix appears in a contract version. The version is used consistently as the version directory name (`contracts/<domain>/v2.0`), the `api_version` literal (`aegivela.io/v2.0`), and the registry/SDK contract identifier (`agent-registry-v1.0`). The product *release* version remains `major.minor.patch` and is separate from the contract version.
+
 ## Impact
 
 - Compatibility: incompatible. Field renames and the epoch change require new contract versions for consumers using snake_case or a single epoch.
 - Affected profiles: all.
 - Affected reference implementations:
   - NOMIVELA already publishes camelCase, `…Ref` references, and dual epochs; it needs only the Agent class set and the tenant/namespace statement aligned.
-  - EIDOVELA must publish a contract line that uses camelCase and drops `tenant_id` as a required field; its current `v2` (snake_case, `tenant_id`) is frozen and a successor line is required.
+  - EIDOVELA must publish a contract line that uses camelCase and drops `tenant_id` as a required field; its current `v2.0` (snake_case, `tenant_id`) is frozen and a successor line is required.
   - AEGIVELA must migrate its contracts to camelCase, dual epochs, and `…Ref` references, and stop requiring `tenant_id`; its current `v1alphaX` lines remain frozen.
 - Security impact: neutral to positive; `namespace`-scoped uniqueness and dual-epoch invalidation are preserved and made uniform.
 - Privacy impact: none.
