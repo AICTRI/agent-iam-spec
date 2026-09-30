@@ -2,9 +2,9 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Agent IAM Series — Federation API",
-    "version": "0.1.1-draft",
+    "version": "0.2.0-draft",
     "description": "Draft federation trust management and brokered verification API for Part 5 (agent-iam-5-federation). Requirements are in spec/part-05-federation/.",
-    "x-agent-iam-series-version": "0.1.1-draft",
+    "x-agent-iam-series-version": "0.2.0-draft",
     "x-agent-iam-part": "agent-iam-5-federation"
   },
   "servers": [

@@ -4,7 +4,7 @@ All notable changes to this specification are recorded here.
 
 The format is based on Keep a Changelog. Versions follow the scheme documented in `GOVERNANCE.md`.
 
-## [0.1.1-draft] - 2026-09-30
+## [0.2.0-draft] - 2026-09-30
 
 ### Added
 

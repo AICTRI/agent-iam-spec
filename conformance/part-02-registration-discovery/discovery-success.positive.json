@@ -8,7 +8,7 @@
     "operation": "discover",
     "namespace": "https://id.example.com/org/acme",
     "document": {
-      "discovery_version": "0.1.1-draft",
+      "discovery_version": "0.2.0-draft",
       "namespace": "https://id.example.com/org/acme",
       "issuer": "https://id.example.com/org/acme",
       "jwks_uri": "https://id.example.com/org/acme/jwks",

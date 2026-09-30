@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/federation-trust.schema.json",
   "title": "Federation Trust",
   "description": "Namespace-scoped federation trust configuration defined in Part 5 Section 3.",
-  "x-agent-iam-series-version": "0.1.1-draft",
+  "x-agent-iam-series-version": "0.2.0-draft",
   "x-agent-iam-part": "agent-iam-5-federation",
   "type": "object",
   "additionalProperties": false,

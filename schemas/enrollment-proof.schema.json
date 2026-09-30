@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/enrollment-proof.schema.json",
   "title": "Enrollment JWT Proof of Possession Claims",
   "description": "Project-defined Enrollment JWT proof claims defined in Part 3 Section 4.3. This is not the OAuth private_key_jwt wire protocol.",
-  "x-agent-iam-series-version": "0.1.1-draft",
+  "x-agent-iam-series-version": "0.2.0-draft",
   "x-agent-iam-part": "agent-iam-3-authentication",
   "type": "object",
   "additionalProperties": false,
