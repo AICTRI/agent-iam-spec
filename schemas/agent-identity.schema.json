@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/agent-identity.schema.json",
   "title": "Agent Identity Record",
   "description": "Agent Identity record defined in Part 2 Section 5.1 of the Agent IAM Series.",
-  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-series-version": "0.1.1-draft",
   "x-agent-iam-part": "agent-iam-2-registration-discovery",
   "type": "object",
   "additionalProperties": false,

@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/policy-decision.schema.json",
   "title": "Policy Decision",
   "description": "Versioned policy decision defined in Part 4 Section 4.2.",
-  "x-agent-iam-series-version": "0.1.0-draft",
+  "x-agent-iam-series-version": "0.1.1-draft",
   "x-agent-iam-part": "agent-iam-4-authorization",
   "type": "object",
   "additionalProperties": false,

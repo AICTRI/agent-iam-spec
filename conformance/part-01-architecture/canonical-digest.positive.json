@@ -7,7 +7,7 @@
   "input": {
     "operation": "compute-digest",
     "algorithm": "SHA-256",
-    "domain_separator": "agent-iam:resource:0.1.0-draft\\u0000",
+    "domain_separator": "agent-iam:resource:0.1.1-draft\\u0000",
     "canonicalization": "RFC8785-JCS-UTF8",
     "canonical_bytes": "{\"id\":\"ord_1\",\"type\":\"order\"}"
   },

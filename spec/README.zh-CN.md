@@ -5,7 +5,7 @@
 面向 AI 智能体的身份、注册、发现、认证、授权、委托、联邦与审计的开放互操作系列标准。
 
 - 系列标识：`agent-iam-series`
-- 版本：`0.1.0-draft`
+- 版本：`0.1.1-draft`
 - 状态：**项目标准草案**，非国际标准、国家标准或行业标准
 - 仓库：<https://github.com/AICTRI/agent-iam-spec>
 

@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-2-registration-discovery`
-- Version: `0.1.0-draft`
+- Version: `0.1.1-draft`
 - Date: 2026-09-22
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
