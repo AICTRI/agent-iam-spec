@@ -54,9 +54,9 @@ Current status summary:
 
 | Component | Status |
 |---|---|
-| NOMIVELA | Implemented (`v2.0.0`): registration, separate lifecycle epochs, immutable Authority Binding, Workload Registration, Agent Instance, signed discovery, and the Registry Context point read; the public contract graduated from `0.1` to `agent-registry-v1.0` |
-| EIDOVELA | Implemented (`v2.2.1`): registry-consumer mode (write endpoints return `410 write_authority_moved`), enrollment and workload attestation, credential generations, PoP tokens, dual-epoch online verification, credential revocation, and federation trust with brokered issuance; EE HSM/KMS custody and console remain pending |
-| AEGIVELA | Implemented (`v1.1.1`): authorization modes, signed decisions, execution grants, delegation, approval, revocation, and Part 6 evidence alignment; the Part 7 composite conformance claim and the cross-repository Part 3–7 fixtures remain pending |
+| NOMIVELA | Implemented (`v2.0.0`): registration, separate lifecycle epochs, immutable Authority Binding, Workload Registration, Agent Instance, signed discovery, and the Registry Context point read; the public contract graduated from `0.1` to `agent-registry-v1.0` and then to `agent-registry-v2.0` (nine-class camelCase, RFC-0003) |
+| EIDOVELA | Implemented (`v2.2.1`): registry-consumer mode (write endpoints return `410 write_authority_moved`), enrollment and workload attestation, credential generations, PoP tokens, dual-epoch online verification, credential revocation, and federation trust with brokered issuance; the Registry Consumer wire contract is `v3.0` (camelCase, no `tenant_id`); EE HSM/KMS custody and console remain pending |
+| AEGIVELA | Implemented (`v1.2.5`): authorization modes, signed decisions, execution grants, delegation, approval, revocation, and Part 6 evidence alignment; the current contract line is `aegivela.io/v2.0` (camelCase, dual epoch, no `tenant`); the Part 7 composite conformance claim and the cross-repository Part 3–7 fixtures remain pending |
 
 ## Conformance claim template
 

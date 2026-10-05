@@ -1,6 +1,6 @@
 [English](../en/agent-iam-1-architecture.md) · [简体中文](agent-iam-1-architecture.md)
 
-# 智能体身份与访问管理系列 — 第 1 部分：总体架构与术语
+# AgentIAM — 第 1 部分：总体架构与术语
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-1-architecture`

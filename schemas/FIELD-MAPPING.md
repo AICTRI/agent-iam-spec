@@ -43,6 +43,7 @@ The specification governs if this table conflicts with it.
 | `platform`, `selector` | 5.5, 4.4 (Part 3) |
 | `trustDomain` | 5.5 |
 | `allowedProofMethods` | 5.5, 4.5 (Part 3) |
+| `proofRequirements` | 5.5, 4.5 (Part 3) |
 | `status` | 5.5 |
 
 ## discovery-document.schema.json (Part 2)

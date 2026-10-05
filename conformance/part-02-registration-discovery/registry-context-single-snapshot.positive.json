@@ -1,0 +1,21 @@
+{
+  "id": "p2-registry-context-single-snapshot-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "7.4",
+  "kind": "positive",
+  "description": "A single consistent snapshot spanning namespace, Agent, identity, binding, workload, and instance is accepted.",
+  "input": {
+    "operation": "read-registry-context",
+    "namespace": "https://id.example.com/org/acme",
+    "agentId": "agt_01JABCDEF0000000000000000",
+    "instanceId": "inst_01",
+    "snapshot": {
+      "namespace": "https://id.example.com/org/acme",
+      "agent": { "agentId": "agt_01JABCDEF0000000000000000", "agentState": "active", "agentEpoch": 7, "identityEpoch": 3 },
+      "authorityBindingRef": "ab_01",
+      "workloadRegistrationId": "wr_01",
+      "instance": { "instanceId": "inst_01", "instanceState": "active" }
+    }
+  },
+  "expected": { "outcome": "accept" }
+}

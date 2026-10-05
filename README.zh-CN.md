@@ -1,15 +1,22 @@
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-# 智能体身份与访问管理系列（Agent IAM Series）
+# AgentIAM：智能体身份与访问管理系列
 
-面向 AI Agent 标识、注册、发现、认证、授权、委托、生命周期、联邦与审计的开放互操作系列标准。
+**AgentIAM**（Agent Identity and Access Management，中文：智能体身份与访问管理系列）是面向 AI Agent 标识、注册、发现、认证、授权、委托、生命周期、联邦与审计的开放互操作系列标准。
 
+- 对外名称：`AgentIAM`
 - 系列标识：`agent-iam-series`
 - 版本：`0.3.0-draft`
 - 状态：**项目草案**，非国际标准、国家标准或行业标准
 - 仓库：<https://github.com/AICTRI/agent-iam-spec>
 
 系列分为七个部分，部分划分与迁移状态见 [`spec/README.zh-CN.md`](spec/README.zh-CN.md)，重构决策见 [`rfcs/0002-series-structure.md`](rfcs/0002-series-structure.md)。
+
+## 名称
+
+在文章、演讲与对比中统一使用 **AgentIAM** 指代本标准（类似用 "OAuth 2.0" 指代 RFC 6749）。全称为 Agent Identity and Access Management Series；机器可读的系列标识保持 `agent-iam-series`，各部分标识保持 `agent-iam-N-<slug>`。
+
+参考实现按其承担的平面命名（NOMIVELA 注册、EIDOVELA 认证、AEGIVELA 授权）；它们实现 AgentIAM，而非 AgentIAM 本身。
 
 ## 语言
 
@@ -21,6 +28,8 @@
 | 系列索引（翻译） | 简体中文 | [`spec/README.zh-CN.md`](spec/README.zh-CN.md) |
 | 第 1–7 部分（主文本，规范性） | English | `spec/part-0N-*/en/` |
 | 第 1–7 部分（翻译） | 简体中文 | `spec/part-0N-*/zh-CN/` |
+| Profiles（主文本，规范性） | English | `profiles/*.md` |
+| Profiles（翻译） | 简体中文 | `profiles/*.zh-CN.md` |
 
 ## 仓库结构
 

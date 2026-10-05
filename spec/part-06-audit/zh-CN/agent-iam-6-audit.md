@@ -1,6 +1,6 @@
 [English](../en/agent-iam-6-audit.md) · [简体中文](agent-iam-6-audit.md)
 
-# 智能体身份与访问管理系列 — 第 6 部分：审计与安全事件
+# AgentIAM — 第 6 部分：审计与安全事件
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-6-audit`

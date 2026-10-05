@@ -1,0 +1,15 @@
+{
+  "id": "p2-event-stream-not-authoritative-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "7.5",
+  "kind": "negative",
+  "description": "A cache invalidated by the event stream must not be used as the authoritative read for issuance.",
+  "input": {
+    "operation": "issue-token-from-cache",
+    "namespace": "https://id.example.com/org/acme",
+    "agentId": "agt_01JABCDEF0000000000000000",
+    "authoritativeReadAvailable": false,
+    "cacheInvalidationSource": "event-stream"
+  },
+  "expected": { "outcome": "reject", "reasonCode": "authoritative-read-required" }
+}

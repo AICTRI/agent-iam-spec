@@ -1,0 +1,13 @@
+{
+  "id": "p2-agent-id-non-reuse-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "5.1",
+  "kind": "negative",
+  "description": "A retired Agent ID must not be reused by a different Agent.",
+  "input": {
+    "operation": "register",
+    "existing": { "namespace": "https://id.example.com/org/acme", "agentId": "agt_01JABCDEF0000000000000000", "agentState": "retired" },
+    "attempted": { "namespace": "https://id.example.com/org/acme", "agentId": "agt_01JABCDEF0000000000000000", "agentState": "registered" }
+  },
+  "expected": { "outcome": "reject", "reasonCode": "agent-id-reuse" }
+}

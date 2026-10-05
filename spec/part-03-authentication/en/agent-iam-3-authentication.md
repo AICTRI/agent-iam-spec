@@ -1,6 +1,6 @@
 [English](agent-iam-3-authentication.md) · [简体中文](../zh-CN/agent-iam-3-authentication.md)
 
-# Agent IAM Series — Part 3: Identity and Authentication
+# AgentIAM — Part 3: Identity and Authentication
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-3-authentication`
@@ -111,6 +111,12 @@ PEM, JWT, or attribute JSON submitted by the caller MUST NOT be directly treated
 - Kubernetes: MUST validate the signature, issuer, audience, time, and subject of the projected ServiceAccount token;
 - mTLS: MUST validate the certificate chain, validity period, ClientAuth EKU, and expected trust anchor;
 - RATS/EAT: when used, SHOULD follow RFC 9334 and RFC 9711, and distinguish Evidence from Attestation Result.
+
+When the Workload Registration carries a versioned proof profile
+(`proofRequirements`, Part 2 Section 5.5), the verifier MUST use it as the
+authoritative requirement, MUST require at least one versioned method and a
+selector schema version, and MUST fail closed on an unknown method, unknown
+profile version, or unknown schema version.
 
 ## 5. Proof of Possession and Identity Tokens
 

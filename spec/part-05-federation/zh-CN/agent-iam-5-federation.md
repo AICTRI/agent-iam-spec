@@ -1,6 +1,6 @@
 [English](../en/agent-iam-5-federation.md) · [简体中文](agent-iam-5-federation.md)
 
-# 智能体身份与访问管理系列 — 第 5 部分：跨域联邦与互操作
+# AgentIAM — 第 5 部分：跨域联邦与互操作
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-5-federation`

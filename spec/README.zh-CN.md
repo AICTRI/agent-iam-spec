@@ -1,9 +1,10 @@
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-# 智能体身份与访问管理系列（Agent IAM Series）
+# AgentIAM：智能体身份与访问管理系列
 
 面向 AI 智能体的身份、注册、发现、认证、授权、委托、联邦与审计的开放互操作系列标准。
 
+- 对外名称：`AgentIAM`
 - 系列标识：`agent-iam-series`
 - 版本：`0.3.0-draft`
 - 状态：**项目标准草案**，非国际标准、国家标准或行业标准

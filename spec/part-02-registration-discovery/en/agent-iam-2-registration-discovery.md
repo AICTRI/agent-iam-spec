@@ -1,6 +1,6 @@
 [English](agent-iam-2-registration-discovery.md) · [简体中文](../zh-CN/agent-iam-2-registration-discovery.md)
 
-# Agent IAM Series — Part 2: Registration and Discovery
+# AgentIAM — Part 2: Registration and Discovery
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-2-registration-discovery`
@@ -187,6 +187,22 @@ status
 
 The trust domain MUST be pre-associated with the same Authority Namespace. All storage implementations, including test or in-memory implementations, SHOULD enforce the same namespace/trust-domain constraint.
 
+A Workload Registration MAY carry a versioned workload proof profile
+(`proofRequirements`). When present it is authoritative over
+`allowedProofMethods` and MUST contain at least:
+
+```text
+schemaVersion
+methods[] { method, profileVersion }
+selectorSchemaVersion
+```
+
+It MAY additionally carry `expectedIssuer`, `expectedAudience`, `trustDomain`,
+`attestationDigestRequired`, and `verifierIdentity`. The enrollment verifier
+defined in Part 3 MUST require the declared schema version, at least one
+versioned method, and a selector schema version, and MUST fail closed on an
+unknown method, unknown profile version, or unknown schema version.
+
 ### 5.6 Agent Instance
 
 An Agent Instance MUST contain at least:
@@ -262,6 +278,40 @@ Registration MUST:
 ### 7.3 Management Plane
 
 Registration, Blueprint, Workload Registration, trust-domain, and namespace delegation APIs MUST be strongly authenticated and finely authorized, and MUST produce security events. Merely relying on network location or a shared internal token is insufficient for a high-assurance management plane.
+
+A registry or management service principal MUST be scoped. The interoperable
+scope vocabulary is `registry.read`, `registry.write`, and `instance.commit`; a
+write scope implies the read scope. A namespace-scoped principal MUST be
+enforced server-side from the resolved Authority Namespace, and request
+attribution headers MUST NOT be the basis of authorization. Consuming a registry
+event stream requires the `events.consume` scope.
+
+### 7.4 Registry Context
+
+A registry MUST be able to serve one consistent snapshot (the **Registry
+Context**) that spans the Authority Namespace, Agent, Agent Identity and binding,
+Workload Registration, and Agent Instance for a requested Agent.
+
+Token issuance and authoritative online verification MUST use this single read as
+the authoritative registry read unit, and MUST fail closed when the snapshot is
+unavailable or when the selected records are internally inconsistent (for
+example, an Instance outside the selected Namespace or Identity).
+
+The snapshot MAY support conditional reads (`ETag` / `If-None-Match`) and
+optimistic-concurrency preconditions (`expectedEpoch` / `If-Match`). A mismatched
+precondition MUST return a conflict and MUST NOT return a partial result.
+
+### 7.5 Registry Event Stream
+
+A registry SHOULD expose an ordered, recoverable change stream with:
+
+- a global monotonic `cursor` independent of any per-object sequence;
+- at-least-once delivery with lease, delivery attempts, and dead-lettering;
+- a cursor replay endpoint.
+
+The stream is for bounded cache invalidation only and MUST NOT replace the
+Registry Context read for token issuance or authoritative online verification.
+Consuming the stream requires the `events.consume` scope (Section 7.3).
 
 ## 8. Discovery
 

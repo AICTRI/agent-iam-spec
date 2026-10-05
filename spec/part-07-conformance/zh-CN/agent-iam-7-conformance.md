@@ -1,6 +1,6 @@
 [English](../en/agent-iam-7-conformance.md) · [简体中文](agent-iam-7-conformance.md)
 
-# 智能体身份与访问管理系列 — 第 7 部分：一致性与测试
+# AgentIAM — 第 7 部分：一致性与测试
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-7-conformance`

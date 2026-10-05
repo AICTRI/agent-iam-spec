@@ -1,0 +1,14 @@
+{
+  "id": "p2-authority-binding-immutability-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "5.3",
+  "kind": "negative",
+  "description": "Mutating an Authority Binding after registration must be rejected.",
+  "input": {
+    "operation": "update-binding",
+    "agentId": "agt_01JABCDEF0000000000000000",
+    "registeredBinding": { "authorityBindingRef": "ab_01", "authorityRootRef": "org:acme", "authorityBindingKind": "organization_root" },
+    "attemptedBinding": { "authorityBindingRef": "ab_02", "authorityRootRef": "org:other", "authorityBindingKind": "organization_root" }
+  },
+  "expected": { "outcome": "reject", "reasonCode": "immutable-authority-binding" }
+}

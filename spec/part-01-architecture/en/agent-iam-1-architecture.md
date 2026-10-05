@@ -1,6 +1,6 @@
 [English](agent-iam-1-architecture.md) · [简体中文](../zh-CN/agent-iam-1-architecture.md)
 
-# Agent IAM Series — Part 1: Architecture and Terminology
+# AgentIAM — Part 1: Architecture and Terminology
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-1-architecture`

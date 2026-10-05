@@ -1,0 +1,20 @@
+{
+  "id": "p3-revocation-freshness-online-001",
+  "part": "agent-iam-3-authentication",
+  "clause": "7.2",
+  "kind": "negative",
+  "description": "Online verification must fail closed when the revocation dependency is unavailable.",
+  "input": {
+    "operation": "verify-token-online",
+    "freshnessClass": "pre_dispatch",
+    "revocationDependency": "unavailable",
+    "token": {
+      "sub": "agt_01JABCDEF0000000000000000",
+      "namespace": "https://id.example.com/org/acme",
+      "agentEpoch": 3,
+      "identityEpoch": 4,
+      "exp": 1900000300
+    }
+  },
+  "expected": { "outcome": "reject", "reasonCode": "revocation-dependency-unavailable" }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "p3-enrollment-proof-binding-001",
+  "part": "agent-iam-3-authentication",
+  "clause": "4.3",
+  "kind": "negative",
+  "description": "An enrollment proof whose challenge binding or nonce does not match must be rejected.",
+  "input": {
+    "operation": "enroll",
+    "challenge": { "challengeId": "chl_07", "nonce": "n_07", "agentId": "agt_01JABCDEF0000000000000000" },
+    "proof": {
+      "iss": "agt_01JABCDEF0000000000000000",
+      "sub": "agt_01JABCDEF0000000000000000",
+      "aud": "eidovela:enroll",
+      "jti": "jti_07",
+      "challengeId": "chl_07",
+      "nonce": "n_wrong"
+    }
+  },
+  "expected": { "outcome": "reject", "reasonCode": "proof-binding-mismatch" }
+}

@@ -27,6 +27,33 @@
       "items": { "type": "string" },
       "minItems": 1
     },
-    "status": { "enum": ["active", "suspended", "revoked"] }
+    "status": { "enum": ["active", "suspended", "revoked"] },
+    "proofRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "methods", "selectorSchemaVersion"],
+      "properties": {
+        "schemaVersion": { "type": "string" },
+        "methods": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["method", "profileVersion"],
+            "properties": {
+              "method": { "type": "string" },
+              "profileVersion": { "type": "string" }
+            }
+          }
+        },
+        "selectorSchemaVersion": { "type": "string" },
+        "expectedIssuer": { "type": "string" },
+        "expectedAudience": { "type": "string" },
+        "trustDomain": { "type": "string" },
+        "attestationDigestRequired": { "type": "boolean" },
+        "verifierIdentity": { "type": "string" }
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 [English](../en/agent-iam-2-registration-discovery.md) · [简体中文](agent-iam-2-registration-discovery.md)
 
-# 智能体身份与访问管理系列 — 第 2 部分：智能体注册与发现
+# AgentIAM — 第 2 部分：智能体注册与发现
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-2-registration-discovery`
@@ -189,6 +189,16 @@ status
 
 信任域必须预先关联到同一 Authority Namespace。所有存储实现，包括测试或内存实现，都应执行相同的 namespace/trust-domain 约束。
 
+Workload Registration 可以携带版本化的工作负载证明 Profile（`proofRequirements`）。存在时，它对 `allowedProofMethods` 具权威性，且必须至少包含：
+
+```text
+schemaVersion
+methods[] { method, profileVersion }
+selectorSchemaVersion
+```
+
+它还可以额外携带 `expectedIssuer`、`expectedAudience`、`trustDomain`、`attestationDigestRequired` 和 `verifierIdentity`。第 3 部分定义的 enrollment 验证方必须要求声明的 schema 版本、至少一个版本化方法和一个 selector schema 版本，并在方法未知、profile 版本未知或 schema 版本未知时失败关闭。
+
 ### 5.6 Agent Instance
 
 Agent Instance 必须至少包含：
@@ -264,6 +274,26 @@ revoked   -> no transition
 ### 7.3 管理面
 
 注册、Blueprint、Workload Registration、trust-domain 和 namespace 委托 API 必须经过强认证和细粒度授权，并必须产生安全事件。仅依赖网络位置或共享 internal token 不足以构成高保证管理面。
+
+registry 或管理面的 service principal 必须被限定 scope。可互操作的 scope 词表为 `registry.read`、`registry.write` 和 `instance.commit`；写 scope 隐含读 scope。命名空间范围的 principal 必须依据解析出的 Authority Namespace 在服务端强制执行，请求中的归属（attribution）头不得作为授权依据。消费 registry 事件流需要 `events.consume` scope。
+
+### 7.4 Registry Context
+
+Registry 必须能够为所请求的 Agent 提供**一份**一致快照（**Registry Context**），跨越 Authority Namespace、Agent、Agent Identity 与绑定、Workload Registration 和 Agent Instance。
+
+Token 签发和权威在线验证必须将该单点读取作为权威的 registry 读取单元，并在快照不可用、或所选记录内部不一致（例如 Instance 落在所选 Namespace 或 Identity 之外）时失败关闭。
+
+该快照可以支持条件读取（`ETag` / `If-None-Match`）和乐观并发前置条件（`expectedEpoch` / `If-Match`）。前置条件不匹配时必须返回冲突，不得返回部分结果。
+
+### 7.5 Registry 事件流
+
+Registry 应暴露有序、可恢复的变更流，包含：
+
+- 全局单调 `cursor`，独立于任何按对象 sequence；
+- 至少一次投递，带 lease、投递尝试与死信；
+- cursor 重放端点。
+
+该事件流仅用于有界缓存失效，不得替代 Registry Context 读取用于 Token 签发或权威在线验证。消费该事件流需要 `events.consume` scope（第 7.3 节）。
 
 ## 8. 发现
 

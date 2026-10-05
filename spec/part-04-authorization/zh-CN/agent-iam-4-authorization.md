@@ -1,6 +1,6 @@
 [English](../en/agent-iam-4-authorization.md) · [简体中文](agent-iam-4-authorization.md)
 
-# 智能体身份与访问管理系列 — 第 4 部分：智能体授权与委托
+# AgentIAM — 第 4 部分：智能体授权与委托
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-4-authorization`
@@ -37,7 +37,7 @@
 
 ### 3.1 Principal 解析
 
-授权系统必须从已验证的企业 IdP、Agent Identity Authority 记录、Workload Assertion 和授权上下文重建 Principal。客户端自报 Principal 只能作 comparison-only 输入。
+授权系统必须从已验证的企业 IdP、Agent Identity Authority 记录、Workload Assertion 和授权上下文重建 Principal。仅 Identity Source 可以构造可信 Principal，且必须依据已验证的认证输出（第 3 部分）进行。第 4 部分不得从请求输入、自然语言、模型输出或工具返回值重新推导 namespace、agent class、workload 或生命周期 epoch。客户端自报 Principal 只能作 comparison-only 输入。跨平面传递的已验证身份上下文必须受完整性保护，并限定其消费受众。
 
 ### 3.2 授权模式
 

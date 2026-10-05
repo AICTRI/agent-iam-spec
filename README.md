@@ -1,15 +1,22 @@
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-# Agent IAM Series
+# AgentIAM: the Agent IAM Series
 
-An open interoperability series for AI Agent identity, registration, discovery, authentication, authorization, delegation, lifecycle, federation, and audit.
+**AgentIAM** (Agent Identity and Access Management) is an open interoperability series for AI Agent identity, registration, discovery, authentication, authorization, delegation, lifecycle, federation, and audit.
 
+- Public name: `AgentIAM`
 - Series identifier: `agent-iam-series`
 - Version: `0.3.0-draft`
 - Status: **Project draft**, not an international, national, or industry standard
 - Repository: <https://github.com/AICTRI/agent-iam-spec>
 
 The series is organized into seven parts. See [`spec/README.md`](spec/README.md) for the part map and migration status, and [`rfcs/0002-series-structure.md`](rfcs/0002-series-structure.md) for the restructuring decision.
+
+## Name
+
+Use **AgentIAM** when referring to the standard in prose, talks, and comparisons — the same role "OAuth 2.0" plays for RFC 6749. The full name is the *Agent Identity and Access Management Series*; the machine-readable series identifier stays `agent-iam-series`, and each part keeps its `agent-iam-N-<slug>` identifier.
+
+The reference implementations are named after the plane they own (NOMIVELA registry, EIDOVELA authentication, AEGIVELA authorization); they implement AgentIAM and are not AgentIAM itself.
 
 ## Language
 
@@ -21,6 +28,8 @@ English is the primary normative language. The Chinese text is an equivalent tra
 | Series index (translation) | 简体中文 | [`spec/README.zh-CN.md`](spec/README.zh-CN.md) |
 | Part 1–7 (primary, normative) | English | `spec/part-0N-*/en/` |
 | Part 1–7 (translation) | 简体中文 | `spec/part-0N-*/zh-CN/` |
+| Profiles (primary, normative) | English | `profiles/*.md` |
+| Profiles (translation) | 简体中文 | `profiles/*.zh-CN.md` |
 
 ## Repository layout
 

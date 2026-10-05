@@ -167,6 +167,37 @@ if (vectorSchema) {
   }
 }
 
+const crossRepoSchemaPath = join(repoRoot, "conformance", "cross-repo", "fixture.schema.json");
+const crossRepoSchema = parsed.get(crossRepoSchemaPath);
+let crossRepoCount = 0;
+if (crossRepoSchema) {
+  for (const [file, doc] of parsed) {
+    const r = rel(file);
+    if (!r.startsWith("conformance/cross-repo/part-") || !r.endsWith(".json")) continue;
+    crossRepoCount += 1;
+    const local = [];
+    validate(doc, crossRepoSchema, r, local, crossRepoSchemaPath);
+    errors.push(...local);
+  }
+}
+
+const crossRepoManifestPath = join(repoRoot, "conformance", "cross-repo", "manifest.json");
+const crossRepoManifest = parsed.get(crossRepoManifestPath);
+if (crossRepoManifest) {
+  for (const entry of crossRepoManifest.fixtures ?? []) {
+    const fixturePath = resolve(dirname(crossRepoManifestPath), entry.file);
+    const fixture = parsed.get(fixturePath);
+    if (!fixture) {
+      errors.push(`conformance/cross-repo/manifest.json: missing fixture "${entry.file}"`);
+      continue;
+    }
+    if (fixture.id !== entry.id) errors.push(`conformance/cross-repo/manifest.json: id mismatch for "${entry.file}"`);
+    if (fixture.part !== entry.part) errors.push(`conformance/cross-repo/manifest.json: part mismatch for "${entry.file}"`);
+    if (fixture.kind !== entry.kind) errors.push(`conformance/cross-repo/manifest.json: kind mismatch for "${entry.file}"`);
+    if (fixture.expected?.outcome !== entry.expected) errors.push(`conformance/cross-repo/manifest.json: expected mismatch for "${entry.file}"`);
+  }
+}
+
 for (const [file, doc] of parsed) checkRefs(doc, dirname(file), rel(file), errors);
 
 const fixtureManifestPath = join(repoRoot, "schemas", "fixtures", "manifest.json");
@@ -206,6 +237,7 @@ for (const name of ["README.md", "README.zh-CN.md", "GOVERNANCE.md", "CONTRIBUTI
 
 console.log(`JSON files parsed: ${parsed.size}/${allJson.length}`);
 console.log(`Vectors validated: ${vectorCount}`);
+console.log(`Cross-repo fixtures validated: ${crossRepoCount}`);
 console.log(`Schema fixtures validated: ${fixtureCount} (${fixtureCount - negativeFixtureCount} valid, ${negativeFixtureCount} expected-invalid)`);
 console.log(`Markdown files link-checked: ${markdownFiles.length + 5}`);
 

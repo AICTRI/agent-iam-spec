@@ -1,9 +1,10 @@
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-# Agent IAM Series
+# AgentIAM: the Agent IAM Series
 
 An open interoperability series for AI Agent identity, registration, discovery, authentication, authorization, delegation, federation, and audit.
 
+- Public name: `AgentIAM`
 - Series identifier: `agent-iam-series`
 - Version: `0.3.0-draft`
 - Status: **Project draft**, not an international, national, or industry standard

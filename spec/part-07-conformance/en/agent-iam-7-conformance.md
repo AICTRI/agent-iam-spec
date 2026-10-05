@@ -1,6 +1,6 @@
 [English](agent-iam-7-conformance.md) · [简体中文](../zh-CN/agent-iam-7-conformance.md)
 
-# Agent IAM Series — Part 7: Conformance and Testing
+# AgentIAM — Part 7: Conformance and Testing
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-7-conformance`

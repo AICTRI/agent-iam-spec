@@ -5,5 +5,12 @@
   "selector": { "spiffeId": "spiffe://example.org/ns/acme/sa/agent" },
   "trustDomain": "example.org",
   "allowedProofMethods": ["x509-svid"],
-  "status": "active"
+  "status": "active",
+  "proofRequirements": {
+    "schemaVersion": "1",
+    "methods": [{ "method": "spiffe_svid", "profileVersion": "1" }],
+    "selectorSchemaVersion": "1",
+    "expectedAudience": "eidovela:enroll",
+    "attestationDigestRequired": true
+  }
 }

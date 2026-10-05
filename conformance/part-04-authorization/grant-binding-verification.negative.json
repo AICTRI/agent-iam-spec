@@ -1,0 +1,20 @@
+{
+  "id": "p4-grant-binding-verification-001",
+  "part": "agent-iam-4-authorization",
+  "clause": "4.3",
+  "kind": "negative",
+  "description": "A grant whose resource or action does not match the attempted effect must be rejected by the PEP.",
+  "input": {
+    "operation": "verify-grant",
+    "grant": {
+      "action": "orders.read",
+      "resourceRef": "order:ord_1",
+      "scope": ["read:orders"],
+      "audience": "https://api.example.com",
+      "agentEpoch": 7,
+      "identityEpoch": 4
+    },
+    "attemptedEffect": { "action": "orders.delete", "resourceRef": "order:ord_1", "audience": "https://api.example.com" }
+  },
+  "expected": { "outcome": "reject", "reasonCode": "grant-binding-mismatch" }
+}

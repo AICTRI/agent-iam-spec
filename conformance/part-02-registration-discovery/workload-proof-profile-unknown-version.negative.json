@@ -1,0 +1,17 @@
+{
+  "id": "p2-workload-proof-profile-unknown-version-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "5.5",
+  "kind": "negative",
+  "description": "An unknown proof method, profile version, or schema version must fail closed.",
+  "input": {
+    "operation": "verify-proof-profile",
+    "proofRequirements": {
+      "schemaVersion": "1",
+      "methods": [{ "method": "spiffe_svid", "profileVersion": "1" }],
+      "selectorSchemaVersion": "1"
+    },
+    "submitted": { "method": "spiffe_svid", "profileVersion": "2", "selectorSchemaVersion": "1" }
+  },
+  "expected": { "outcome": "reject", "reasonCode": "unknown-proof-profile-version" }
+}

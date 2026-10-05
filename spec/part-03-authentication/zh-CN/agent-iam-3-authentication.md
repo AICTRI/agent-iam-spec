@@ -1,6 +1,6 @@
 [English](../en/agent-iam-3-authentication.md) · [简体中文](agent-iam-3-authentication.md)
 
-# 智能体身份与访问管理系列 — 第 3 部分：智能体身份与认证
+# AgentIAM — 第 3 部分：智能体身份与认证
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-3-authentication`
@@ -113,6 +113,8 @@ Verifier 必须固定允许的算法，拒绝未知 `kid`、重复 claim、超�
 - Kubernetes：必须校验 projected ServiceAccount token 的签名、issuer、audience、时间和 subject；
 - mTLS：必须校验证书链、有效期、ClientAuth EKU 和预期信任锚；
 - RATS/EAT：使用时应遵循 RFC 9334 和 RFC 9711，并区分 Evidence 与 Attestation Result。
+
+当 Workload Registration 携带版本化证明 Profile（`proofRequirements`，第 2 部分第 5.5 节）时，验证方必须以其为权威要求，必须要求至少一个版本化方法和一个 selector schema 版本，并在方法未知、profile 版本未知或 schema 版本未知时失败关闭。
 
 ## 5. 持钥证明与身份 Token
 

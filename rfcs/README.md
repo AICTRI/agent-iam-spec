@@ -16,3 +16,7 @@ Change proposals for the Agent IAM Series.
 |---|---|---|---|
 | [0001](0001-hierarchical-agent-namespace.md) | Removal of `tenant_id` in Favor of Authority Namespace | Normative | Draft |
 | [0002](0002-series-structure.md) | Reorganize `agent-iam-spec` into a Multi-Part Agent IAM Series | Normative | Draft |
+| [0003](0003-contract-naming-and-identity-conventions.md) | Contract Naming and Identity Conventions | Normative | Draft |
+| [0004](0004-agentiam-name-and-parts-3-7-delivery.md) | AgentIAM Public Name and Parts 3–7 Conformance and Profile Delivery | Normative | Draft |
+| [0005](0005-workload-proof-profile-and-registry-scopes.md) | Versioned Workload Proof Profile and Registry Service-Principal Scopes | Normative | Draft |
+| [0006](0006-registry-context-and-event-stream.md) | Registry Context Point Read, Recoverable Event Stream, and the Identity Source Boundary | Normative | Draft |

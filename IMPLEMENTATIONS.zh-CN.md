@@ -53,9 +53,9 @@ PEP       API 网关、工具网关、模型入口、业务服务、执行器
 
 | 组件 | 状态 |
 |---|---|
-| NOMIVELA | 已实现（`v2.0.0`）：注册、独立生命周期 epoch、不可变 Authority Binding、Workload Registration、Agent Instance、签名 discovery、Registry Context 单点读取；公共契约自 `0.1` 毕业为 `agent-registry-v1.0` |
-| EIDOVELA | 已实现（`v2.2.1`）：registry-consumer 模式（写端点返回 `410 write_authority_moved`）、登记与工作负载证明、credential generation、PoP Token、双 epoch 在线验证、credential 撤销、Federation Trust 与 brokered issuance；EE HSM/KMS 托管与 console 待补 |
-| AEGIVELA | 已实现（`v1.1.1`）：授权模式、签名决策、Execution Grant、委托、审批、撤销，以及 Part 6 证据一致性；Part 7 组合一致性声明与 Parts 3–7 跨仓 fixtures 待补 |
+| NOMIVELA | 已实现（`v2.0.0`）：注册、独立生命周期 epoch、不可变 Authority Binding、Workload Registration、Agent Instance、签名 discovery、Registry Context 单点读取；公共契约自 `0.1` 毕业为 `agent-registry-v1.0`，并进一步发布 `agent-registry-v2.0`（九类 camelCase，RFC-0003） |
+| EIDOVELA | 已实现（`v2.2.1`）：registry-consumer 模式（写端点返回 `410 write_authority_moved`）、登记与工作负载证明、credential generation、PoP Token、双 epoch 在线验证、credential 撤销、Federation Trust 与 brokered issuance；当前 Registry Consumer wire 契约 `v3.0`（camelCase，去 `tenant_id`）；EE HSM/KMS 托管与 console 待补 |
+| AEGIVELA | 已实现（`v1.2.5`）：授权模式、签名决策、Execution Grant、委托、审批、撤销，以及 Part 6 证据一致性；当前契约行 `aegivela.io/v2.0`（camelCase、双 epoch、去 `tenant`）；Part 7 组合一致性声明与 Parts 3–7 跨仓 fixtures 待补 |
 
 ## 一致性声明模板
 

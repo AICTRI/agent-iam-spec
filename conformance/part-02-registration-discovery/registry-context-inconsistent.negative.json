@@ -1,0 +1,19 @@
+{
+  "id": "p2-registry-context-inconsistent-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "7.4",
+  "kind": "negative",
+  "description": "A snapshot whose selected instance is outside the selected namespace or identity must fail closed.",
+  "input": {
+    "operation": "read-registry-context",
+    "namespace": "https://id.example.com/org/acme",
+    "agentId": "agt_01JABCDEF0000000000000000",
+    "instanceId": "inst_99",
+    "snapshot": {
+      "namespace": "https://id.example.com/org/acme",
+      "agent": { "agentId": "agt_01JABCDEF0000000000000000" },
+      "instance": { "instanceId": "inst_99", "namespace": "https://id.example.com/org/other" }
+    }
+  },
+  "expected": { "outcome": "reject", "reasonCode": "registry-context-inconsistent" }
+}

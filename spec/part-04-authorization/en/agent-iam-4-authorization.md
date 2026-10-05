@@ -1,6 +1,6 @@
 [English](agent-iam-4-authorization.md) · [简体中文](../zh-CN/agent-iam-4-authorization.md)
 
-# Agent IAM Series — Part 4: Authorization and Delegation
+# AgentIAM — Part 4: Authorization and Delegation
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-4-authorization`
@@ -35,7 +35,7 @@ Authentication artifacts are specified in Part 3. Cross-domain federation is spe
 
 ### 3.1 Principal Resolution
 
-The authorization system MUST reconstruct the Principal from the verified enterprise IdP, Agent Identity Authority records, Workload Assertion, and authorization context. A client self-reported Principal can only be a comparison-only input.
+The authorization system MUST reconstruct the Principal from the verified enterprise IdP, Agent Identity Authority records, Workload Assertion, and authorization context. Only the Identity Source MAY construct the trusted Principal, and it MUST do so from verified authentication output (Part 3). Part 4 MUST NOT re-derive the namespace, agent class, workload, or lifecycle epoch from request input, natural language, model output, or tool return values. A client self-reported Principal can only be a comparison-only input. A verified identity context carried between planes MUST be integrity-protected and scoped to its consuming audience.
 
 ### 3.2 Authorization Modes
 

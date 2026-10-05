@@ -4,6 +4,58 @@ All notable changes to this specification are recorded here.
 
 The format is based on Keep a Changelog. Versions follow the scheme documented in `GOVERNANCE.md`.
 
+## [Unreleased]
+
+### Added
+
+- Public name **AgentIAM** (Agent Identity and Access Management Series) for the
+  series, introduced in the root and series READMEs; the machine identifier
+  `agent-iam-series` and the part identifiers are unchanged.
+- Cross-repository conformance fixtures for Parts 3–7 under
+  `conformance/cross-repo/`, with `fixture.schema.json`, `manifest.json`, an
+  English and a Chinese README, and 27 executable HTTP-shaped fixtures covering
+  enrollment, challenge single-use, token audience/epoch, PoP replay, credential
+  generation, Registry Context fail-closed, workload proof profile version, JWKS
+  rotation overlap, decision/grant, obligation enforcement, delegation
+  non-amplification, approval, pre-dispatch revocation, federation trust,
+  principal isolation, brokered exchange, and audit. These are the fixtures the
+  reference implementations execute against their published contract surface
+  (see AEGIVELA ADR-0016). `conformance/validate.mjs` validates the fixtures and
+  the manifest.
+- Six normative Profiles under `profiles/`: `identity-token`, `enrollment`,
+  `authorization`, `delegation`, `federation`, and `audit`, each declaring its
+  identifier, the part it narrows, the series version, narrowed clauses, and the
+  conformance vectors that prove it; each has a Chinese equivalent
+  (`profiles/*.zh-CN.md`).
+- Six security-critical negative vectors closing the planned coverage: Authority
+  Binding immutability and Agent ID non-reuse (Part 2), enrollment proof binding,
+  credential-generation supersede, and online revocation fail-closed (Part 3),
+  and Grant binding verification (Part 4). The abstract vector set is now 36.
+
+### Changed
+
+- Part 2 §5.5 now defines the optional versioned workload proof profile
+  (`proofRequirements`) carried by a Workload Registration, and Part 3 §4.5 makes
+  it authoritative for the enrollment verifier; RFC-0005.
+- Part 2 §7.3 now defines the scoped registry service-principal vocabulary
+  (`registry.read`, `registry.write`, `instance.commit`, `events.consume`) and
+  the namespace-scoping rule; RFC-0005.
+- Part 2 §7.4 now defines the atomic **Registry Context** point read as the
+  authoritative registry read unit for issuance and online verification, failing
+  closed on inconsistency, with optional conditional reads and optimistic
+  concurrency; Part 2 §7.5 defines the recoverable registry event stream as a
+  cache-invalidation mechanism only; RFC-0006.
+- Part 4 §3.1 now names the **Identity Source** as the sole constructor of the
+  trusted Principal and forbids Part 4 from re-deriving identity from request
+  input, natural language, model output, or tool return values; RFC-0006.
+- `schemas/workload-registration.schema.json` gains an optional
+  `proofRequirements` object, exercised by the valid fixture, with positive and
+  unknown-version negative vectors.
+- Refreshed the AxisRobo reference-implementation mapping for the implementations'
+  RFC-0003 contract lines: NOMIVELA `agent-registry-v2.0`, EIDOVELA Registry
+  Consumer `v3.0`, and AEGIVELA `aegivela.io/v2.0` at release `v1.2.5`, including
+  the new-versus-frozen contract-line table.
+
 ## [0.3.0-draft] - 2026-09-30
 
 ### Added

@@ -1,6 +1,6 @@
 [English](agent-iam-6-audit.md) · [简体中文](../zh-CN/agent-iam-6-audit.md)
 
-# Agent IAM Series — Part 6: Audit and Security Events
+# AgentIAM — Part 6: Audit and Security Events
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-6-audit`

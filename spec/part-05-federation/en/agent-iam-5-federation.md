@@ -1,6 +1,6 @@
 [English](agent-iam-5-federation.md) · [简体中文](../zh-CN/agent-iam-5-federation.md)
 
-# Agent IAM Series — Part 5: Cross-Domain Federation
+# AgentIAM — Part 5: Cross-Domain Federation
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-5-federation`

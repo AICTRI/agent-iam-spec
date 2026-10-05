@@ -1,0 +1,18 @@
+{
+  "id": "p2-workload-proof-profile-001",
+  "part": "agent-iam-2-registration-discovery",
+  "clause": "5.5",
+  "kind": "positive",
+  "description": "A versioned workload proof profile with a known method and schema version is accepted.",
+  "input": {
+    "operation": "verify-proof-profile",
+    "proofRequirements": {
+      "schemaVersion": "1",
+      "methods": [{ "method": "spiffe_svid", "profileVersion": "1" }],
+      "selectorSchemaVersion": "1",
+      "expectedAudience": "eidovela:enroll"
+    },
+    "submitted": { "method": "spiffe_svid", "profileVersion": "1", "selectorSchemaVersion": "1" }
+  },
+  "expected": { "outcome": "accept" }
+}
