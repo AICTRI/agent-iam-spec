@@ -30,7 +30,9 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
 - Six security-critical negative vectors closing the planned coverage: Authority
   Binding immutability and Agent ID non-reuse (Part 2), enrollment proof binding,
   credential-generation supersede, and online revocation fail-closed (Part 3),
-  and Grant binding verification (Part 4). The abstract vector set is now 36.
+  and Grant binding verification (Part 4). These, with the vectors added by
+  RFC-0005 (workload proof profile) and RFC-0006 (Registry Context, event
+  stream), bring the abstract vector set to 41.
 
 ### Changed
 
@@ -55,6 +57,21 @@ The format is based on Keep a Changelog. Versions follow the scheme documented i
   RFC-0003 contract lines: NOMIVELA `agent-registry-v2.0`, EIDOVELA Registry
   Consumer `v3.0`, and AEGIVELA `aegivela.io/v2.0` at release `v1.2.5`, including
   the new-versus-frozen contract-line table.
+
+### Fixed
+
+- Corrected the Part 2 negative-vector count in `conformance/COVERAGE.md` (5 / 9)
+  and the request-schema count (10), so the per-part rows sum to the 14 / 27
+  totals shown.
+- Corrected stale figures in the changelog and RFC-0004 (abstract vectors 41,
+  cross-repository fixtures 27).
+- Aligned Part 2 §7.3 scope implications with NOMIVELA: `registry.write` implies
+  the read and instance-commit scopes, and also `events.consume`.
+- Added the missing header to the OpenAPI table in `schemas/README.md`.
+- Updated all seven parts' date fields to the `0.4.0-draft` series date
+  (2026-10-04) and recorded the RFC decisions (RFC-0001 through RFC-0006 are now
+  Accepted).
+- Noted the reference projects' `-open` documentation lag in the AxisRobo mapping.
 
 ## [0.3.0-draft] - 2026-09-30
 

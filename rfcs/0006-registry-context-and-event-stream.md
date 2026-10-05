@@ -1,6 +1,6 @@
 # RFC-0006: Registry Context Point Read, Recoverable Event Stream, and the Identity Source Boundary
 
-- Status: Draft
+- Status: Accepted
 - Authors: AICTRI maintainers
 - Date: 2026-10-04
 - Affected documents and clauses: Part 2 §7 (Registry), new §7.4 and §7.5; Part 4 §3.1 (Principal Resolution); `conformance/`; `profiles/enrollment.md`, `profiles/identity-token.md`
@@ -96,4 +96,4 @@ the constructor or forbid re-derivation explicitly enough for a conformance test
 
 ## Decision
 
-Filled in by maintainers. Include rationale, date, and any recorded dissent.
+Accepted and applied in `0.4.0-draft` (2026-10-04): the Registry Context point read (Part 2 §7.4), the recoverable registry event stream (Part 2 §7.5), and the Identity Source boundary (Part 4 §3.1) were added with vectors. No blocking objection recorded. The open questions (a pinning `snapshotVersion`; a dedicated event-stream profile) are deferred.

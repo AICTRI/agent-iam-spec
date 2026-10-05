@@ -1,6 +1,6 @@
 # RFC-0004: AgentIAM Public Name and Parts 3–7 Conformance and Profile Delivery
 
-- Status: Draft
+- Status: Accepted
 - Authors: AICTRI maintainers
 - Date: 2026-10-04
 - Affected documents and clauses: root `README.md` / `README.zh-CN.md`, `spec/README.md` / `spec/README.zh-CN.md`, each `spec/part-*/{en,zh-CN}/` title, `profiles/` (new), `conformance/cross-repo/` (new), `conformance/{README.md,COVERAGE.md,validate.mjs}`, `mappings/nomivela-eidovela-aegivela.md`, `IMPLEMENTATIONS.md` / `IMPLEMENTATIONS.zh-CN.md`, `CHANGELOG.md`
@@ -24,11 +24,11 @@ The implementations record that the cross-repository Parts 3–7 conformance fix
 
 2. **Mapping sync.** `mappings/nomivela-eidovela-aegivela.md` and `IMPLEMENTATIONS.md` / `.zh-CN.md` record the current contract lines and releases, and a new-versus-frozen contract-line table for each implementation.
 
-3. **Cross-repository fixtures.** `conformance/cross-repo/` defines `fixture.schema.json`, a `manifest.json`, and 22 HTTP-shaped fixtures for Parts 3–7. A fixture declares its part, clause, `threatRef`, `kind`, target `contract` surface/version, preconditions, operation, and expected outcome. `conformance/validate.mjs` validates each fixture against the schema and cross-checks the manifest. Implementations execute the fixtures against their published contract surface.
+3. **Cross-repository fixtures.** `conformance/cross-repo/` defines `fixture.schema.json`, a `manifest.json`, and HTTP-shaped fixtures for Parts 3–7 (27 as delivered, with the later RFC-0005 and RFC-0006 cases). A fixture declares its part, clause, `threatRef`, `kind`, target `contract` surface/version, preconditions, operation, and expected outcome. `conformance/validate.mjs` validates each fixture against the schema and cross-checks the manifest. Implementations execute the fixtures against their published contract surface.
 
 4. **Profiles.** Six normative Profiles are published under `profiles/`: `identity-token`, `enrollment`, `authorization`, `delegation`, `federation`, and `audit`, each with a Chinese equivalent (`profiles/*.zh-CN.md`). Each declares its identifier, the part it narrows, series version `0.4.0-draft`, the narrowed clauses, decidable structures, references, and the conformance vectors that prove it. Profiles only narrow; they do not relax any `MUST` or `MUST NOT`.
 
-5. **Abstract vector coverage.** Six security-critical negative vectors are added so every row of the planned coverage matrix has a positive and a negative vector where required, bringing the abstract vector set to 36. The cross-repository fixtures (item 3) remain the executable layer.
+5. **Abstract vector coverage.** Six security-critical negative vectors are added so every row of the planned coverage matrix has a positive and a negative vector where required; with the RFC-0005 and RFC-0006 vectors the abstract vector set reaches 41. The cross-repository fixtures (item 3) remain the executable layer.
 
 ## Impact
 
@@ -52,4 +52,4 @@ The implementations record that the cross-repository Parts 3–7 conformance fix
 
 ## Decision
 
-Filled in by maintainers. Include rationale, date, and any recorded dissent.
+Accepted and applied in `0.4.0-draft` (2026-10-04): the AgentIAM public name was adopted, the reference-implementation mapping was refreshed, 27 cross-repository fixtures and six bilingual Profiles were published, and the abstract vector set was completed. No blocking objection recorded.

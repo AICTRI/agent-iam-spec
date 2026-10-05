@@ -1,6 +1,6 @@
 # RFC-0001: Removal of `tenant_id` in Favor of Authority Namespace
 
-- Status: Draft
+- Status: Accepted
 - Authors: _（待填写）_
 - Date: 2026-09-22
 - Affected documents and clauses: `spec/en/agent-iam-spec.md` 与 `spec/zh-CN/agent-iam-spec.md` 第 4.14–4.16、5.2、6.1、6.2、6.3、6.6、7.1、7.5、7.6、9.2、10.1、10.2、10.3、10.4、12.2、13.1、13.3、14、15.1、16.1、16.2、17.2、18.3、20、24 节；`SECURITY.md`；`mappings/eidovela-aegivela.md`、`mappings/spiffe.md`
@@ -103,4 +103,4 @@ Authority Namespace 全局唯一、可委托、不得重分配；组织内划分
 
 ## Decision
 
-_Filled in by maintainers._
+Accepted and applied in `0.3.0-draft` (2026-09-30): `tenant_id` was removed from the specification and replaced by the hierarchical Authority Namespace, and the affected schemas, vectors, and mappings were updated. No blocking objection recorded.

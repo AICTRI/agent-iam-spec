@@ -5,7 +5,7 @@
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-2-registration-discovery`
 - Version: `0.4.0-draft`
-- Date: 2026-09-22
+- Date: 2026-10-04
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)
 
@@ -281,10 +281,11 @@ Registration, Blueprint, Workload Registration, trust-domain, and namespace dele
 
 A registry or management service principal MUST be scoped. The interoperable
 scope vocabulary is `registry.read`, `registry.write`, and `instance.commit`; a
-write scope implies the read scope. A namespace-scoped principal MUST be
-enforced server-side from the resolved Authority Namespace, and request
-attribution headers MUST NOT be the basis of authorization. Consuming a registry
-event stream requires the `events.consume` scope.
+`registry.write` scope implies the read and instance-commit scopes. A
+namespace-scoped principal MUST be enforced server-side from the resolved
+Authority Namespace, and request attribution headers MUST NOT be the basis of
+authorization. Consuming a registry event stream requires the `events.consume`
+scope, which a `registry.write` scope also implies.
 
 ### 7.4 Registry Context
 

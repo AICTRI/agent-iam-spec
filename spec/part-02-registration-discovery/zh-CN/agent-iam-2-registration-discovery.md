@@ -5,7 +5,7 @@
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-2-registration-discovery`
 - 版本：`0.4.0-draft`
-- 日期：2026-09-22
+- 日期：2026-10-04
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）
 
@@ -275,7 +275,7 @@ revoked   -> no transition
 
 注册、Blueprint、Workload Registration、trust-domain 和 namespace 委托 API 必须经过强认证和细粒度授权，并必须产生安全事件。仅依赖网络位置或共享 internal token 不足以构成高保证管理面。
 
-registry 或管理面的 service principal 必须被限定 scope。可互操作的 scope 词表为 `registry.read`、`registry.write` 和 `instance.commit`；写 scope 隐含读 scope。命名空间范围的 principal 必须依据解析出的 Authority Namespace 在服务端强制执行，请求中的归属（attribution）头不得作为授权依据。消费 registry 事件流需要 `events.consume` scope。
+registry 或管理面的 service principal 必须被限定 scope。可互操作的 scope 词表为 `registry.read`、`registry.write` 和 `instance.commit`；`registry.write` scope 隐含读与 instance-commit scope。命名空间范围的 principal 必须依据解析出的 Authority Namespace 在服务端强制执行，请求中的归属（attribution）头不得作为授权依据。消费 registry 事件流需要 `events.consume` scope，`registry.write` scope 亦隐含该 scope。
 
 ### 7.4 Registry Context
 

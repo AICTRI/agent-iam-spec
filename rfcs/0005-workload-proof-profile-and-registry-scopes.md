@@ -1,6 +1,6 @@
 # RFC-0005: Versioned Workload Proof Profile and Registry Service-Principal Scopes
 
-- Status: Draft
+- Status: Accepted
 - Authors: AICTRI maintainers
 - Date: 2026-10-04
 - Affected documents and clauses: Part 2 §5.5 (Workload Registration), Part 2 §7.3 (Management Plane), Part 3 §4.5 (Supported Attestation Profiles), `schemas/workload-registration.schema.json`, `schemas/fixtures/workload-registration.valid.json`, `conformance/`, `profiles/enrollment.md`
@@ -86,4 +86,4 @@ namespace scoping is enforced.
 
 ## Decision
 
-Filled in by maintainers. Include rationale, date, and any recorded dissent.
+Accepted and applied in `0.4.0-draft` (2026-10-04): `proofRequirements` was defined in Part 2 §5.5 and made authoritative in Part 3 §4.5, and the scoped registry service-principal vocabulary was added to Part 2 §7.3, with schema, fixture, and vectors. No blocking objection recorded. The open questions (closed versus open method registry; a distinct `lifecycle.write` scope) are deferred.

@@ -23,6 +23,8 @@ normative text in `../spec/part-*/`, which governs if they conflict.
 | `federation-trust.schema.json` | 5 | Federation trust configuration |
 | `security-event.schema.json` | 6 | Security event record |
 
+| OpenAPI document | Part | Purpose |
+|---|---|---|
 | `registry-discovery.openapi.json` | 2 | Registry and discovery HTTP API (OpenAPI 3.1) |
 | `identity-sts.openapi.json` | 3 | Enrollment, token, and introspection API (OpenAPI 3.1) |
 | `authorization.openapi.json` | 4 | Decision, grant, exchange, approval, revocation API (OpenAPI 3.1) |

@@ -44,6 +44,8 @@
 | EIDOVELA | `2.2.1` | Registry Consumer `v3.0`（camelCase、`…Ref`、双 epoch、去 `tenant_id`） | `v2`、`v1`、`v1alpha1` |
 | AEGIVELA | `1.2.5` | `aegivela.io/v2.0`（camelCase、双 epoch、去 `tenant`） | `v1alpha1`–`v1alpha3` |
 
+> 参考仓提示：三个实现的 `-open` 仓库部分文档尚未同步到其 core 已发布的契约行——`NOMIVELA-open/COMPATIBILITY.md` 的 release 矩阵 `v2.0.0` 行仍列 `agent-registry-v1.0`（同文件另称 `agent-registry-v2.0` 为当前行）；`EIDOVELA-open/COMPATIBILITY.md` 与 `docs/interoperability.md` 仍称消费 `agent-registry-v1.0` / 公共契约 `contracts/v2`（core 实际为 `v3.0`）。本映射以其 core 当前契约为准。
+
 ## 3. 能力映射
 
 | 规范能力 | Part | 参考组件 | 当前符合状态 |

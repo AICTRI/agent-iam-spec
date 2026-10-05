@@ -1,6 +1,6 @@
 # RFC-0002: Reorganize `agent-iam-spec` into a Multi-Part Agent IAM Series
 
-- Status: Draft
+- Status: Accepted
 - Authors: _（待填写）_
 - Date: 2026-09-22
 - Affected documents and clauses: 全部 `spec/` 正文；`GOVERNANCE.md` 第 3、5、6 节；根 `README.md`、`README.zh-CN.md`；`schemas/README.md`、`profiles/README.md`、`conformance/README.md`；`mappings/`
@@ -131,4 +131,4 @@ spec/
 
 ## Decision
 
-_Filled in by maintainers._
+Accepted and applied in `0.3.0-draft` (2026-09-30): the single-document edition was split into the seven-part Agent IAM Series, and `GOVERNANCE.md`, the READMEs, and the `schemas/`, `profiles/`, `conformance/`, and `mappings/` indices were updated. No blocking objection recorded.

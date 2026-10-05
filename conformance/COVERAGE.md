@@ -6,7 +6,7 @@ review when adding artifacts; `node conformance/validate.mjs` verifies consisten
 | Part | Schemas | OpenAPI | Request schemas | Vectors (pos / neg) | Examples |
 |---|---|---|---|---|---|
 | 1 Architecture | — | — | — | 1 / 1 | — |
-| 2 Registration & Discovery | agent-identity, agent-instance, authority-binding, workload-registration, discovery-document | registry-discovery | — | 5 / 10 | twin-agent-onboarding |
+| 2 Registration & Discovery | agent-identity, agent-instance, authority-binding, workload-registration, discovery-document | registry-discovery | — | 5 / 9 | twin-agent-onboarding |
 | 3 Authentication | identity-token, enrollment-proof | identity-sts | challenge, enrollment, token | 2 / 7 | twin-agent-onboarding, revocation-propagation |
 | 4 Authorization | policy-decision, execution-grant | authorization | decision, grant, exchange, approval, revocation | 2 / 5 | service-agent-high-risk-action, delegated-cross-domain, revocation-propagation |
 | 5 Federation | federation-trust | federation | brokered verification, trust update | 1 / 3 | delegated-cross-domain, federation-trust-lifecycle |
@@ -99,5 +99,5 @@ Executable fixtures under `conformance/cross-repo/`; see its `manifest.json`.
 
 ## Gaps
 
-- No successful brokered token exchange vector yet; Part 5 coverage currently verifies active trust.
-- All 11 record schemas and 7 request schemas have a valid JSON fixture. Expected-invalid fixtures cover extra fields, missing discovery metadata, missing PoP confirmation, and a missing federation key source.
+- No successful brokered token exchange in the abstract vectors yet; Part 5 abstract coverage verifies active trust, while the executable fixture `cross-repo/part-05-federation/p5-brokered-exchange-success.json` covers the success path.
+- All 11 record schemas and 10 request schemas have a valid JSON fixture. Expected-invalid fixtures cover extra fields, missing discovery metadata, missing PoP confirmation, and a missing federation key source.

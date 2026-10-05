@@ -1,6 +1,6 @@
 # RFC-0003: Contract Naming and Identity Conventions
 
-- Status: Draft
+- Status: Accepted
 - Authors: AxisRobo
 - Date: 2026-09-30
 - Affected documents and clauses: Part 1 §4 (terminology), Part 2 §5.1–5.2 (record and class), Part 3 §3 (authentication output), Parts 4–6 (artifact and event field names), `schemas/`, `conformance/`
@@ -59,4 +59,4 @@ The series currently uses snake_case field names and a single `lifecycleEpoch`, 
 
 ## Decision
 
-Filled in by maintainers. Include rationale, date, and any recorded dissent.
+Accepted and applied in `0.3.0-draft` (2026-09-30): camelCase wire names, `…Ref` references, the dual `agentEpoch` / `identityEpoch`, the unified nine-class Agent set, and `tenant` as an implementation-only key were applied across the normative text, schemas, conformance vectors, and examples. No blocking objection recorded.
