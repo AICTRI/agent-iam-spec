@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/discovery-document.schema.json",
   "title": "Discovery Document",
   "description": "Authority Namespace discovery document defined in Part 2 Section 8.2.",
-  "x-agent-iam-series-version": "0.4.0-draft",
+  "x-agent-iam-series-version": "0.4.1-draft",
   "x-agent-iam-part": "agent-iam-2-registration-discovery",
   "type": "object",
   "additionalProperties": false,

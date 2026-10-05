@@ -6,7 +6,7 @@
 
 - 对外名称：`AgentIAM`
 - 系列标识：`agent-iam-series`
-- 版本：`0.4.0-draft`
+- 版本：`0.4.1-draft`
 - 状态：**项目标准草案**，非国际标准、国家标准或行业标准
 - 仓库：<https://github.com/AICTRI/agent-iam-spec>
 

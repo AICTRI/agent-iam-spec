@@ -4,7 +4,7 @@
 
 - 系列标识：`agent-iam-series`
 - 部分标识：`agent-iam-3-authentication`
-- 版本：`0.4.0-draft`
+- 版本：`0.4.1-draft`
 - 日期：2026-10-04
 - 状态：项目标准草案，非国际标准、国家标准或行业标准
 - 许可证：CC BY 4.0（规范文本）

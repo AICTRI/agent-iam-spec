@@ -4,7 +4,7 @@
 
 - Series identifier: `agent-iam-series`
 - Part identifier: `agent-iam-1-architecture`
-- Version: `0.4.0-draft`
+- Version: `0.4.1-draft`
 - Date: 2026-10-04
 - Status: Project draft, not an international, national, or industry standard
 - License: CC BY 4.0 (specification text)

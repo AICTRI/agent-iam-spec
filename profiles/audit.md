@@ -2,7 +2,7 @@
 
 - Profile identifier: `agent-iam-profile-audit`
 - Applies to: Part 6 `agent-iam-6-audit`
-- Series version: `0.4.0-draft`
+- Series version: `0.4.1-draft`
 - Status: Draft (normative when published)
 - Language: English is normative. A Chinese translation, when present, is an equivalent translation.
 

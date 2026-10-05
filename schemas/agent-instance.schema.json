@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/agent-instance.schema.json",
   "title": "Agent Instance",
   "description": "Agent Instance record defined in Part 2 Section 5.6 of the Agent IAM Series.",
-  "x-agent-iam-series-version": "0.4.0-draft",
+  "x-agent-iam-series-version": "0.4.1-draft",
   "x-agent-iam-part": "agent-iam-2-registration-discovery",
   "type": "object",
   "additionalProperties": false,
