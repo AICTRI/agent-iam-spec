@@ -2,7 +2,7 @@
 
 - Profile 标识：`agent-iam-profile-enrollment`
 - 适用：第 3 部分 `agent-iam-3-authentication`
-- 系列版本：`0.3.0-draft`
+- 系列版本：`0.4.0-draft`
 - 状态：草案（发布后具规范性）
 - 语言：英文为规范性主文本；本文件为等价翻译。
 

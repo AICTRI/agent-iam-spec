@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/conformance/cross-repo/fixture.schema.json",
   "title": "AgentIAM Cross-Repository Conformance Fixture",
   "description": "A language-neutral, executable fixture that an implementation runs against its published contract surface for AgentIAM Parts 3-7.",
-  "x-agent-iam-series-version": "0.3.0-draft",
+  "x-agent-iam-series-version": "0.4.0-draft",
   "type": "object",
   "additionalProperties": false,
   "required": ["id", "part", "clause", "kind", "title", "contract", "operation", "expected"],

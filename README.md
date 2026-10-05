@@ -6,7 +6,7 @@
 
 - Public name: `AgentIAM`
 - Series identifier: `agent-iam-series`
-- Version: `0.3.0-draft`
+- Version: `0.4.0-draft`
 - Status: **Project draft**, not an international, national, or industry standard
 - Repository: <https://github.com/AICTRI/agent-iam-spec>
 

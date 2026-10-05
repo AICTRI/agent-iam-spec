@@ -43,7 +43,7 @@ The Authority Binding is immutable and points to exactly one human master
 
 ```json
 {
-  "discoveryVersion": "0.3.0-draft",
+  "discoveryVersion": "0.4.0-draft",
   "namespace": "https://id.example.com/org/acme",
   "issuer": "https://id.example.com/org/acme",
   "jwksUri": "https://id.example.com/org/acme/jwks",

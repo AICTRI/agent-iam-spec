@@ -2,7 +2,7 @@
 
 - Profile identifier: `agent-iam-profile-enrollment`
 - Applies to: Part 3 `agent-iam-3-authentication`
-- Series version: `0.3.0-draft`
+- Series version: `0.4.0-draft`
 - Status: Draft (normative when published)
 - Language: English is normative. A Chinese translation, when present, is an equivalent translation.
 

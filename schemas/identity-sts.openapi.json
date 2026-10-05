@@ -2,9 +2,9 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Agent IAM Series — Identity and Authentication API",
-    "version": "0.3.0-draft",
+    "version": "0.4.0-draft",
     "description": "Draft enrollment, token, and introspection API for Part 3 (agent-iam-3-authentication). Requirements are in spec/part-03-authentication/.",
-    "x-agent-iam-series-version": "0.3.0-draft",
+    "x-agent-iam-series-version": "0.4.0-draft",
     "x-agent-iam-part": "agent-iam-3-authentication"
   },
   "servers": [

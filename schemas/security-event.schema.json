@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/security-event.schema.json",
   "title": "Security Event Record",
   "description": "Audit security event record defined in Part 6 Section 4.",
-  "x-agent-iam-series-version": "0.3.0-draft",
+  "x-agent-iam-series-version": "0.4.0-draft",
   "x-agent-iam-part": "agent-iam-6-audit",
   "type": "object",
   "additionalProperties": false,

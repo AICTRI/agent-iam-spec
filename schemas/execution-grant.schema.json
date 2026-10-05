@@ -3,7 +3,7 @@
   "$id": "https://github.com/AICTRI/agent-iam-spec/schemas/execution-grant.schema.json",
   "title": "Execution Grant",
   "description": "Execution Grant claims defined in Part 4 Section 4.3.",
-  "x-agent-iam-series-version": "0.3.0-draft",
+  "x-agent-iam-series-version": "0.4.0-draft",
   "x-agent-iam-part": "agent-iam-4-authorization",
   "type": "object",
   "additionalProperties": false,

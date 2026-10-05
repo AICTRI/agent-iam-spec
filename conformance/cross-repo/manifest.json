@@ -1,7 +1,7 @@
 {
   "series": "agent-iam-series",
   "publicName": "AgentIAM",
-  "version": "0.3.0-draft",
+  "version": "0.4.0-draft",
   "generated": "2026-10-04",
   "fixtureCount": 27,
   "fixtures": [

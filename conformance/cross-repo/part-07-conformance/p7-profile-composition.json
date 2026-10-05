@@ -4,7 +4,7 @@
   "clause": "6",
   "kind": "positive",
   "title": "Per-part vectors compose into the declared composite profile",
-  "contract": { "surface": "agent-iam-series", "version": "0.3.0-draft" },
+  "contract": { "surface": "agent-iam-series", "version": "0.4.0-draft" },
   "given": {
     "compositeProfile": "Authorization",
     "parts": [2, 3, 4],

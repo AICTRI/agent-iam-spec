@@ -10,7 +10,7 @@
       "compositeProfile": "Federated",
       "supportedParts": [2, 3, 4, 5],
       "proofProfiles": ["spiffe", "dpop"],
-      "tokenVersions": ["0.3.0-draft"],
+      "tokenVersions": ["0.4.0-draft"],
       "revocationSlo": "PT5M",
       "discoveryMechanism": "well-known",
       "knownExtensions": [],

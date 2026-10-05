@@ -26,7 +26,7 @@ The implementations record that the cross-repository Parts 3–7 conformance fix
 
 3. **Cross-repository fixtures.** `conformance/cross-repo/` defines `fixture.schema.json`, a `manifest.json`, and 22 HTTP-shaped fixtures for Parts 3–7. A fixture declares its part, clause, `threatRef`, `kind`, target `contract` surface/version, preconditions, operation, and expected outcome. `conformance/validate.mjs` validates each fixture against the schema and cross-checks the manifest. Implementations execute the fixtures against their published contract surface.
 
-4. **Profiles.** Six normative Profiles are published under `profiles/`: `identity-token`, `enrollment`, `authorization`, `delegation`, `federation`, and `audit`, each with a Chinese equivalent (`profiles/*.zh-CN.md`). Each declares its identifier, the part it narrows, series version `0.3.0-draft`, the narrowed clauses, decidable structures, references, and the conformance vectors that prove it. Profiles only narrow; they do not relax any `MUST` or `MUST NOT`.
+4. **Profiles.** Six normative Profiles are published under `profiles/`: `identity-token`, `enrollment`, `authorization`, `delegation`, `federation`, and `audit`, each with a Chinese equivalent (`profiles/*.zh-CN.md`). Each declares its identifier, the part it narrows, series version `0.4.0-draft`, the narrowed clauses, decidable structures, references, and the conformance vectors that prove it. Profiles only narrow; they do not relax any `MUST` or `MUST NOT`.
 
 5. **Abstract vector coverage.** Six security-critical negative vectors are added so every row of the planned coverage matrix has a positive and a negative vector where required, bringing the abstract vector set to 36. The cross-repository fixtures (item 3) remain the executable layer.
 
